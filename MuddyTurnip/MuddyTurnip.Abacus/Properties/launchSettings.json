@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MuddyTurnip.Abacus": {
+      "commandName": "Project",
+      "commandLineArgs": "analyze -s \"E:\\Delete\\ApplicationInspector\\Test\" -f json -o \"E:\\Delete\\ApplicationInspector\\output.json\" -k sample,example,test,docs,lib,.vs,.git,bin,obj,node_modules,scripts -i true -r \"C:\\GitHub\\Abacus\\AppInspector\\CodemologyRules\" -d true --single-threaded"
+    }
+  }
+}

@@ -1,0 +1,122 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solution Items", "_solution Items", "{876245F3-D7C5-4AA3-A288-2CE94BF63B8E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		README.md = README.md
+		todo.txt = todo.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RulesPacker", "RulesPacker", "{C464D0CE-5254-4EA5-87C9-C0C96E40C3CB}"
+	ProjectSection(SolutionItems) = preProject
+		RulesPacker\ApplicationInspector.CLI.deps.json = RulesPacker\ApplicationInspector.CLI.deps.json
+		RulesPacker\ApplicationInspector.CLI.dll = RulesPacker\ApplicationInspector.CLI.dll
+		RulesPacker\ApplicationInspector.CLI.exe = RulesPacker\ApplicationInspector.CLI.exe
+		RulesPacker\ApplicationInspector.CLI.pdb = RulesPacker\ApplicationInspector.CLI.pdb
+		RulesPacker\ApplicationInspector.CLI.runtimeconfig.dev.json = RulesPacker\ApplicationInspector.CLI.runtimeconfig.dev.json
+		RulesPacker\ApplicationInspector.CLI.runtimeconfig.json = RulesPacker\ApplicationInspector.CLI.runtimeconfig.json
+		RulesPacker\ApplicationInspector.Commands.dll = RulesPacker\ApplicationInspector.Commands.dll
+		RulesPacker\ApplicationInspector.Commands.pdb = RulesPacker\ApplicationInspector.Commands.pdb
+		RulesPacker\ApplicationInspector.RulesEngine.dll = RulesPacker\ApplicationInspector.RulesEngine.dll
+		RulesPacker\ApplicationInspector.RulesEngine.pdb = RulesPacker\ApplicationInspector.RulesEngine.pdb
+		RulesPacker\CommandLine.dll = RulesPacker\CommandLine.dll
+		RulesPacker\DotLiquid.dll = RulesPacker\DotLiquid.dll
+		RulesPacker\Newtonsoft.Json.dll = RulesPacker\Newtonsoft.Json.dll
+		RulesPacker\NLog.dll = RulesPacker\NLog.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FA4EDFF4-13FB-4E29-A17A-3B87BAAC8FFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{FD037853-F64F-4B8B-B25A-AA63E3920C96}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\Competitors.docx = Docs\Competitors.docx
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuddyTurnip.CSharp.Tests", "test\MuddyTurnip.CSharp.Tests\MuddyTurnip.CSharp.Tests.csproj", "{BC32EB83-1C0E-495F-9B34-AD46C42BDB5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuddyTurnip.CSharp.Debug", "test\MuddyTurnip.CSharp.Debug\MuddyTurnip.CSharp.Debug.csproj", "{2FF0E744-8E17-4729-B60E-ADC055CA3AD0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuddyTurnip.Rule.Generator", "MuddyTurnip\MuddyTurnip.Rule.Generator\MuddyTurnip.Rule.Generator.csproj", "{56CF7123-841F-4AFA-93D8-63D6F415D73A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuddyTurnip.RulesEngine", "MuddyTurnip\MuddyTurnip.RulesEngine\MuddyTurnip.RulesEngine.csproj", "{78B882E1-114B-40E9-817D-3C6599B7C64E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationInspector", "ApplicationInspector", "{9B73BFC7-2EB3-4D41-AD99-02CC0BB37DBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppInspector.RulesEngine", "ApplicationInspector\RulesEngine\AppInspector.RulesEngine.csproj", "{0D064B84-520B-4A74-BF8D-A5021B09CF09}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppInspector.Commands", "ApplicationInspector\AppInspector\AppInspector.Commands.csproj", "{402D4282-00E9-4B74-9611-68380B045F3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppInspector.Common", "ApplicationInspector\AppInspector.Common\AppInspector.Common.csproj", "{58315727-FA77-4D52-938A-B0E80497148E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MuddyTurnip", "MuddyTurnip", "{98E1C19A-1A00-4E37-B5D3-03B13CDAA5C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuddyTurnip.Abacus", "MuddyTurnip\MuddyTurnip.Abacus\MuddyTurnip.Abacus.csproj", "{24C8CF4D-BBCF-4364-AC6E-8EC2E3C39154}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppInspector.CLI", "ApplicationInspector\AppInspector.CLI\AppInspector.CLI.csproj", "{C58EB370-BDBC-42AD-A618-5BB20EC495FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC32EB83-1C0E-495F-9B34-AD46C42BDB5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC32EB83-1C0E-495F-9B34-AD46C42BDB5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC32EB83-1C0E-495F-9B34-AD46C42BDB5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC32EB83-1C0E-495F-9B34-AD46C42BDB5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FF0E744-8E17-4729-B60E-ADC055CA3AD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FF0E744-8E17-4729-B60E-ADC055CA3AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FF0E744-8E17-4729-B60E-ADC055CA3AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FF0E744-8E17-4729-B60E-ADC055CA3AD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56CF7123-841F-4AFA-93D8-63D6F415D73A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56CF7123-841F-4AFA-93D8-63D6F415D73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56CF7123-841F-4AFA-93D8-63D6F415D73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56CF7123-841F-4AFA-93D8-63D6F415D73A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B882E1-114B-40E9-817D-3C6599B7C64E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B882E1-114B-40E9-817D-3C6599B7C64E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B882E1-114B-40E9-817D-3C6599B7C64E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B882E1-114B-40E9-817D-3C6599B7C64E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D064B84-520B-4A74-BF8D-A5021B09CF09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D064B84-520B-4A74-BF8D-A5021B09CF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D064B84-520B-4A74-BF8D-A5021B09CF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D064B84-520B-4A74-BF8D-A5021B09CF09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{402D4282-00E9-4B74-9611-68380B045F3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{402D4282-00E9-4B74-9611-68380B045F3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{402D4282-00E9-4B74-9611-68380B045F3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{402D4282-00E9-4B74-9611-68380B045F3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58315727-FA77-4D52-938A-B0E80497148E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58315727-FA77-4D52-938A-B0E80497148E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58315727-FA77-4D52-938A-B0E80497148E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58315727-FA77-4D52-938A-B0E80497148E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24C8CF4D-BBCF-4364-AC6E-8EC2E3C39154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C8CF4D-BBCF-4364-AC6E-8EC2E3C39154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C8CF4D-BBCF-4364-AC6E-8EC2E3C39154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C8CF4D-BBCF-4364-AC6E-8EC2E3C39154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C58EB370-BDBC-42AD-A618-5BB20EC495FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C58EB370-BDBC-42AD-A618-5BB20EC495FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C58EB370-BDBC-42AD-A618-5BB20EC495FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C58EB370-BDBC-42AD-A618-5BB20EC495FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C464D0CE-5254-4EA5-87C9-C0C96E40C3CB} = {876245F3-D7C5-4AA3-A288-2CE94BF63B8E}
+		{FD037853-F64F-4B8B-B25A-AA63E3920C96} = {876245F3-D7C5-4AA3-A288-2CE94BF63B8E}
+		{BC32EB83-1C0E-495F-9B34-AD46C42BDB5D} = {FA4EDFF4-13FB-4E29-A17A-3B87BAAC8FFE}
+		{2FF0E744-8E17-4729-B60E-ADC055CA3AD0} = {FA4EDFF4-13FB-4E29-A17A-3B87BAAC8FFE}
+		{56CF7123-841F-4AFA-93D8-63D6F415D73A} = {98E1C19A-1A00-4E37-B5D3-03B13CDAA5C0}
+		{78B882E1-114B-40E9-817D-3C6599B7C64E} = {98E1C19A-1A00-4E37-B5D3-03B13CDAA5C0}
+		{0D064B84-520B-4A74-BF8D-A5021B09CF09} = {9B73BFC7-2EB3-4D41-AD99-02CC0BB37DBB}
+		{402D4282-00E9-4B74-9611-68380B045F3B} = {9B73BFC7-2EB3-4D41-AD99-02CC0BB37DBB}
+		{58315727-FA77-4D52-938A-B0E80497148E} = {9B73BFC7-2EB3-4D41-AD99-02CC0BB37DBB}
+		{24C8CF4D-BBCF-4364-AC6E-8EC2E3C39154} = {98E1C19A-1A00-4E37-B5D3-03B13CDAA5C0}
+		{C58EB370-BDBC-42AD-A618-5BB20EC495FA} = {9B73BFC7-2EB3-4D41-AD99-02CC0BB37DBB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D8F88F7-47D4-475A-B1AF-713132222341}
+	EndGlobalSection
+EndGlobal
