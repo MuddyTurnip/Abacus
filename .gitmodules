@@ -1,0 +1,3 @@
+[submodule "ApplicationInspector"]
+	path = ApplicationInspector
+	url = https://github.com/MuddyTurnip/ApplicationInspector
