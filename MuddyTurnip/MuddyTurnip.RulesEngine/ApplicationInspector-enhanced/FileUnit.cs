@@ -17,5 +17,8 @@ namespace MuddyTurnip.RulesEngine
 
         [JsonProperty(PropertyName = "blockType")]
         public string? BlockType { get; set; }
+
+        [JsonProperty(PropertyName = "printMetrics")]
+        public bool? PrintMetrics { get; set; }
     }
 }

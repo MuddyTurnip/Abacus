@@ -77,9 +77,8 @@ namespace MuddyTurnip.RulesEngine.Commands
                 List<StringQuote>? stringQuotes = JsonConvert.DeserializeObject<List<StringQuote>>(contents);
                 _stringQuotes = stringQuotes ?? new List<StringQuote>();
             }
-
-
         }
+
         /// <summary>
         /// Returns language for given file name
         /// </summary>
@@ -653,7 +652,8 @@ namespace MuddyTurnip.RulesEngine.Commands
                     componentSettings = new(
                         fileComponent.ID,
                         fileComponent.Name,
-                        fileComponent.BlockType);
+                        fileComponent.BlockType,
+                        fileComponent.PrintMetrics);
 
                     LoadParents(
                         fileComponent,
@@ -836,7 +836,8 @@ namespace MuddyTurnip.RulesEngine.Commands
                 {
                     unitSettings = new(
                         fileUnit.Name,
-                        fileUnit.BlockType);
+                        fileUnit.BlockType,
+                        fileUnit.PrintMetrics);
 
                     LoadPatterns(
                         fileUnit.Patterns,
