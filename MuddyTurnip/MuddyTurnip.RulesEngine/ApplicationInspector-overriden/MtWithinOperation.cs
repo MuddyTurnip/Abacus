@@ -73,7 +73,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                                 var end = blockTextContainer.LineEnds[blockTextContainer.GetLocation(start + capture.Length).Line];
 
                                 var res = ProcessLambda(
-                                    blockTextContainer.FullContent[start..end], 
+                                    blockTextContainer.CodeContent[start..end], 
                                     capture
                                 );
 
@@ -93,7 +93,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                                 var end = blockTextContainer.LineEnds[Math.Min(blockTextContainer.LineEnds.Count - 1, startLine + wc.After)];
 
                                 var res = ProcessLambda(
-                                    blockTextContainer.FullContent[start..end], 
+                                    blockTextContainer.CodeContent[start..end], 
                                     capture
                                 );
 

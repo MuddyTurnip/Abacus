@@ -33,8 +33,9 @@ namespace MuddyTurnip.RulesEngine
         private List<Boundary> _outputBoundaries;
         private BlockStatsCache? _blockStatsCache;
 
+        private string _fullContent;
         public BlockStatsCache? BlockStatsCache => _blockStatsCache;
-        public string FullContent { get; }
+        public string RawContent => _fullContent;
         public string CodeContent => _strippedContent.ToString();
         public string CommentContent => _commentContent.ToString();
         public string PreProcessorContent => _preProcessorContent.ToString();
@@ -65,8 +66,8 @@ namespace MuddyTurnip.RulesEngine
 
             Language = language;
             LineNumber = lineNumber;
-            FullContent = content;
-            //Target = LineNumber == 0 ? FullContent : GetLineContent(lineNumber);
+            _fullContent = content;
+            //Target = LineNumber == 0 ? _fullContent : GetLineContent(lineNumber);
             LineEnds = new List<int>() { 0 };
             LineStarts = new List<int>() { 0, 0 };
 
@@ -87,14 +88,14 @@ namespace MuddyTurnip.RulesEngine
             // Find line end in the text
             int pos = 0;
 
-            while (pos > -1 && pos < FullContent.Length)
+            while (pos > -1 && pos < _fullContent.Length)
             {
-                if (++pos < FullContent.Length)
+                if (++pos < _fullContent.Length)
                 {
-                    pos = FullContent.IndexOf('\n', pos);
+                    pos = _fullContent.IndexOf('\n', pos);
                     LineEnds.Add(pos);
 
-                    if (pos > 0 && pos + 1 < FullContent.Length)
+                    if (pos > 0 && pos + 1 < _fullContent.Length)
                     {
                         LineStarts.Add(pos + 1);
                     }
@@ -104,7 +105,7 @@ namespace MuddyTurnip.RulesEngine
             // Text can end with \n or not
             if (LineEnds[LineEnds.Count - 1] == -1)
             {
-                LineEnds[LineEnds.Count - 1] = (FullContent.Length > 0) ? FullContent.Length - 1 : 0;
+                LineEnds[LineEnds.Count - 1] = (_fullContent.Length > 0) ? _fullContent.Length - 1 : 0;
             }
 
             // Run these before adding last EndLine if it doesn't end in a new line...
@@ -160,7 +161,7 @@ namespace MuddyTurnip.RulesEngine
                 }
             }
 
-            return FullContent;
+            return _fullContent;
         }
 
         /// <summary>
@@ -218,10 +219,10 @@ namespace MuddyTurnip.RulesEngine
                 return string.Empty;
             }
 
-            int contentStart = Math.Min(FullContent.Length, capture.Index);
-            int contentEnd = Math.Min(FullContent.Length, capture.Index + capture.Length);
+            int contentStart = Math.Min(_fullContent.Length, capture.Index);
+            int contentEnd = Math.Min(_fullContent.Length, capture.Index + capture.Length);
 
-            return FullContent[contentStart..contentEnd];
+            return _fullContent[contentStart..contentEnd];
         }
 
         /// <summary>
@@ -265,7 +266,7 @@ namespace MuddyTurnip.RulesEngine
                 CodeContent,
                 this,
                 setBlockContent,
-                FullContent
+                _fullContent
             );
 
             _blockStatsCache = blockStatsCache;
@@ -385,7 +386,7 @@ namespace MuddyTurnip.RulesEngine
                 scopes
             );
 
-            return FullContent.Substring(bound.Index, bound.Length);
+            return _fullContent.Substring(bound.Index, bound.Length);
         }
 
         /// <summary>
@@ -451,7 +452,7 @@ namespace MuddyTurnip.RulesEngine
         //    }
 
         //    bool isInComment = IsBetween(
-        //        FullContent,
+        //        _fullContent,
         //        boundary.Index,
         //        _commentSettings.Prefix,
         //        _commentSettings.Suffix,

@@ -69,7 +69,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             string? language)
         {
             if (blockTextContainer is null
-                || string.IsNullOrEmpty(blockTextContainer.FullContent)
+                || string.IsNullOrEmpty(blockTextContainer.RawContent)
                 || string.IsNullOrEmpty(language)
                 || string.IsNullOrEmpty(pattern))
             {
@@ -78,7 +78,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
             string rawResult = string.Empty;
 
-            int endIndex = blockTextContainer.FullContent.IndexOfAny(
+            int endIndex = blockTextContainer.RawContent.IndexOfAny(
                 new char[] { '\n', '\r' },
                 startIndex
             );
@@ -86,7 +86,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             if (-1 != startIndex
                 && -1 != endIndex)
             {
-                rawResult = blockTextContainer.FullContent[startIndex..endIndex].Trim();
+                rawResult = blockTextContainer.RawContent[startIndex..endIndex].Trim();
                 Regex regex = new(pattern ?? string.Empty);
                 MatchCollection matches = regex.Matches(rawResult);
 
@@ -211,7 +211,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
                                         Sample = numLinesContext > -1 
                                             ? ExtractTextSample(
-                                                blockTextContainer.FullContent, 
+                                                blockTextContainer.RawContent, 
                                                 boundary.Index, 
                                                 boundary.Length
                                             ) 
@@ -400,7 +400,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
                                         Sample = numLinesContext > -1 
                                             ? ExtractTextSample(
-                                                blockTextContainer.FullContent, 
+                                                blockTextContainer.RawContent, 
                                                 boundary.Index, 
                                                 boundary.Length
                                             ) 
@@ -611,12 +611,12 @@ namespace MuddyTurnip.RulesEngine.Commands
             if (endIndex - blockTextContainer.LineEnds[startLineNumber] > maxCharacterContext)
             {
                 endIndex = Math.Min(
-                    blockTextContainer.FullContent.Length - 1, 
+                    blockTextContainer.RawContent.Length - 1, 
                     endIndex + maxCharacterContext
                 );
             }
 
-            return blockTextContainer.FullContent[startIndex..endIndex];
+            return blockTextContainer.RawContent[startIndex..endIndex];
         }
 
         #endregion Private Methods

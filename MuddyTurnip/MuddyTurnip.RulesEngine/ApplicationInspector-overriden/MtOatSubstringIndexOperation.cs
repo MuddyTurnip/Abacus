@@ -90,7 +90,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
                     for (int i = 0; i < stringList.Count; i++)
                     {
-                        var idx = blockTextContainer.FullContent.IndexOf(stringList[i], comparisonType);
+                        var idx = blockTextContainer.CodeContent.IndexOf(stringList[i], comparisonType);
 
                         while (idx != -1)
                         {
@@ -99,12 +99,12 @@ namespace MuddyTurnip.RulesEngine.Commands
                             if (src.UseWordBoundaries)
                             {
                                 if (idx > 0 
-                                    && char.IsLetterOrDigit(blockTextContainer.FullContent[idx - 1]))
+                                    && char.IsLetterOrDigit(blockTextContainer.CodeContent[idx - 1]))
                                 {
                                     skip = true;
                                 }
-                                if (idx + stringList[i].Length < blockTextContainer.FullContent.Length 
-                                    && char.IsLetterOrDigit(blockTextContainer.FullContent[idx + stringList[i].Length]))
+                                if (idx + stringList[i].Length < blockTextContainer.CodeContent.Length 
+                                    && char.IsLetterOrDigit(blockTextContainer.CodeContent[idx + stringList[i].Length]))
                                 {
                                     skip = true;
                                 }
@@ -124,7 +124,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                                 //}
                             }
 
-                            idx = blockTextContainer.FullContent.IndexOf(
+                            idx = blockTextContainer.CodeContent.IndexOf(
                                 stringList[i], 
                                 idx + stringList[i].Length, 
                                 comparisonType

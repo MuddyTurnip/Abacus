@@ -131,7 +131,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
                     if (regex != null)
                     {
-                        foreach (var match in regex.Matches(blockTextCOntainer.FullContent))
+                        foreach (var match in regex.Matches(blockTextCOntainer.CodeContent))
                         {
                             if (match is Match m)
                             {

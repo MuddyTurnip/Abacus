@@ -11,8 +11,8 @@ namespace MuddyTurnip.RegularExpression.Tests
 {
     public class StructureFile_DebugBlockPatterns
     {
+        private readonly string _full = String.Empty;
         private readonly string _code = String.Empty;
-        private readonly string _result = String.Empty;
         private readonly BlockStatsCache _blockStatsCache;
         private readonly BlockTextContainer _codeContainer;
         private readonly List<Location> _lineEnds;
@@ -38,8 +38,8 @@ namespace MuddyTurnip.RegularExpression.Tests
                 true);
 
             _blockStatsCache = _codeContainer.BlockStatsCache;
-            _code = _codeContainer.FullContent;
-            _result = _codeContainer.CodeContent;
+            _full = _codeContainer.RawContent;
+            _code = _codeContainer.CodeContent;
             _lineEnds = new();
 
             foreach (int index in _codeContainer.LineEnds)
@@ -537,8 +537,8 @@ namespace MuddyTurnip.RegularExpression.Tests
         {
             foreach (BlockStats block in _blockStatsCache.BlockStats)
             {
-                string open = _code.Substring(block.AdjustedOpenIndex - block.Settings.Open.Length, block.Settings.Open.Length);
-                string close = _code.Substring(block.AdjustedCloseIndex, block.Settings.Close.Length);
+                string open = _full.Substring(block.AdjustedOpenIndex - block.Settings.Open.Length, block.Settings.Open.Length);
+                string close = _full.Substring(block.AdjustedCloseIndex, block.Settings.Close.Length);
 
                 Assert.Equal(block.Settings.Open, open);
 

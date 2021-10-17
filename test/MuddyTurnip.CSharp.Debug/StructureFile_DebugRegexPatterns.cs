@@ -9,8 +9,8 @@ namespace MuddyTurnip.RegularExpression.Tests
 {
     public class StructureFile_DebugRegexPatterns
     {
+        private readonly string _raw = String.Empty;
         private readonly string _code = String.Empty;
-        private readonly string _result = String.Empty;
         private readonly BlockStatsCache _blockStatsCache;
         private readonly BlockTextContainer _codeContainer;
 
@@ -33,8 +33,8 @@ namespace MuddyTurnip.RegularExpression.Tests
                 "csharp");
 
             _blockStatsCache = _codeContainer.BlockStatsCache;
-            _code = _codeContainer.FullContent;
-            _result = _codeContainer.CodeContent;
+            _raw = _codeContainer.RawContent;
+            _code = _codeContainer.CodeContent;
         }
 
         #region method

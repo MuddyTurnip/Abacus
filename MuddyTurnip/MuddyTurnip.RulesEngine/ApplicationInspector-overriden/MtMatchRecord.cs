@@ -94,15 +94,6 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "type")]
         public string? PatternType => MatchingPattern?.PatternType.ToString();
 
-        /// <summary>
-        /// Internal to namespace use only for capturing boundary excerpts and sample
-        /// </summary>
-        [JsonIgnore]
-        public string? FullText
-        {
-            get { return BlockTextContainer?.FullContent; }
-        }
-
         [JsonIgnore]
         public BlockTextContainer? BlockTextContainer { get; set; }
 
