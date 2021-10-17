@@ -25,7 +25,10 @@ namespace MuddyTurnip.RulesEngine
                         nameQualifier += joiner;
                     }
 
-                    child.FullName = $"{nameQualifier}{child.Name}";
+                    if (!string.IsNullOrWhiteSpace(child.Name))
+                    {
+                        child.FullName = $"{nameQualifier}{child.Name}";
+                    }
 
                     if (child.QualifiesName)
                     {

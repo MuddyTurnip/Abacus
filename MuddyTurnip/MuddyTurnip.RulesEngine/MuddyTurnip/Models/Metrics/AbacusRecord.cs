@@ -1,15 +1,18 @@
-﻿using MuddyTurnip.RulesEngine.Commands;
+﻿using Microsoft.ApplicationInspector.Commands;
+using MuddyTurnip.RulesEngine;
+using MuddyTurnip.RulesEngine.Commands;
 using System.Collections.Generic;
 
 namespace MuddyTurnip.Metrics.Engine
 {
-    public class MetricsRecord
+    public class AbacusRecord
     {
-        public List<ClassMetricsRecord> ClassMetrics { get; set; } = new ();
-        public List<MethodMetricsRecord> MethodMetrics { get; set; } = new();
+        public FileRecord File { get; set; }
+        public MetricsRecord Metrics { get; set; } = new();
 
-        public MetricsRecord()
+        public AbacusRecord(FileRecord file)
         {
+            File = file;
         }
     }
 }

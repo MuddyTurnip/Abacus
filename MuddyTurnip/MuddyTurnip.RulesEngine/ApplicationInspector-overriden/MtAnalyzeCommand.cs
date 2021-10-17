@@ -387,6 +387,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                     AccessTime = file.AccessTime
                 };
 
+                AbacusRecord abacusRecord = new(fileRecord);
                 var sw = new Stopwatch();
                 sw.Start();
 
@@ -453,7 +454,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
                         if (fileRecord.Status != ScanState.Skipped)
                         {
-                            AbacusRecord? abacusRecord = null;
+                            MetricsRecord? metricsRecord = null;
 
                             if (opts.FileTimeOut > 0)
                             {
@@ -463,7 +464,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                                     {
                                         if (opts.TagsOnly)
                                         {
-                                            abacusRecord = _rulesProcessor.AnalyzeFile(
+                                            metricsRecord = _rulesProcessor.AnalyzeFile(
                                                 file,
                                                 languageInfo,
                                                 _metaDataHelper.UniqueTags.Keys,
@@ -472,7 +473,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                                         }
                                         else
                                         {
-                                            abacusRecord = _rulesProcessor.AnalyzeFile(
+                                            metricsRecord = _rulesProcessor.AnalyzeFile(
                                                 file,
                                                 languageInfo,
                                                 null,
@@ -510,7 +511,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                             {
                                 if (opts.TagsOnly)
                                 {
-                                    abacusRecord = _rulesProcessor.AnalyzeFile(
+                                    metricsRecord = _rulesProcessor.AnalyzeFile(
                                         file,
                                         languageInfo,
                                         _metaDataHelper.UniqueTags.Keys,
@@ -519,7 +520,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                                 }
                                 else
                                 {
-                                    abacusRecord = _rulesProcessor.AnalyzeFile(
+                                    metricsRecord = _rulesProcessor.AnalyzeFile(
                                         file,
                                         languageInfo,
                                         null,
@@ -530,15 +531,15 @@ namespace MuddyTurnip.RulesEngine.Commands
                                 fileRecord.Status = ScanState.Analyzed;
                             }
 
-                            if (abacusRecord is { })
+                            if (metricsRecord is { })
                             {
-                                if (abacusRecord.Matches.Any())
+                                if (metricsRecord.Matches.Any())
                                 {
                                     fileRecord.Status = ScanState.Affected;
-                                    fileRecord.NumFindings = abacusRecord.Matches.Count;
+                                    fileRecord.NumFindings = metricsRecord.Matches.Count;
                                 }
 
-                                foreach (var matchRecord in abacusRecord.Matches)
+                                foreach (var matchRecord in metricsRecord.Matches)
                                 {
                                     if (opts.TagsOnly)
                                     {
@@ -550,20 +551,15 @@ namespace MuddyTurnip.RulesEngine.Commands
                                     }
                                 }
 
-                                _metaDataHelper.AbacusRecords.Add(abacusRecord);
+                                abacusRecord.Metrics = metricsRecord;
                             }
                         }
                     }
                 }
 
                 sw.Stop();
-
                 fileRecord.ScanTime = sw.Elapsed;
-
-                if (!opts.NoFileMetadata)
-                {
-                    _metaDataHelper.Files.Add(fileRecord);
-                }
+                _metaDataHelper.AbacusRecords.Add(abacusRecord);
             }
         }
 
@@ -618,8 +614,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                     AccessTime = file.AccessTime
                 };
 
-                AbacusRecord? abacusRecord = null;
-
+                AbacusRecord abacusRecord = new(fileRecord);
                 var sw = new Stopwatch();
                 sw.Start();
 
@@ -683,19 +678,19 @@ namespace MuddyTurnip.RulesEngine.Commands
 
                         if (fileRecord.Status != ScanState.Skipped)
                         {
-                            abacusRecord = _options.TagsOnly
+                            abacusRecord.Metrics = _options.TagsOnly
                                 ? await _rulesProcessor.AnalyzeFileAsync(file, languageInfo, cancellationToken, _metaDataHelper.UniqueTags.Keys, -1)
                                 : await _rulesProcessor.AnalyzeFileAsync(file, languageInfo, cancellationToken, null, _options.ContextLines);
 
                             fileRecord.Status = ScanState.Analyzed;
 
-                            if (abacusRecord.Matches.Any())
+                            if (abacusRecord.Metrics.Matches.Any())
                             {
                                 fileRecord.Status = ScanState.Affected;
-                                fileRecord.NumFindings = abacusRecord.Matches.Count;
+                                fileRecord.NumFindings = abacusRecord.Metrics.Matches.Count;
                             }
 
-                            foreach (var matchRecord in abacusRecord.Matches)
+                            foreach (var matchRecord in abacusRecord.Metrics.Matches)
                             {
                                 if (_options.TagsOnly)
                                 {
@@ -711,15 +706,8 @@ namespace MuddyTurnip.RulesEngine.Commands
                 }
 
                 sw.Stop();
-
                 fileRecord.ScanTime = sw.Elapsed;
-
-                _metaDataHelper.Files.Add(fileRecord);
-
-                if (abacusRecord is { })
-                {
-                    _metaDataHelper.AbacusRecords.Add(abacusRecord);
-                }
+                _metaDataHelper.AbacusRecords.Add(abacusRecord);
             }
         }
 
@@ -756,12 +744,14 @@ namespace MuddyTurnip.RulesEngine.Commands
                 }
                 else
                 {
-                    _metaDataHelper?.Metadata.Files.Add(
-                        new FileRecord()
-                        {
-                            FileName = srcFile,
-                            Status = ScanState.Skipped
-                        }
+                    _metaDataHelper?.Metadata.AbacusRecords.Add(
+                        new AbacusRecord(
+                            new FileRecord()
+                            {
+                                FileName = srcFile,
+                                Status = ScanState.Skipped
+                            }
+                        )
                     );
                 }
             }
@@ -796,12 +786,14 @@ namespace MuddyTurnip.RulesEngine.Commands
                 }
                 else
                 {
-                    _metaDataHelper?.Metadata.Files.Add(
-                        new FileRecord()
-                        {
-                            FileName = srcFile,
-                            Status = ScanState.Skipped
-                        }
+                    _metaDataHelper?.Metadata.AbacusRecords.Add(
+                        new AbacusRecord(
+                            new FileRecord()
+                            {
+                                FileName = srcFile,
+                                Status = ScanState.Skipped
+                            }
+                        )
                     );
                 }
             }
@@ -875,7 +867,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
             //wrapup result status
             if (!_options.NoFileMetadata
-                && _metaDataHelper.Files.All(x => x.Status == ScanState.Skipped))
+                && _metaDataHelper.AbacusRecords.All(x => x.File.Status == ScanState.Skipped))
             {
                 WriteOnce.Error(MsgHelp.GetString(MsgHelp.ID.ANALYZE_NOSUPPORTED_FILETYPES));
 
@@ -1004,14 +996,14 @@ namespace MuddyTurnip.RulesEngine.Commands
                     while (!done)
                     {
                         Thread.Sleep(_sleepDelay);
-                        var current = _metaDataHelper.Files.Count;
+                        var current = _metaDataHelper.AbacusRecords.Count;
                         var timePerRecord = sw.Elapsed.TotalMilliseconds / current;
                         var millisExpected = (int)(timePerRecord * (fileQueue.Count - current));
                         var timeExpected = new TimeSpan(0, 0, 0, 0, millisExpected);
-                        progressBar.Tick(_metaDataHelper.Files.Count, timeExpected, $"Analyzing Files. {_metaDataHelper.AbacusRecords.SelectMany(x => x.Matches).Count()} Matches. {_metaDataHelper.Files.Count(x => x.Status == ScanState.Skipped)} Files Skipped. {_metaDataHelper.Files.Count(x => x.Status == ScanState.TimedOut)} Timed Out. {_metaDataHelper.Files.Count(x => x.Status == ScanState.Affected)} Affected. {_metaDataHelper.Files.Count(x => x.Status == ScanState.Analyzed)} Not Affected.");
+                        progressBar.Tick(_metaDataHelper.AbacusRecords.Count, timeExpected, $"Analyzing Files. {_metaDataHelper.AbacusRecords.SelectMany(x => x.Metrics.Matches).Count()} Matches. {_metaDataHelper.AbacusRecords.Count(x => x.File.Status == ScanState.Skipped)} Files Skipped. {_metaDataHelper.AbacusRecords.Count(x => x.File.Status == ScanState.TimedOut)} Timed Out. {_metaDataHelper.AbacusRecords.Count(x => x.File.Status == ScanState.Affected)} Affected. {_metaDataHelper.AbacusRecords.Count(x => x.File.Status == ScanState.Analyzed)} Not Affected.");
                     }
 
-                    progressBar.Message = $"{_metaDataHelper.AbacusRecords.SelectMany(x => x.Matches).Count()} Matches. {_metaDataHelper.Files.Count(x => x.Status == ScanState.Skipped)} Files Skipped. {_metaDataHelper.Files.Count(x => x.Status == ScanState.TimedOut)} Timed Out. {_metaDataHelper.Files.Count(x => x.Status == ScanState.Affected)} Affected. {_metaDataHelper.Files.Count(x => x.Status == ScanState.Analyzed)} Not Affected.";
+                    progressBar.Message = $"{_metaDataHelper.AbacusRecords.SelectMany(x => x.Metrics.Matches).Count()} Matches. {_metaDataHelper.AbacusRecords.Count(x => x.File.Status == ScanState.Skipped)} Files Skipped. {_metaDataHelper.AbacusRecords.Count(x => x.File.Status == ScanState.TimedOut)} Timed Out. {_metaDataHelper.AbacusRecords.Count(x => x.File.Status == ScanState.Affected)} Affected. {_metaDataHelper.AbacusRecords.Count(x => x.File.Status == ScanState.Analyzed)} Not Affected.";
                     progressBar.Tick(progressBar.MaxTicks);
                 }
 
@@ -1024,7 +1016,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
             //wrapup result status
             if (!_options.NoFileMetadata
-                && _metaDataHelper.Files.All(x => x.Status == ScanState.Skipped))
+                && _metaDataHelper.AbacusRecords.All(x => x.File.Status == ScanState.Skipped))
             {
                 WriteOnce.Error(MsgHelp.GetString(MsgHelp.ID.ANALYZE_NOSUPPORTED_FILETYPES));
                 analyzeResult.ResultCode = MtAnalyzeResult.ExitCode.NoMatches;
@@ -1073,17 +1065,19 @@ namespace MuddyTurnip.RulesEngine.Commands
                         if (_metaDataHelper is not null)
                         {
                             // Populate skips for all the entries we didn't process
-                            foreach (var entry in fileEntries.Where(x => !_metaDataHelper.Files.Any(y => x.FullPath == y.FileName)))
+                            foreach (var entry in fileEntries.Where(x => !_metaDataHelper.AbacusRecords.Any(y => x.FullPath == y.File.FileName)))
                             {
-                                _metaDataHelper.Files.Add(
-                                    new FileRecord()
-                                    {
-                                        AccessTime = entry.AccessTime,
-                                        CreateTime = entry.CreateTime,
-                                        ModifyTime = entry.ModifyTime,
-                                        FileName = entry.FullPath,
-                                        Status = ScanState.TimeOutSkipped
-                                    }
+                                _metaDataHelper.AbacusRecords.Add(
+                                    new AbacusRecord(
+                                        new FileRecord()
+                                        {
+                                            AccessTime = entry.AccessTime,
+                                            CreateTime = entry.CreateTime,
+                                            ModifyTime = entry.ModifyTime,
+                                            FileName = entry.FullPath,
+                                            Status = ScanState.TimeOutSkipped
+                                        }
+                                    )
                                 );
                             }
                         }

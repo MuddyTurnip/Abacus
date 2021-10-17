@@ -126,7 +126,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             return rawResult;
         }
 
-        public AbacusRecord AnalyzeFile(
+        public MetricsRecord AnalyzeFile(
             string contents,
             FileEntry fileEntry,
             LanguageInfo languageInfo,
@@ -139,7 +139,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                 tagsToIgnore
             );
 
-            AbacusRecord abacusRecord = new(fileEntry.FullPath);
+            MetricsRecord metricsRecord = new();
 
             BlockTextContainer blockTextContainer = new(
                 contents,
@@ -155,7 +155,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             {
                 foreach (var cap in ruleCapture.Captures)
                 {
-                    abacusRecord.Matches.AddRange(ProcessBoundary(cap));
+                    metricsRecord.Matches.AddRange(ProcessBoundary(cap));
                 }
 
                 List<MtMatchRecord> ProcessBoundary(ClauseCapture cap)
@@ -204,7 +204,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                                         MatchingPattern = oatRule.AppInspectorRule.Patterns[patternIndex],
                                         Scope = MtPatternScope.Code, // Need to handle the rest too...
                                         StartIndex = startIndex,
-                                        LastIndex = endIndex,
+                                        EndIndex = endIndex,
 
                                         Excerpt = numLinesContext > 0 
                                             ? ExtractExcerpt(
@@ -244,12 +244,12 @@ namespace MuddyTurnip.RulesEngine.Commands
 
             List<MtMatchRecord> removes = new();
 
-            foreach (MtMatchRecord m in abacusRecord.Matches.Where(x => x.Rule.Overrides?.Length > 0))
+            foreach (MtMatchRecord m in metricsRecord.Matches.Where(x => x.Rule.Overrides?.Length > 0))
             {
                 foreach (string ovrd in m.Rule?.Overrides ?? Array.Empty<string>())
                 {
                     // Find all overriden rules and mark them for removal from issues list
-                    foreach (MtMatchRecord om in abacusRecord.Matches.FindAll(x => x.Rule.Id == ovrd))
+                    foreach (MtMatchRecord om in metricsRecord.Matches.FindAll(x => x.Rule.Id == ovrd))
                     {
                         if (om.Boundary?.Index >= m.Boundary?.Index &&
                             om.Boundary?.Index <= m.Boundary?.Index + m.Boundary?.Length)
@@ -261,14 +261,14 @@ namespace MuddyTurnip.RulesEngine.Commands
             }
 
             // Remove overriden rules
-            abacusRecord.Matches.RemoveAll(x => removes.Contains(x));
+            metricsRecord.Matches.RemoveAll(x => removes.Contains(x));
 
             MetricsProcessor.Aggregate(
-                abacusRecord,
+                metricsRecord,
                 blockTextContainer
             );
 
-            return abacusRecord;
+            return metricsRecord;
         }
 
         private IEnumerable<ConvertedOatRule> GetRulesForFile(
@@ -288,7 +288,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             return rules;
         }
 
-        public AbacusRecord AnalyzeFile(
+        public MetricsRecord AnalyzeFile(
             FileEntry fileEntry, 
             LanguageInfo languageInfo, 
             IEnumerable<string>? tagsToIgnore = null, 
@@ -317,10 +317,10 @@ namespace MuddyTurnip.RulesEngine.Commands
                 );
             }
 
-            return new AbacusRecord(fileEntry.FullPath);
+            return new MetricsRecord();
         }
 
-        public async Task<AbacusRecord> AnalyzeFileAsync(
+        public async Task<MetricsRecord> AnalyzeFileAsync(
             FileEntry fileEntry, 
             LanguageInfo languageInfo, 
             CancellationToken cancellationToken, 
@@ -329,7 +329,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         {
             var rules = GetRulesForFile(languageInfo, fileEntry, tagsToIgnore);
 
-            AbacusRecord abacusRecord = new(fileEntry.FullPath);
+            MetricsRecord metricsRecord = new();
             using var sr = new StreamReader(fileEntry.Content);
 
             BlockTextContainer blockTextContainer = new(
@@ -341,12 +341,12 @@ namespace MuddyTurnip.RulesEngine.Commands
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    return abacusRecord;
+                    return metricsRecord;
                 }
 
                 foreach (var cap in ruleCapture.Captures)
                 {
-                    abacusRecord.Matches.AddRange(ProcessBoundary(cap));
+                    metricsRecord.Matches.AddRange(ProcessBoundary(cap));
                 }
 
                 List<MtMatchRecord> ProcessBoundary(ClauseCapture cap)
@@ -398,7 +398,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                                         MatchingPattern = oatRule.AppInspectorRule.Patterns[patternIndex],
                                         Scope = MtPatternScope.Code, // Need to handle the rest too...
                                         StartIndex = startIndex,
-                                        LastIndex = endIndex,
+                                        EndIndex = endIndex,
 
                                         Excerpt = numLinesContext > 0 
                                             ? ExtractExcerpt(
@@ -438,17 +438,17 @@ namespace MuddyTurnip.RulesEngine.Commands
 
             List<MtMatchRecord> removes = new();
 
-            foreach (MtMatchRecord m in abacusRecord.Matches.Where(x => x.Rule.Overrides?.Length > 0))
+            foreach (MtMatchRecord m in metricsRecord.Matches.Where(x => x.Rule.Overrides?.Length > 0))
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    return abacusRecord;
+                    return metricsRecord;
                 }
 
                 foreach (string ovrd in m.Rule?.Overrides ?? Array.Empty<string>())
                 {
                     // Find all overriden rules and mark them for removal from issues list
-                    foreach (MtMatchRecord om in abacusRecord.Matches.FindAll(x => x.Rule.Id == ovrd))
+                    foreach (MtMatchRecord om in metricsRecord.Matches.FindAll(x => x.Rule.Id == ovrd))
                     {
                         if (om.Boundary?.Index >= m.Boundary?.Index &&
                             om.Boundary?.Index <= m.Boundary?.Index + m.Boundary?.Length)
@@ -460,14 +460,14 @@ namespace MuddyTurnip.RulesEngine.Commands
             }
 
             // Remove overriden rules
-            abacusRecord.Matches.RemoveAll(x => removes.Contains(x));
+            metricsRecord.Matches.RemoveAll(x => removes.Contains(x));
 
             MetricsProcessor.Aggregate(
-                abacusRecord,
+                metricsRecord,
                 blockTextContainer
             );
 
-            return abacusRecord;
+            return metricsRecord;
         }
 
         #region Private Support Methods

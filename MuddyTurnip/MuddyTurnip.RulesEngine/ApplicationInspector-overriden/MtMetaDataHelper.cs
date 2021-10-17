@@ -35,7 +35,6 @@ namespace MuddyTurnip.RulesEngine.Commands
 
         //internal ConcurrentBag<MtMatchRecord> Matches { get; set; } = new();
         internal ConcurrentBag<AbacusRecord> AbacusRecords { get; set; } = new();
-        internal ConcurrentBag<FileRecord> Files { get; set; } = new ConcurrentBag<FileRecord>();
 
         public int UniqueTagsCount
         {
@@ -132,10 +131,10 @@ namespace MuddyTurnip.RulesEngine.Commands
             }
 
             bool CounterOnlyTagSet = false;
-            var selected = matchRecord.Tags is not null 
-                ? TagCounters.Where(x => matchRecord.Tags.Any(y => y.Contains(x.Value.Tag ?? ""))) 
+            var selected = matchRecord.Tags is not null
+                ? TagCounters.Where(x => matchRecord.Tags.Any(y => y.Contains(x.Value.Tag ?? "")))
                 : new Dictionary<string, MetricTagCounter>();
-            
+
             foreach (var select in selected)
             {
                 CounterOnlyTagSet = true;
@@ -205,7 +204,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                         if (tag.Contains("Metric."))
                         {
                             TagCounters.TryAdd(
-                                tag, 
+                                tag,
                                 new MetricTagCounter()
                                 {
                                     Tag = tag
@@ -219,10 +218,10 @@ namespace MuddyTurnip.RulesEngine.Commands
                             OSTargets.TryAdd(
                                 tag.Substring(
                                     tag.LastIndexOf(
-                                        '.', 
+                                        '.',
                                         tag.Length - 1
                                     ) + 1
-                                ), 
+                                ),
                                 0
                             );
                         }
@@ -231,10 +230,10 @@ namespace MuddyTurnip.RulesEngine.Commands
                             CloudTargets.TryAdd(
                                 tag.Substring(
                                     tag.LastIndexOf(
-                                        '.', 
+                                        '.',
                                         tag.Length - 1
                                     ) + 1
-                                ), 
+                                ),
                                 0
                             );
                         }
@@ -249,7 +248,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             if (!string.IsNullOrEmpty(solutionType))
             {
                 AppTypes.TryAdd(
-                    solutionType, 
+                    solutionType,
                     0
                 );
             }
@@ -264,8 +263,6 @@ namespace MuddyTurnip.RulesEngine.Commands
                 {
                     UniqueTags.TryAdd(tag, 0);
                 }
-
-                //Matches.Add(matchRecord);
             }
         }
 
@@ -286,7 +283,6 @@ namespace MuddyTurnip.RulesEngine.Commands
             Metadata.Outputs = Outputs.Keys.ToList();
             Metadata.Targets = Targets.Keys.ToList();
 
-            Metadata.Files = Files.ToList();
             Metadata.AbacusRecords = AbacusRecords.ToList();
 
             Metadata.CPUTargets.Sort();
@@ -336,7 +332,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                         applicationName = sourcePath.Trim(Path.DirectorySeparatorChar);
                     }
 
-                    if (applicationName.LastIndexOf(Path.DirectorySeparatorChar) is int idx 
+                    if (applicationName.LastIndexOf(Path.DirectorySeparatorChar) is int idx
                         && idx != -1)
                     {
                         applicationName = applicationName[idx..].Trim();
@@ -360,7 +356,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         {
             string result = "";
 
-            if (match.Tags is not null 
+            if (match.Tags is not null
                 && match.Tags.Any(s => s.Contains("Application.Type")))
             {
                 foreach (string tag in match.Tags ?? new string[] { })

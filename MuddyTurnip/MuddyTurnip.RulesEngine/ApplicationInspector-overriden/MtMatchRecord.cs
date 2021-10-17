@@ -40,7 +40,8 @@ namespace MuddyTurnip.RulesEngine.Commands
         /// <summary>
         /// Rule Id found in matching rule
         /// </summary>
-        [JsonProperty(PropertyName = "ruleId")]
+        //[JsonProperty(PropertyName = "ruleId")]
+        [JsonIgnore]
         public string RuleId { get; set; }
 
         /// <summary>
@@ -52,7 +53,8 @@ namespace MuddyTurnip.RulesEngine.Commands
         /// <summary>
         /// Rule description found in matching rule
         /// </summary>
-        [JsonProperty(PropertyName = "ruleDescription")]
+        //[JsonProperty(PropertyName = "ruleDescription")]
+        [JsonIgnore]
         public string? RuleDescription { get; set; }
 
         /// <summary>
@@ -64,7 +66,8 @@ namespace MuddyTurnip.RulesEngine.Commands
         /// <summary>
         /// Rule severity
         /// </summary>_rule
-        [JsonProperty(PropertyName = "severity")]
+        //[JsonProperty(PropertyName = "severity")]
+        [JsonIgnore]
         public Severity Severity { get; set; }
 
         [JsonIgnore]
@@ -82,7 +85,8 @@ namespace MuddyTurnip.RulesEngine.Commands
         /// <summary>
         /// Pattern confidence in matching rule pattern
         /// </summary>
-        [JsonProperty(PropertyName = "confidence")]
+        //[JsonProperty(PropertyName = "confidence")]
+        [JsonIgnore]
         public Confidence Confidence
         {
             get { return MatchingPattern?.Confidence ?? Confidence.Medium; }
@@ -91,7 +95,8 @@ namespace MuddyTurnip.RulesEngine.Commands
         /// <summary>
         /// Pattern type of matching pattern
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
+        //[JsonProperty(PropertyName = "type")]
+        [JsonIgnore]
         public string? PatternType => MatchingPattern?.PatternType.ToString();
 
         [JsonIgnore]
@@ -112,13 +117,15 @@ namespace MuddyTurnip.RulesEngine.Commands
         /// <summary>
         /// Filename of this match
         /// </summary>
-        [JsonProperty(PropertyName = "fileName")]
+        //[JsonProperty(PropertyName = "fileName")]
+        [JsonIgnore]
         public string? FileName { get; set; }
 
         /// <summary>
         /// Matching text for this record
         /// </summary>
-        [JsonProperty(PropertyName = "sample")]
+        //[JsonProperty(PropertyName = "sample")]
+        [JsonIgnore]
         public string Sample { get; set; } = "";
 
         /// <summary>
@@ -160,7 +167,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "startIndex")]
         public int StartIndex { get; set; }
 
-        [JsonProperty(PropertyName = "lastIndex")]
-        public int LastIndex { get; set; }
+        [JsonProperty(PropertyName = "endIndex")]
+        public int EndIndex { get; set; }
     }
 }

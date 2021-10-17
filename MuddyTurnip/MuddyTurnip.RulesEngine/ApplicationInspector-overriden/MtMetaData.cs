@@ -56,11 +56,22 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "lastUpdated")]
         public string LastUpdated
         {
+            //get
+            //{
+            //    if (Files.Any())
+            //    {
+            //        return Files.Select(x => x.ModifyTime).Max().ToString();
+            //    }
+            //    else
+            //    {
+            //        return DateTime.MinValue.ToString();
+            //    }
+            //}
             get
             {
-                if (Files.Any())
+                if (AbacusRecords.Any())
                 {
-                    return Files.Select(x => x.ModifyTime).Max().ToString();
+                    return AbacusRecords.Select(x => x.File.ModifyTime).Max().ToString();
                 }
                 else
                 {
@@ -83,7 +94,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "totalFiles")]
         public int TotalFiles
         {
-            get { return Files.Count; }
+            get { return AbacusRecords.Count; }
         }
 
         /// <summary>
@@ -92,7 +103,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "filesTimedOut")]
         public int FilesTimedOut
         {
-            get { return Files.Count(x => x.Status == ScanState.TimedOut); }
+            get { return AbacusRecords.Count(x => x.File.Status == ScanState.TimedOut); }
         }
 
         /// <summary>
@@ -101,7 +112,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "filesAnalyzed")]
         public int FilesAnalyzed
         {
-            get { return Files.Count(x => x.Status == ScanState.Analyzed || x.Status == ScanState.Affected); }
+            get { return AbacusRecords.Count(x => x.File.Status == ScanState.Analyzed || x.File.Status == ScanState.Affected); }
         }
 
         /// <summary>
@@ -110,7 +121,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "filesSkipped")]
         public int FilesSkipped
         {
-            get { return Files.Count(x => x.Status == ScanState.Skipped); }
+            get { return AbacusRecords.Count(x => x.File.Status == ScanState.Skipped); }
         }
 
         /// <summary>
@@ -119,7 +130,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "filesAffected")]
         public int FilesAffected
         {
-            get { return Files.Count(x => x.Status == ScanState.Affected); }
+            get { return AbacusRecords.Count(x => x.File.Status == ScanState.Affected); }
         }
 
         /// <summary>
@@ -128,7 +139,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "filesErrored")]
         public int FileErrored
         {
-            get { return Files.Count(x => x.Status == ScanState.Error); }
+            get { return AbacusRecords.Count(x => x.File.Status == ScanState.Error); }
         }
 
         /// <summary>
@@ -137,7 +148,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "totalMatchesCount")]
         public int TotalMatchesCount
         {
-            get { return AbacusRecords?.SelectMany(m => m.Matches).Count() ?? 0; }
+            get { return AbacusRecords?.SelectMany(a => a.Metrics.Matches).Count() ?? 0; }
         }
 
         /// <summary>
@@ -147,7 +158,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         public int UniqueMatchesCount
         {
             //get { return Metrics?.Select(x => x.RuleId).Distinct().Count() ?? 0; }
-            get { return AbacusRecords?.SelectMany(m => m.Matches).Select(x => x.RuleId).Distinct().Count() ?? 0; }
+            get { return AbacusRecords?.SelectMany(a => a.Metrics.Matches).Select(x => x.RuleId).Distinct().Count() ?? 0; }
         }
 
         /// <summary>
@@ -233,9 +244,6 @@ namespace MuddyTurnip.RulesEngine.Commands
         /// </summary>
         [JsonProperty(PropertyName = "abacus")]
         public List<AbacusRecord> AbacusRecords { get; set; } = new();
-
-        [JsonProperty(PropertyName = "filesInformation")]
-        public List<FileRecord> Files { get; set; } = new List<FileRecord>();
 
         public MtMetaData(string applicationName, string sourcePath)
         {

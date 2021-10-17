@@ -139,7 +139,11 @@ namespace MuddyTurnip.Metrics.Engine
             );
 
             block.Name = text.Substring(block.MatchStart, block.MatchEnd - block.MatchStart).Trim();
-            block.FullName = block.Name;
+
+            if (!string.IsNullOrWhiteSpace(block.Name))
+            {
+                block.FullName = block.Name;
+            }
         }
 
         private static void BuildProperties(
