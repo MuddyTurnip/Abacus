@@ -153,5 +153,14 @@ namespace MuddyTurnip.RulesEngine.Commands
         /// </summary>
         [JsonProperty(PropertyName = "endLocationColumn")]
         public int EndLocationColumn { get; set; }
+
+        [JsonProperty(PropertyName = "scope")]
+        public MtPatternScope Scope { get; set; }
+
+        [JsonProperty(PropertyName = "startIndex")]
+        public int StartIndex { get; set; }
+
+        [JsonProperty(PropertyName = "lastIndex")]
+        public int LastIndex { get; set; }
     }
 }

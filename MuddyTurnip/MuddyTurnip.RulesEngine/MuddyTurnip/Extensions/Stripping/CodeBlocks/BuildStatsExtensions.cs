@@ -101,12 +101,12 @@ namespace MuddyTurnip.Metrics.Engine
                     }
                 }
 
-                child.AdjustedOpenIndex = boundaryCounter.AdjustLineNumber(child.OpenIndex);
+                child.AdjustedOpenIndex = boundaryCounter.GetFullIndexFromCodeIndex(child.OpenIndex);
                 child.BlockStartLocation = boundaryCounter.GetLocation(child.AdjustedOpenIndex);
 
                 if (child.CloseIndex > 0)
                 {
-                    child.AdjustedCloseIndex = boundaryCounter.AdjustLineNumber(child.CloseIndex);
+                    child.AdjustedCloseIndex = boundaryCounter.GetFullIndexFromCodeIndex(child.CloseIndex);
                     child.BlockEndLocation = boundaryCounter.GetLocation(child.AdjustedCloseIndex);
                 }
 

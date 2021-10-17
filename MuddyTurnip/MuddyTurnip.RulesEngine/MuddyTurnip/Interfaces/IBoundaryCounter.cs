@@ -4,7 +4,7 @@ namespace MuddyTurnip.RulesEngine
 {
     public interface IBoundaryCounter
     {
-        int AdjustLineNumber(int strippedIndex);
+        int GetFullIndexFromCodeIndex(int codeIndex);
         Location GetLocation(int index);
     }
 }

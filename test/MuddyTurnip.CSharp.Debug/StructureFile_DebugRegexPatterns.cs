@@ -75,7 +75,7 @@ namespace MuddyTurnip.RegularExpression.Tests
             //    "method"
             //);
 
-            _codeContainer.AdjustLineNumber(218);
+            _codeContainer.GetFullIndexFromCodeIndex(218);
 
             Assert.Equal(blockStartLine, block?.BlockStartLocation.Line);
             Assert.Equal(blockStartColumn, block?.BlockStartLocation.Column);

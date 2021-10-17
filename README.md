@@ -96,3 +96,7 @@ analyze -s "E:\Delete\ApplicationInspector\Test" -f json -o "E:\Delete\Applicati
 analyze -s "E:\Delete\ApplicationInspector\Test" -f json -o "E:\Delete\ApplicationInspector\output.json" -k sample,example,test,docs,lib,.vs,.git,bin,obj,node_modules,scripts -i true -r "C:\GitHub\Abacus\AppInspector\CodemologyRules" -d true --single-threaded
 
 analyze -s "E:\Delete\ApplicationInspector\Test" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules\" --single-threaded
+analyze -s "C:\GitHub\Abacus\test\MuddyTurnip.CSharp.Tests\Files" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules\"  --S
+
+analyze -s "C:\GitHub\Abacus\test\MuddyTurnip.CSharp.Tests\Files" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" --S
+

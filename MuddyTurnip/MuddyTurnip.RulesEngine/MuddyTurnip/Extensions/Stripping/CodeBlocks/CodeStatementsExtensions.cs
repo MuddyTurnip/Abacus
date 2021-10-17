@@ -149,12 +149,12 @@ namespace MuddyTurnip.Metrics.Engine
                 throw new NotImplementedException("Statement CloseIndex is less than OpenIndex");
             }
 
-            statementBlock.AdjustedOpenIndex = boundaryCounter.AdjustLineNumber(statementBlock.OpenIndex);
+            statementBlock.AdjustedOpenIndex = boundaryCounter.GetFullIndexFromCodeIndex(statementBlock.OpenIndex);
             statementBlock.BlockStartLocation = boundaryCounter.GetLocation(statementBlock.AdjustedOpenIndex);
 
             if (statementBlock.CloseIndex > 0)
             {
-                statementBlock.AdjustedCloseIndex = boundaryCounter.AdjustLineNumber(statementBlock.CloseIndex);
+                statementBlock.AdjustedCloseIndex = boundaryCounter.GetFullIndexFromCodeIndex(statementBlock.CloseIndex);
                 statementBlock.BlockEndLocation = boundaryCounter.GetLocation(statementBlock.AdjustedCloseIndex);
             }
 

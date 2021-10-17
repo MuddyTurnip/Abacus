@@ -186,8 +186,10 @@ namespace MuddyTurnip.RulesEngine.Commands
                                         continue;
                                     }
 
-                                    Location StartLocation = blockTextContainer.GetLocation(boundary.Index);
-                                    Location EndLocation = blockTextContainer.GetLocation(boundary.Index + boundary.Length);
+                                    int startIndex = blockTextContainer.GetFullIndexFromCodeIndex(boundary.Index);
+                                    int endIndex = blockTextContainer.GetFullIndexFromCodeIndex(boundary.Index + boundary.Length);
+                                    Location startLocation = blockTextContainer.GetLocation(startIndex);
+                                    Location endLocation = blockTextContainer.GetLocation(endIndex);
 
                                     MtMatchRecord newMatch = new(oatRule.AppInspectorRule)
                                     {
@@ -195,16 +197,19 @@ namespace MuddyTurnip.RulesEngine.Commands
                                         BlockTextContainer = blockTextContainer,
                                         LanguageInfo = languageInfo,
                                         Boundary = boundary,
-                                        StartLocationLine = StartLocation.Line,
-                                        StartLocationColumn = StartLocation.Column,
-                                        EndLocationLine = EndLocation.Line != 0 ? EndLocation.Line : StartLocation.Line + 1, //match is on last line
-                                        EndLocationColumn = EndLocation.Column,
+                                        StartLocationLine = startLocation.Line,
+                                        StartLocationColumn = startLocation.Column,
+                                        EndLocationLine = endLocation.Line != 0 ? endLocation.Line : startLocation.Line + 1, //match is on last line
+                                        EndLocationColumn = endLocation.Column,
                                         MatchingPattern = oatRule.AppInspectorRule.Patterns[patternIndex],
+                                        Scope = MtPatternScope.Code, // Need to handle the rest too...
+                                        StartIndex = startIndex,
+                                        LastIndex = endIndex,
 
                                         Excerpt = numLinesContext > 0 
                                             ? ExtractExcerpt(
                                                 blockTextContainer, 
-                                                StartLocation.Line, 
+                                                startLocation.Line, 
                                                 numLinesContext
                                             ) 
                                             : string.Empty,
@@ -377,8 +382,10 @@ namespace MuddyTurnip.RulesEngine.Commands
                                         continue;
                                     }
 
-                                    Location StartLocation = blockTextContainer.GetLocation(boundary.Index);
-                                    Location EndLocation = blockTextContainer.GetLocation(boundary.Index + boundary.Length);
+                                    int startIndex = blockTextContainer.GetFullIndexFromCodeIndex(boundary.Index);
+                                    int endIndex = blockTextContainer.GetFullIndexFromCodeIndex(boundary.Index + boundary.Length);
+                                    Location startLocation = blockTextContainer.GetLocation(startIndex);
+                                    Location endLocation = blockTextContainer.GetLocation(endIndex);
 
                                     MtMatchRecord newMatch = new(oatRule.AppInspectorRule)
                                     {
@@ -386,14 +393,17 @@ namespace MuddyTurnip.RulesEngine.Commands
                                         BlockTextContainer = blockTextContainer,
                                         LanguageInfo = languageInfo,
                                         Boundary = boundary,
-                                        StartLocationLine = StartLocation.Line,
-                                        EndLocationLine = EndLocation.Line != 0 ? EndLocation.Line : StartLocation.Line + 1, //match is on last line
+                                        StartLocationLine = startLocation.Line,
+                                        EndLocationLine = endLocation.Line != 0 ? endLocation.Line : startLocation.Line + 1, //match is on last line
                                         MatchingPattern = oatRule.AppInspectorRule.Patterns[patternIndex],
+                                        Scope = MtPatternScope.Code, // Need to handle the rest too...
+                                        StartIndex = startIndex,
+                                        LastIndex = endIndex,
 
                                         Excerpt = numLinesContext > 0 
                                             ? ExtractExcerpt(
                                                 blockTextContainer, 
-                                                StartLocation.Line, 
+                                                startLocation.Line, 
                                                 numLinesContext
                                             ) 
                                             : string.Empty,

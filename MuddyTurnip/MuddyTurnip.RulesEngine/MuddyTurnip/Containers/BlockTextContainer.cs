@@ -147,15 +147,15 @@ namespace MuddyTurnip.RulesEngine
             );
         }
 
-        public string GetTarget(PatternScope[] scopes)
+        public string GetTarget(MtPatternScope[] scopes)
         {
             if (scopes.Length == 1)
             {
-                if (scopes.Contains(PatternScope.Code))
+                if (scopes.Contains(MtPatternScope.Code))
                 {
                     return CodeContent;
                 }
-                else if (scopes.Contains(PatternScope.Comment))
+                else if (scopes.Contains(MtPatternScope.Comment))
                 {
                     return CommentContent;
                 }
@@ -192,24 +192,24 @@ namespace MuddyTurnip.RulesEngine
             return result;
         }
 
-        public int AdjustLineNumber(int strippedIndex)
+        public int GetFullIndexFromCodeIndex(int codeIndex)
         {
             Boundary inputBoundary;
-            int adjustedIndex = strippedIndex;
+            int fullIndex = codeIndex;
 
             for (int i = 0; i < _outputBoundaries.Count; i++)
             {
                 inputBoundary = _outputBoundaries[i];
 
-                if (inputBoundary.Index > adjustedIndex)
+                if (inputBoundary.Index > fullIndex)
                 {
-                    return adjustedIndex;
+                    return fullIndex;
                 }
 
-                adjustedIndex += inputBoundary.Length;
+                fullIndex += inputBoundary.Length;
             }
 
-            return adjustedIndex;
+            return fullIndex;
         }
 
         public string GetBoundaryText(Boundary capture)
@@ -232,7 +232,7 @@ namespace MuddyTurnip.RulesEngine
         /// <returns> Boundary </returns>
         public Boundary GetLineBoundary(
             int index,
-            PatternScope[] scopes)
+            MtPatternScope[] scopes)
         {
             Boundary result = new Boundary();
 
@@ -377,7 +377,7 @@ namespace MuddyTurnip.RulesEngine
         /// <returns> Text </returns>
         public string GetLineContent(
             int line,
-            PatternScope[] scopes)
+            MtPatternScope[] scopes)
         {
             int index = LineEnds[line];
 

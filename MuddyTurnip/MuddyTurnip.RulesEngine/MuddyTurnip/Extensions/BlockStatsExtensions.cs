@@ -174,24 +174,24 @@ namespace MuddyTurnip.Metrics.Engine
             this BlockStats block,
             IBoundaryCounter boundaryCounter)
         {
-            block.AdjustedOpenIndex = boundaryCounter.AdjustLineNumber(block.OpenIndex);
+            block.AdjustedOpenIndex = boundaryCounter.GetFullIndexFromCodeIndex(block.OpenIndex);
             block.BlockStartLocation = boundaryCounter.GetLocation(block.AdjustedOpenIndex);
 
             if (block.CloseIndex > 0)
             {
-                block.AdjustedCloseIndex = boundaryCounter.AdjustLineNumber(block.CloseIndex);
+                block.AdjustedCloseIndex = boundaryCounter.GetFullIndexFromCodeIndex(block.CloseIndex);
                 block.BlockEndLocation = boundaryCounter.GetLocation(block.AdjustedCloseIndex);
             }
 
             if (block.MatchStart > 0)
             {
-                block.AdjustedMatchStart = boundaryCounter.AdjustLineNumber(block.MatchStart);
+                block.AdjustedMatchStart = boundaryCounter.GetFullIndexFromCodeIndex(block.MatchStart);
                 block.MatchStartLocation = boundaryCounter.GetLocation(block.AdjustedMatchStart);
             }
 
             if (block.MatchEnd > 0)
             {
-                block.AdjustedMatchEnd = boundaryCounter.AdjustLineNumber(block.MatchEnd);
+                block.AdjustedMatchEnd = boundaryCounter.GetFullIndexFromCodeIndex(block.MatchEnd);
                 block.MatchEndLocation = boundaryCounter.GetLocation(block.AdjustedMatchEnd);
             }
         }

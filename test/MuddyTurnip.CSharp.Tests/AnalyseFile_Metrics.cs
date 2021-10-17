@@ -3,6 +3,7 @@ using MuddyTurnip.Metrics.Engine;
 using MuddyTurnip.RulesEngine.Commands;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Xunit;
 
 namespace MuddyTurnip.RegularExpression.Tests
@@ -14,7 +15,7 @@ namespace MuddyTurnip.RegularExpression.Tests
         {
             MtAnalyzeCommand command = new MtAnalyzeCommand(new AnalyzeOptions()
             {
-                SourcePath = new String[] { "E:\\Delete\\ApplicationInspector\\Test" },
+                SourcePath = new String[] { "C:\\GitHub\\Abacus\\test\\MuddyTurnip.CSharp.Tests\\Files" },
                 CustomRulesPath = "C:\\GitHub\\Abacus\\MuddyTurnip\\MuddyTurnip.Abacus\\CodemologyRules\\",
                 IgnoreDefaultRules = true,
                 ConfidenceFilters = "high,medium",
@@ -35,34 +36,96 @@ namespace MuddyTurnip.RegularExpression.Tests
         }
 
         [Fact]
-        public void CheckMetricCounts()
+        public void CheckCSharp1MetricCounts()
         {
             Assert.Equal(MtAnalyzeResult.ExitCode.Success, _analyzeResult?.ResultCode);
-            Assert.Equal(1, _analyzeResult?.Metadata.AbacusRecords.Count);
 
-            AbacusRecord? abacusRecord = _analyzeResult?.Metadata.AbacusRecords[0];
+            List<AbacusRecord>? abacusRecords = _analyzeResult?.Metadata.AbacusRecords;
+            Assert.Equal(8, abacusRecords?.Count);
+
+            AbacusRecord? abacusRecord = GetFileMetrics(
+                abacusRecords,
+                "CSharp1.cs");
+
             Assert.NotNull(abacusRecord);
 
-            Assert.Equal(29, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.string"));
-            Assert.Equal(10, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.return"));
-            Assert.Equal(9, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.new"));
-            Assert.Equal(10, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.false"));
-            Assert.Equal(10, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.internal"));
-            Assert.Equal(5, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.if"));
-            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.throw"));
-            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.readonly"));
-            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.public"));
-            Assert.Equal(1, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.virtual"));
+            Assert.Equal(6, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.abstract"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.as"));
+            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.base"));
+            Assert.Equal(3, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.bool"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.break"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.byte"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.case"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.catch"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.char"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.checked"));
+            Assert.Equal(35, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.class"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.const"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.continue"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.decimal"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.default"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.delegate"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.do"));
+            Assert.Equal(13, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.double"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.else"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.enum"));
+            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.event"));
+            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.explicit"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.extern"));
+            Assert.Equal(18, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.false"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.finally"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.fixed"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.float"));
+            Assert.Equal(3, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.for"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.foreach"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.goto"));
+            Assert.Equal(7, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.if"));
+            Assert.Equal(4, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.implicit"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.in"));
+            Assert.Equal(95, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.int"));
+            Assert.Equal(5, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.interface"));
+            Assert.Equal(17, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.internal"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.is"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.lock"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.long"));
+            Assert.Equal(10, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.namespace"));
+            Assert.Equal(54, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.new"));
             Assert.Equal(3, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.null"));
-            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.void"));
-            Assert.Equal(8, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.using"));
-            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.true"));
-            Assert.Equal(3, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.private"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.object"));
+            Assert.Equal(12, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.operator"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.out"));
+            Assert.Equal(3, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.override"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.params"));
+            Assert.Equal(15, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.private"));
             Assert.Equal(1, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.protected"));
-            Assert.Equal(1, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.this"));
-            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.bool"));
-            Assert.Equal(1, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.namespace"));
-            Assert.Equal(1, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.class"));
+            Assert.Equal(81, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.public"));
+            Assert.Equal(3, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.readonly"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.ref"));
+            Assert.Equal(37, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.return"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.sbyte"));
+            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.sealed"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.short"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.sizeof"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.stackalloc"));
+            Assert.Equal(24, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.static"));
+            Assert.Equal(135, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.string"));
+            Assert.Equal(1, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.struct"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.switch"));
+            Assert.Equal(14, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.this"));
+            Assert.Equal(6, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.throw"));
+            Assert.Equal(2, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.true"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.try"));
+            Assert.Equal(1, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.typeof"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.uint"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.ulong"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.unchecked"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.unsafe"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.ushort"));
+            Assert.Equal(5, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.using"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.virtual"));
+            Assert.Equal(5, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.void"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.volatile"));
+            Assert.Equal(0, GetTagCount(abacusRecord?.TagCounts, "Codemology-m.Code.CSharp.while"));
         }
 
         private int GetTagCount(
@@ -80,7 +143,28 @@ namespace MuddyTurnip.RegularExpression.Tests
                 }
             }
 
-            return -1;
+            return 0;
+        }
+
+        private AbacusRecord? GetFileMetrics(
+            List<AbacusRecord>? abacusRecords,
+            string fileName)
+        {
+            if (abacusRecords is null
+                || abacusRecords.Count == 0)
+            {
+                return null;
+            }
+
+            foreach (AbacusRecord abacusRecord in abacusRecords)
+            {
+                if (String.Equals(fileName, Path.GetFileName(abacusRecord.FilePath)))
+                {
+                    return abacusRecord;
+                }
+            }
+
+            return null;
         }
     }
 }

@@ -74,8 +74,8 @@ namespace MuddyTurnip.RulesEngine
                         {
                             stats.MatchStart = matchStart;
                             stats.MatchEnd = matchEnd;
-                            stats.AdjustedMatchStart = boundaryCounter.AdjustLineNumber(stats.MatchStart);
-                            stats.AdjustedMatchEnd = boundaryCounter.AdjustLineNumber(stats.MatchEnd);
+                            stats.AdjustedMatchStart = boundaryCounter.GetFullIndexFromCodeIndex(stats.MatchStart);
+                            stats.AdjustedMatchEnd = boundaryCounter.GetFullIndexFromCodeIndex(stats.MatchEnd);
                             stats.MatchStartLocation = boundaryCounter.GetLocation(stats.AdjustedMatchStart);
                             stats.MatchEndLocation = boundaryCounter.GetLocation(stats.AdjustedMatchEnd);
 
