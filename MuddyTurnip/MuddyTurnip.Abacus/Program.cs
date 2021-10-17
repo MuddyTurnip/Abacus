@@ -251,7 +251,7 @@ namespace MuddyTurnip.Abacus
 
         private static int RunAnalyzeCommand(MtCLIAnalyzeCmdOptions cliOptions)
         {
-            AnalyzeCommand command = new AnalyzeCommand(new AnalyzeOptions()
+            MtAnalyzeCommand command = new MtAnalyzeCommand(new AnalyzeOptions()
             {
                 SourcePath = cliOptions.SourcePath ?? Array.Empty<string>(),
                 CustomRulesPath = cliOptions.CustomRulesPath ?? "",
@@ -275,11 +275,11 @@ namespace MuddyTurnip.Abacus
                 WriteOnce.PauseConsoleOutput = true;
             }
 
-            AnalyzeResult analyzeResult = command.GetResult();
+            MtAnalyzeResult analyzeResult = command.GetResult();
 
             if (cliOptions.NoShowProgressBar)
             {
-                ResultsWriter.Write(analyzeResult, cliOptions);
+                MtResultsWriter.Write(analyzeResult, cliOptions);
             }
             else
             {
@@ -287,7 +287,7 @@ namespace MuddyTurnip.Abacus
 
                 _ = Task.Factory.StartNew(() =>
                 {
-                    ResultsWriter.Write(analyzeResult, cliOptions);
+                    MtResultsWriter.Write(analyzeResult, cliOptions);
                     done = true;
                 });
 

@@ -13,7 +13,7 @@ namespace MuddyTurnip.Abacus
     /// Wrapper for CLI only output arg validation which may be unique to a command
     /// and for allocating the correct writter type and format writter object
     /// </summary>
-    public static class ResultsWriter
+    public static class MtResultsWriter
     {
         public static void Write(Result result, MtCLICommandOptions options)
         {
@@ -37,7 +37,8 @@ namespace MuddyTurnip.Abacus
             {
                 commandCompletedMsg = "Pack Rules";
             }
-            else if (result is AnalyzeResult analyzeResult && options is MtCLIAnalyzeCmdOptions cLIAnalyzeCmdOptions) //special handling for html format
+            else if (result is MtAnalyzeResult analyzeResult 
+                && options is MtCLIAnalyzeCmdOptions cLIAnalyzeCmdOptions) //special handling for html format
             {
                 commandCompletedMsg = "Analyze";
 
@@ -47,9 +48,10 @@ namespace MuddyTurnip.Abacus
                     int MAX_HTML_REPORT_FILE_SIZE = 1024 * 1000 * 3;  //warn about potential slow rendering
 
                     //prechecks
-                    if (analyzeResult.ResultCode != AnalyzeResult.ExitCode.Success)
+                    if (analyzeResult.ResultCode != MtAnalyzeResult.ExitCode.Success)
                     {
                         Finalize(writer, commandCompletedMsg);
+
                         return;
                     }
 
@@ -62,6 +64,7 @@ namespace MuddyTurnip.Abacus
                     }
 
                     Finalize(writer, "Analyze");
+
                     return;
                 }
             }

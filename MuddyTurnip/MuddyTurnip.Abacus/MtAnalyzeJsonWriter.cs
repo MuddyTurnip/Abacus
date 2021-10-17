@@ -4,6 +4,7 @@
 using Microsoft.ApplicationInspector.CLI;
 using Microsoft.ApplicationInspector.Commands;
 using Microsoft.ApplicationInspector.Common;
+using MuddyTurnip.RulesEngine.Commands;
 using Newtonsoft.Json;
 
 namespace MuddyTurnip.Abacus
@@ -25,9 +26,12 @@ namespace MuddyTurnip.Abacus
             public string[]? Tags { get; set; }
         }
 
-        public override void WriteResults(Result result, MtCLICommandOptions commandOptions, bool autoClose = true)
+        public override void WriteResults(
+            Result result, 
+            MtCLICommandOptions commandOptions, 
+            bool autoClose = true)
         {
-            AnalyzeResult analyzeResult = (AnalyzeResult)result;
+            MtAnalyzeResult analyzeResult = (MtAnalyzeResult)result;
 
             //For console output, update write once for same results to console or file
             WriteOnce.TextWriter = TextWriter;
@@ -39,6 +43,7 @@ namespace MuddyTurnip.Abacus
 
             JsonSerializer jsonSerializer = new JsonSerializer();
             jsonSerializer.Formatting = Formatting.Indented;
+
             if (TextWriter != null)
             {
                 jsonSerializer.Serialize(TextWriter, analyzeResult);

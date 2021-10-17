@@ -225,7 +225,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         ///// <summary>
         ///// List of detailed MatchRecords from scan
         ///// </summary>
-        //[JsonProperty(PropertyName = "detailedMatchList")]
+        //[JsonProperty(PropertyName = "detailedMatchList2")]
         //public List<MtMatchRecord> Matches { get; set; } = new();
 
         /// <summary>
