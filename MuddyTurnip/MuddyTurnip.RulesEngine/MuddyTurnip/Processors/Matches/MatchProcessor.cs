@@ -6,12 +6,12 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class MatchProcessor
     {
-        public static void Aggregate(MetricsRecord metrics)
+        public static void Aggregate(AbacusRecord abacusRecord)
         {
-            List<TagCounter> fileTagCounts = metrics.TagCounts;
+            List<TagCounter> fileTagCounts = abacusRecord.TagCounts;
             string matchRecordTag;
 
-            foreach (MtMatchRecord matchRecord in metrics.Matches)
+            foreach (MtMatchRecord matchRecord in abacusRecord.Matches)
             {
                 if (matchRecord == null
                     || matchRecord.Tags == null)

@@ -33,7 +33,8 @@ namespace MuddyTurnip.RulesEngine.Commands
         private ConcurrentDictionary<string, MetricTagCounter> TagCounters { get; set; } = new ConcurrentDictionary<string, MetricTagCounter>();
         private ConcurrentDictionary<string, int> Languages { get; set; } = new ConcurrentDictionary<string, int>();
 
-        internal ConcurrentBag<MetricsRecord> Metrics { get; set; } = new();
+        //internal ConcurrentBag<MtMatchRecord> Matches { get; set; } = new();
+        internal ConcurrentBag<AbacusRecord> AbacusRecords { get; set; } = new();
         internal ConcurrentBag<FileRecord> Files { get; set; } = new ConcurrentBag<FileRecord>();
 
         public int UniqueTagsCount
@@ -264,7 +265,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                     UniqueTags.TryAdd(tag, 0);
                 }
 
-                Matches.Add(matchRecord);
+                //Matches.Add(matchRecord);
             }
         }
 
@@ -286,7 +287,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             Metadata.Targets = Targets.Keys.ToList();
 
             Metadata.Files = Files.ToList();
-            Metadata.Metrics = Metrics.ToList();
+            Metadata.AbacusRecords = AbacusRecords.ToList();
 
             Metadata.CPUTargets.Sort();
             Metadata.AppTypes.Sort();

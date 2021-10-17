@@ -5,7 +5,7 @@ namespace MuddyTurnip.Metrics.Engine
     public class BlockStatsProcessor
     {
         public static void Aggregate(
-            MetricsRecord metricsRecord,
+            AbacusRecord abacusRecord,
             BlockTextContainer codeContainer)
         {
             string h = "";

@@ -126,7 +126,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             return rawResult;
         }
 
-        public MetricsRecord AnalyzeFile(
+        public AbacusRecord AnalyzeFile(
             string contents,
             FileEntry fileEntry,
             LanguageInfo languageInfo,
@@ -139,7 +139,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                 tagsToIgnore
             );
 
-            MetricsRecord metrics = new(fileEntry.FullPath);
+            AbacusRecord abacusRecord = new(fileEntry.FullPath);
 
             BlockTextContainer blockTextContainer = new(
                 contents,
@@ -155,7 +155,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             {
                 foreach (var cap in ruleCapture.Captures)
                 {
-                    metrics.Matches.AddRange(ProcessBoundary(cap));
+                    abacusRecord.Matches.AddRange(ProcessBoundary(cap));
                 }
 
                 List<MtMatchRecord> ProcessBoundary(ClauseCapture cap)
@@ -239,12 +239,12 @@ namespace MuddyTurnip.RulesEngine.Commands
 
             List<MtMatchRecord> removes = new();
 
-            foreach (MtMatchRecord m in metrics.Matches.Where(x => x.Rule.Overrides?.Length > 0))
+            foreach (MtMatchRecord m in abacusRecord.Matches.Where(x => x.Rule.Overrides?.Length > 0))
             {
                 foreach (string ovrd in m.Rule?.Overrides ?? Array.Empty<string>())
                 {
                     // Find all overriden rules and mark them for removal from issues list
-                    foreach (MtMatchRecord om in metrics.Matches.FindAll(x => x.Rule.Id == ovrd))
+                    foreach (MtMatchRecord om in abacusRecord.Matches.FindAll(x => x.Rule.Id == ovrd))
                     {
                         if (om.Boundary?.Index >= m.Boundary?.Index &&
                             om.Boundary?.Index <= m.Boundary?.Index + m.Boundary?.Length)
@@ -256,14 +256,14 @@ namespace MuddyTurnip.RulesEngine.Commands
             }
 
             // Remove overriden rules
-            metrics.Matches.RemoveAll(x => removes.Contains(x));
+            abacusRecord.Matches.RemoveAll(x => removes.Contains(x));
 
             MetricsProcessor.Aggregate(
-                metrics,
+                abacusRecord,
                 blockTextContainer
             );
 
-            return metrics;
+            return abacusRecord;
         }
 
         private IEnumerable<ConvertedOatRule> GetRulesForFile(
@@ -283,7 +283,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             return rules;
         }
 
-        public MetricsRecord AnalyzeFile(
+        public AbacusRecord AnalyzeFile(
             FileEntry fileEntry, 
             LanguageInfo languageInfo, 
             IEnumerable<string>? tagsToIgnore = null, 
@@ -312,10 +312,10 @@ namespace MuddyTurnip.RulesEngine.Commands
                 );
             }
 
-            return new MetricsRecord(fileEntry.FullPath);
+            return new AbacusRecord(fileEntry.FullPath);
         }
 
-        public async Task<List<MtMatchRecord>> AnalyzeFileAsync(
+        public async Task<AbacusRecord> AnalyzeFileAsync(
             FileEntry fileEntry, 
             LanguageInfo languageInfo, 
             CancellationToken cancellationToken, 
@@ -324,25 +324,24 @@ namespace MuddyTurnip.RulesEngine.Commands
         {
             var rules = GetRulesForFile(languageInfo, fileEntry, tagsToIgnore);
 
-            List<MtMatchRecord> resultsList = new();
-
+            AbacusRecord abacusRecord = new(fileEntry.FullPath);
             using var sr = new StreamReader(fileEntry.Content);
 
-            BlockTextContainer BlockTextContainer = new(
+            BlockTextContainer blockTextContainer = new(
                 await sr.ReadToEndAsync().ConfigureAwait(false), 
                 languageInfo.Name
             );
 
-            foreach (var ruleCapture in analyzer.GetCaptures(rules, BlockTextContainer))
+            foreach (var ruleCapture in analyzer.GetCaptures(rules, blockTextContainer))
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    return resultsList;
+                    return abacusRecord;
                 }
 
                 foreach (var cap in ruleCapture.Captures)
                 {
-                    resultsList.AddRange(ProcessBoundary(cap));
+                    abacusRecord.Matches.AddRange(ProcessBoundary(cap));
                 }
 
                 List<MtMatchRecord> ProcessBoundary(ClauseCapture cap)
@@ -378,13 +377,13 @@ namespace MuddyTurnip.RulesEngine.Commands
                                         continue;
                                     }
 
-                                    Location StartLocation = BlockTextContainer.GetLocation(boundary.Index);
-                                    Location EndLocation = BlockTextContainer.GetLocation(boundary.Index + boundary.Length);
+                                    Location StartLocation = blockTextContainer.GetLocation(boundary.Index);
+                                    Location EndLocation = blockTextContainer.GetLocation(boundary.Index + boundary.Length);
 
                                     MtMatchRecord newMatch = new(oatRule.AppInspectorRule)
                                     {
                                         FileName = fileEntry.FullPath,
-                                        BlockTextContainer = BlockTextContainer,
+                                        BlockTextContainer = blockTextContainer,
                                         LanguageInfo = languageInfo,
                                         Boundary = boundary,
                                         StartLocationLine = StartLocation.Line,
@@ -393,7 +392,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
                                         Excerpt = numLinesContext > 0 
                                             ? ExtractExcerpt(
-                                                BlockTextContainer, 
+                                                blockTextContainer, 
                                                 StartLocation.Line, 
                                                 numLinesContext
                                             ) 
@@ -401,7 +400,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
                                         Sample = numLinesContext > -1 
                                             ? ExtractTextSample(
-                                                BlockTextContainer.FullContent, 
+                                                blockTextContainer.FullContent, 
                                                 boundary.Index, 
                                                 boundary.Length
                                             ) 
@@ -429,17 +428,17 @@ namespace MuddyTurnip.RulesEngine.Commands
 
             List<MtMatchRecord> removes = new();
 
-            foreach (MtMatchRecord m in resultsList.Where(x => x.Rule.Overrides?.Length > 0))
+            foreach (MtMatchRecord m in abacusRecord.Matches.Where(x => x.Rule.Overrides?.Length > 0))
             {
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    return resultsList;
+                    return abacusRecord;
                 }
 
                 foreach (string ovrd in m.Rule?.Overrides ?? Array.Empty<string>())
                 {
                     // Find all overriden rules and mark them for removal from issues list
-                    foreach (MtMatchRecord om in resultsList.FindAll(x => x.Rule.Id == ovrd))
+                    foreach (MtMatchRecord om in abacusRecord.Matches.FindAll(x => x.Rule.Id == ovrd))
                     {
                         if (om.Boundary?.Index >= m.Boundary?.Index &&
                             om.Boundary?.Index <= m.Boundary?.Index + m.Boundary?.Length)
@@ -451,9 +450,14 @@ namespace MuddyTurnip.RulesEngine.Commands
             }
 
             // Remove overriden rules
-            resultsList.RemoveAll(x => removes.Contains(x));
+            abacusRecord.Matches.RemoveAll(x => removes.Contains(x));
 
-            return resultsList;
+            MetricsProcessor.Aggregate(
+                abacusRecord,
+                blockTextContainer
+            );
+
+            return abacusRecord;
         }
 
         #region Private Support Methods

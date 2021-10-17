@@ -2,13 +2,13 @@
 // Licensed under the MIT License. See LICENSE.txt in the project root for license information.
 
 using Microsoft.ApplicationInspector.Commands;
-
+using Microsoft.ApplicationInspector.Common;
 using System;
 using System.IO;
 
 namespace MuddyTurnip.Abacus
 {
-    public class MtWriterFactory
+    public static class MtWriterFactory
     {
         /// <summary>
         /// Responsible for returning the correct cmd and format writer for output of cmd results.  An an output
@@ -19,39 +19,35 @@ namespace MuddyTurnip.Abacus
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        public static MtCommandResultsWriter? GetWriter(MtCLICommandOptions options)
+        public static CommandResultsWriter? GetWriter(MtCLICommandOptions options)
         {
-            MtCommandResultsWriter? writer = null;
+            CommandResultsWriter? writer;
 
             //allocate the right writer by cmd (options) type
-            if (options is MtCLIAnalyzeCmdOptions cLIAnalyzeCmdOptions)
+            if (options is MtCLIAnalyzeCmdOptions cliAnalyzeCmdOptions)
             {
-                writer = GetAnalyzeWriter(cLIAnalyzeCmdOptions);
+                writer = GetAnalyzeWriter(cliAnalyzeCmdOptions);
             }
-            //else if (options is CLITagTestCmdOptions cLITagTestCmdOptions)
+            //else if (options is CLITagDiffCmdOptions cliTagDiffCmdOptions)
             //{
-            //    writer = GetTagTestWriter(cLITagTestCmdOptions);
+            //    writer = GetTagDiffWriter(cliTagDiffCmdOptions);
             //}
-            //else if (options is CLITagDiffCmdOptions cLITagDiffCmdOptions)
+            //else if (options is CLIExportTagsCmdOptions cliExportTagsCmdOptions)
             //{
-            //    writer = GetTagDiffWriter(cLITagDiffCmdOptions);
+            //    writer = GetExportTagsWriter(cliExportTagsCmdOptions);
             //}
-            //else if (options is CLIExportTagsCmdOptions cLIExportTagsCmdOptions)
+            //else if (options is CLIVerifyRulesCmdOptions cliVerifyRulesCmdOptions)
             //{
-            //    writer = GetExportWriter(cLIExportTagsCmdOptions);
+            //    writer = GetVerifyRulesWriter(cliVerifyRulesCmdOptions);
             //}
-            //else if (options is CLIVerifyRulesCmdOptions cLIVerifyRulesCmdOptions)
+            //else if (options is CLIPackRulesCmdOptions cliPackRulesCmdOptions)
             //{
-            //    writer = GetVerifyRulesWriter(cLIVerifyRulesCmdOptions);
+            //    writer = GetPackRulesWriter(cliPackRulesCmdOptions);
             //}
-            //else if (options is CLIPackRulesCmdOptions cLIPackRulesCmdOptions)
-            //{
-            //    writer = GetPackRulesWriter(cLIPackRulesCmdOptions);
-            //}
-            //else
-            //{
-            //    throw new Exception("Unrecognized object type in writer request");
-            //}
+            else
+            {
+                throw new Exception("Unrecognized object type in writer request");
+            }
 
             return writer;
         }
@@ -61,16 +57,12 @@ namespace MuddyTurnip.Abacus
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        private static MtCommandResultsWriter GetAnalyzeWriter(MtCLIAnalyzeCmdOptions options)
+        private static CommandResultsWriter GetAnalyzeWriter(MtCLIAnalyzeCmdOptions options)
         {
-            MtCommandResultsWriter? writer;
+            CommandResultsWriter? writer;
 
             switch (options.OutputFileFormat.ToLower())
             {
-                //case "_dummy":
-                //    writer = new AnalyzeDummyWriter();
-                //    break;
-
                 case "json":
                     writer = new MtAnalyzeJsonWriter();
                     break;
@@ -95,52 +87,18 @@ namespace MuddyTurnip.Abacus
             return writer;
         }
 
-        //public static CommandResultsWriter GetExportWriter(CLIExportTagsCmdOptions options)
+        //public static CommandResultsWriter GetExportTagsWriter(CLIExportTagsCmdOptions options)
         //{
         //    CommandResultsWriter? writer;
 
         //    switch (options.OutputFileFormat.ToLower())
         //    {
-        //        case "_dummy":
-        //            writer = new ExportDummyWriter();
-        //            break;
-
         //        case "json":
         //            writer = new JsonWriter();
         //            break;
 
         //        case "text":
-        //            writer = new ExportTextWriter();
-        //            break;
-
-        //        default:
-        //            WriteOnce.Error(MsgHelp.FormatString(MsgHelp.ID.CMD_INVALID_ARG_VALUE, "-f"));
-        //            throw new OpException((MsgHelp.FormatString(MsgHelp.ID.CMD_INVALID_ARG_VALUE, "-f")));
-        //    }
-
-        //    //assign the stream as a file or console
-        //    writer.OutputFileName = options.OutputFilePath;
-        //    writer.TextWriter = GetTextWriter(writer.OutputFileName);
-
-        //    return writer;
-        //}
-
-        //private static CommandResultsWriter GetTagTestWriter(CLITagTestCmdOptions options)
-        //{
-        //    CommandResultsWriter? writer;
-
-        //    switch (options.OutputFileFormat.ToLower())
-        //    {
-        //        case "_dummy":
-        //            writer = new TagTestDummyWriter();
-        //            break;
-
-        //        case "json":
-        //            writer = new JsonWriter();
-        //            break;
-
-        //        case "text":
-        //            writer = new TagTestTextWriter();
+        //            writer = new ExportTagsTextWriter();
         //            break;
 
         //        default:
@@ -161,10 +119,6 @@ namespace MuddyTurnip.Abacus
 
         //    switch (options.OutputFileFormat.ToLower())
         //    {
-        //        case "_dummy":
-        //            writer = new TagDiffDummyWriter();
-        //            break;
-
         //        case "json":
         //            writer = new JsonWriter();
         //            break;
@@ -191,10 +145,6 @@ namespace MuddyTurnip.Abacus
 
         //    switch (options.OutputFileFormat.ToLower())
         //    {
-        //        case "_dummy":
-        //            writer = new VerifyRulesDummyWriter();
-        //            break;
-
         //        case "json":
         //            writer = new JsonWriter();
         //            break;
@@ -221,10 +171,6 @@ namespace MuddyTurnip.Abacus
 
         //    switch (options.OutputFileFormat.ToLower())
         //    {
-        //        case "_dummy":
-        //            writer = new PackRulesDummyWriter();
-        //            break;
-
         //        case "json":
         //            writer = new JsonWriter();
         //            break;
@@ -243,7 +189,6 @@ namespace MuddyTurnip.Abacus
         private static TextWriter GetTextWriter(string? outputFileName)
         {
             TextWriter textWriter;
-
             if (String.IsNullOrEmpty(outputFileName))
             {
                 textWriter = Console.Out;

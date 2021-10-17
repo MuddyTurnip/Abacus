@@ -137,7 +137,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "totalMatchesCount")]
         public int TotalMatchesCount
         {
-            get { return Metrics?.SelectMany(m => m.Matches).Count() ?? 0; }
+            get { return AbacusRecords?.SelectMany(m => m.Matches).Count() ?? 0; }
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         public int UniqueMatchesCount
         {
             //get { return Metrics?.Select(x => x.RuleId).Distinct().Count() ?? 0; }
-            get { return Metrics?.SelectMany(m => m.Matches).Select(x => x.RuleId).Distinct().Count() ?? 0; }
+            get { return AbacusRecords?.SelectMany(m => m.Matches).Select(x => x.RuleId).Distinct().Count() ?? 0; }
         }
 
         /// <summary>
@@ -222,11 +222,17 @@ namespace MuddyTurnip.RulesEngine.Commands
         [JsonProperty(PropertyName = "tagCounters")]
         public List<MetricTagCounter>? TagCounters { get; set; } = new();
 
+        ///// <summary>
+        ///// List of detailed MatchRecords from scan
+        ///// </summary>
+        //[JsonProperty(PropertyName = "detailedMatchList")]
+        //public List<MtMatchRecord> Matches { get; set; } = new();
+
         /// <summary>
         /// List of detailed MatchRecords from scan
         /// </summary>
-        [JsonProperty(PropertyName = "metrics")]
-        public List<MetricsRecord> Metrics { get; set; } = new ();
+        [JsonProperty(PropertyName = "abacus")]
+        public List<AbacusRecord> AbacusRecords { get; set; } = new();
 
         [JsonProperty(PropertyName = "filesInformation")]
         public List<FileRecord> Files { get; set; } = new List<FileRecord>();

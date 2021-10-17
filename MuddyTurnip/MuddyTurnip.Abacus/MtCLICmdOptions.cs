@@ -3,6 +3,8 @@
 
 using CommandLine;
 using Microsoft.ApplicationInspector.Commands;
+using Microsoft.ApplicationInspector.Common;
+using System.Collections.Generic;
 
 namespace MuddyTurnip.Abacus
 {
@@ -10,7 +12,7 @@ namespace MuddyTurnip.Abacus
     /// CLI command option classes add output arguments to common properties for each command verb
     /// </summary>
     ///
-    public class MtCLICommandOptions : CommandOptions
+    public class MtCLICommandOptions : LogOptions
     {
         [Option('o', "output-file-path", Required = false, HelpText = "Output file path")]
         public string? OutputFilePath { get; set; }
@@ -25,29 +27,21 @@ namespace MuddyTurnip.Abacus
     [Verb("analyze", HelpText = "Inspect source directory/file/compressed file (.tgz|zip) against defined characteristics")]
     public class MtCLIAnalyzeCmdOptions : MtCLICommandOptions
     {
-        [Option('s', "source-path", Required = true, HelpText = "Source file or directory to inspect")]
-        public string? SourcePath { get; set; }
+        [Option('s', "source-path", Required = true, HelpText = "Source file or directory to inspect, comma separated", Separator = ',')]
+        public IEnumerable<string> SourcePath { get; set; } = new string[0];
 
         [Option('r', "custom-rules-path", Required = false, HelpText = "Custom rules file or directory path")]
         public string? CustomRulesPath { get; set; }
 
-        [Option('h', "match-depth", Required = false, HelpText = "First match or best match based on confidence level (first|best)", Default = "best")]
-        public string MatchDepth { get; set; } = "best";
-
         [Option('i', "ignore-default-rules", Required = false, HelpText = "Exclude default rules bundled with application", Default = false)]
         public bool IgnoreDefaultRules { get; set; }
-
-        [Option('d', "allow-dup-tags", Required = false, HelpText = "Output contains unique and non-unique tag matches", Default = false)]
-        public bool AllowDupTags { get; set; }
-
-        [Option('b', "suppress-browser-open", Required = false, HelpText = "Suppress automatically opening HTML output using default browser", Default = false)]
-        public bool SuppressBrowserOpen { get; set; }
 
         [Option('c', "confidence-filters", Required = false, HelpText = "Output only matches with specified confidence <value>,<value> [high|medium|low]", Default = "high,medium")]
         public string ConfidenceFilters { get; set; } = "high,medium";
 
-        [Option('k', "file-path-exclusions", Required = false, HelpText = "Exclude source files (none|default: sample,example,test,docs,lib,.vs,.git)", Default = "sample,example,test,docs,lib,.vs,.git")]
-        public string FilePathExclusions { get; set; } = "sample,example,test,docs,.vs,.git";
+        [Option('g', "exclusion-globs", Required = false, HelpText = "Exclude source files that match glob patterns. Example: \"**/.git/**,*Tests*\".  Use \"none\" to disable.", Default = new string[] { "**/bin/**", "**/obj/**", "**/.vs/**", "**/.git/**" }, Separator = ',')]
+
+        public IEnumerable<string> FilePathExclusions { get; set; } = new string[0];
 
         [Option('f', "output-file-format", Required = false, HelpText = "Output format [html|json|text]", Default = "html")]
         public new string OutputFileFormat { get; set; } = "html";
@@ -55,52 +49,67 @@ namespace MuddyTurnip.Abacus
         [Option('e', "text-format", Required = false, HelpText = "Match text format specifiers", Default = "Tag:%T,Rule:%N,Ruleid:%R,Confidence:%X,File:%F,Sourcetype:%t,Line:%L,Sample:%m")]
         public string TextOutputFormat { get; set; } = "Tag:%T,Rule:%N,Ruleid:%R,Confidence:%X,File:%F,Sourcetype:%t,Line:%L,Sample:%m";
 
-        [Option('t', "tag-output-only", Required = false, HelpText = "Output only identified tags", Default = false)]
-        public bool SimpleTagsOnly { get; set; }
+        [Option('F', "file-timeout", Required = false, HelpText = "Maximum amount of time in milliseconds to allow for processing each file. 0 is infinity. Default: 60000.", Default = 60000)]
+        public int FileTimeOut { get; set; } = 60000;
 
-        [Option("single-threaded", Required = false, HelpText = "Disables parallel processing.")]
+        [Option('p', "processing-timeout", Required = false, HelpText = "Maximum amount of time in milliseconds to allow for processing overall. 0 is infinity. Default: 0.", Default = 0)]
+        public int ProcessingTimeOut { get; set; }
+
+        [Option('S', "single-threaded", Required = false, HelpText = "Disables parallel processing.")]
         public bool SingleThread { get; set; }
 
-        [Option("scan-unknown-file-types", Required = false, HelpText = "Scan unknown file types.")]
+        [Option('N', "no-show-progress", Required = false, HelpText = "Disable progress information.")]
+        public bool NoShowProgressBar { get; set; }
+
+        [Option('C', "context-lines", Required = false, HelpText = "Number of lines of context on each side to include in excerpt (up to a maximum of 100 * NumLines characters on each side). 0 to skip exerpt. -1 to not extract samples or excerpts (implied by -t).")]
+        public int ContextLines { get; set; } = 3;
+
+        [Option('u', "scan-unknown-filetypes", Required = false, HelpText = "Scan files of unknown types.")]
         public bool ScanUnknownTypes { get; set; }
+
+        [Option('t', "tags-only", Required = false, HelpText = "Only get tags (no detailed match data).")]
+        public bool TagsOnly { get; set; }
+
+        [Option('n', "no-file-metadata", Required = false, HelpText = "Don't collect metadata about each individual file.")]
+        public bool NoFileMetadata { get; set; }
+
     }
 
     [Verb("tagdiff", HelpText = "Compares unique tag values between two source paths")]
     public class MtCLITagDiffCmdOptions : MtCLICommandOptions
     {
-        [Option("src1", Required = true, HelpText = "Source 1 to compare")]
-        public string? SourcePath1 { get; set; }
+        [Option("src1", Required = true, HelpText = "Source 1 to compare (commaa separated)")]
+        public IEnumerable<string> SourcePath1 { get; set; } = System.Array.Empty<string>();
 
-        [Option("src2", Required = true, HelpText = "Source 2 to compare")]
-        public string? SourcePath2 { get; set; }
+        [Option("src2", Required = true, HelpText = "Source 2 to compare (commaa separated)")]
+        public IEnumerable<string> SourcePath2 { get; set; } = System.Array.Empty<string>();
 
         [Option('t', "test-type", Required = false, HelpText = "Type of test to run [equality|inequality]", Default = "equality")]
         public string TestType { get; set; } = "equality";
 
-        [Option('k', "file-path-exclusions", Required = false, HelpText = "Exclude source files (none|default: sample,example,test,docs,.vs,.git)", Default = "sample,example,test,docs,.vs,.git")]
-        public string FilePathExclusions { get; set; } = "sample,example,test,docs,.vs,.git";
+        [Option('g', "exclusion-globs", Required = false, HelpText = "Exclude source files that match glob patterns. Example: \"**/.git/**,*Tests*\".  Use \"none\" to disable.", Default = new string[] { "**/bin/**", "**/obj/**", "**/.vs/**", "**/.git/**" }, Separator = ',')]
+        public IEnumerable<string> FilePathExclusions { get; set; } = new string[] { };
 
         [Option('r', "custom-rules-path", Required = false, HelpText = "Custom rules file or directory path")]
         public string? CustomRulesPath { get; set; }
 
         [Option('i', "ignore-default-rules", Required = false, HelpText = "Exclude default rules bundled with application", Default = false)]
         public bool IgnoreDefaultRules { get; set; }
-    }
 
-    [Verb("tagtest", HelpText = "Test (T/F) for presence of custom rule set in source")]
-    public class MtCLITagTestCmdOptions : MtCLICommandOptions
-    {
-        [Option('s', "source-path", Required = true, HelpText = "Source file or directory to inspect")]
-        public string? SourcePath { get; set; }
+        [Option('F', "file-timeout", Required = false, HelpText = "Maximum amount of time in milliseconds to allow for processing each file. 0 is infinity.  Default: 60000.", Default = 60000)]
+        public int FileTimeOut { get; set; } = 60000;
 
-        [Option('t', "test-type", Required = false, HelpText = "Test to perform [rulespresent|rulesnotpresent] ", Default = "rulespresent")]
-        public string TestType { get; set; } = "rulespresent";
+        [Option('p', "processing-timeout", Required = false, HelpText = "Maximum amount of time in milliseconds to allow for processing each source. 0 is infinity. Default: 0.", Default = 0)]
+        public int ProcessingTimeOut { get; set; }
 
-        [Option('r', "custom-rules-path", Required = false, HelpText = "Custom rules file or directory path")]
-        public string? CustomRulesPath { get; set; }
+        [Option('u', "scan-unknown-filetypes", Required = false, HelpText = "Scan files of unknown types.")]
+        public bool ScanUnknownTypes { get; set; }
 
-        [Option('k', "file-path-exclusions", Required = false, HelpText = "Exclude source files (none|default: sample,example,test,docs,.vs,.git)", Default = "sample,example,test,docs,.vs,.git")]
-        public string FilePathExclusions { get; set; } = "sample,example,test,docs,.vs,.git";
+        [Option('S', "single-threaded", Required = false, HelpText = "Disables parallel processing.")]
+        public bool SingleThread { get; set; }
+
+        [Option('c', "confidence-filters", Required = false, HelpText = "Output only matches with specified confidence <value>,<value> [high|medium|low]", Default = "high,medium")]
+        public string ConfidenceFilters { get; set; } = "high,medium";
     }
 
     [Verb("exporttags", HelpText = "Export unique rule tags to view what code features may be detected")]
@@ -116,7 +125,7 @@ namespace MuddyTurnip.Abacus
     [Verb("verifyrules", HelpText = "Verify custom rules syntax is valid")]
     public class MtCLIVerifyRulesCmdOptions : MtCLICommandOptions
     {
-        [Option('d', "verify-default-rules", Required = false, HelpText = "Verify default rules")]
+        [Option('d', "verify-default-rules", Required = false, Default = false, HelpText = "Verify default rules")]
         public bool VerifyDefaultRules { get; set; }
 
         [Option('r', "custom-rules-path", Required = false, HelpText = "Custom rules file or directory path")]
@@ -129,8 +138,11 @@ namespace MuddyTurnip.Abacus
     [Verb("packrules", HelpText = "Combine multiple rule files into one file for ease in distribution")]
     public class MtCLIPackRulesCmdOptions : MtCLICommandOptions
     {
-        [Option('d', "pack-default-rules", Required = false, HelpText = "Repack default rules. Automatic on Application Inspector build.  Not intended for use outside of build.")]
+        [Option('d', "pack-default-rules", Required = false, HelpText = "Repack rules from default rules path. Deprecated and will be removed in a future update.")]
         public bool RepackDefaultRules { get; set; }
+
+        [Option('e', "pack-embedded-rules", Required = false, HelpText = "Pack the rules that are embedded in the DevSkim binary.")]
+        public bool PackEmbeddedRules { get; set; }
 
         [Option('r', "custom-rules-path", Required = false, HelpText = "Custom rules file or directory path")]
         public string? CustomRulesPath { get; set; }

@@ -118,10 +118,10 @@ namespace MuddyTurnip.RulesEngine.Commands
                                     Index = idx
                                 };
 
-                                if (blockTextContainer.ScopeMatch(src.Scopes, newBoundary))
-                                {
+                                //if (blockTextContainer.ScopeMatch(src.Scopes, newBoundary))
+                                //{
                                     outmatches.Add((i, newBoundary));
-                                }
+                                //}
                             }
 
                             idx = blockTextContainer.FullContent.IndexOf(

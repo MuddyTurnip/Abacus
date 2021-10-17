@@ -29,14 +29,14 @@ namespace MuddyTurnip.RulesEngine.Commands
             Assembly assembly = Assembly.GetExecutingAssembly();
 
             // Load comments
-            using (Stream? resource = assembly.GetManifestResourceStream("Microsoft.ApplicationInspector.RulesEngine.Resources.comments.json"))
+            using (Stream? resource = assembly.GetManifestResourceStream("MuddyTurnip.RulesEngine.Resources.comments.json"))
             using (StreamReader file = new(resource ?? new MemoryStream()))
             {
-                _comments = JsonConvert.DeserializeObject<List<Comment>>(file.ReadToEnd()) ?? new List<Comment>(); ;
+                _comments = JsonConvert.DeserializeObject<List<Comment>>(file.ReadToEnd()) ?? new List<Comment>();
             }
 
             // Load languages
-            using (Stream? resource = assembly.GetManifestResourceStream("Microsoft.ApplicationInspector.RulesEngine.Resources.languages.json"))
+            using (Stream? resource = assembly.GetManifestResourceStream("MuddyTurnip.RulesEngine.Resources.languages.json"))
             using (StreamReader file = new(resource ?? new MemoryStream()))
             {
                 _languages = JsonConvert.DeserializeObject<List<LanguageInfo>>(file.ReadToEnd()) ?? new List<LanguageInfo>();

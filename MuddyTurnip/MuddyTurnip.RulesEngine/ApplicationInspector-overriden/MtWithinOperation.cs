@@ -30,7 +30,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             IEnumerable<ClauseCapture>? captures)
         {
             if (c is WithinClause wc 
-                && state1 is BlockTextContainer blockTextCOntainer)
+                && state1 is BlockTextContainer blockTextContainer)
             {
                 var regexOpts = RegexOptions.Compiled;
 
@@ -55,7 +55,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                             if (wc.FindingOnly)
                             {
                                 var res = ProcessLambda(
-                                    blockTextCOntainer.GetBoundaryText(capture), 
+                                    blockTextContainer.GetBoundaryText(capture), 
                                     capture
                                 );
 
@@ -69,11 +69,11 @@ namespace MuddyTurnip.RulesEngine.Commands
                             }
                             else if (wc.SameLineOnly)
                             {
-                                var start = blockTextCOntainer.LineStarts[blockTextCOntainer.GetLocation(capture.Index).Line];
-                                var end = blockTextCOntainer.LineEnds[blockTextCOntainer.GetLocation(start + capture.Length).Line];
+                                var start = blockTextContainer.LineStarts[blockTextContainer.GetLocation(capture.Index).Line];
+                                var end = blockTextContainer.LineEnds[blockTextContainer.GetLocation(start + capture.Length).Line];
 
                                 var res = ProcessLambda(
-                                    blockTextCOntainer.FullContent[start..end], 
+                                    blockTextContainer.FullContent[start..end], 
                                     capture
                                 );
 
@@ -87,13 +87,13 @@ namespace MuddyTurnip.RulesEngine.Commands
                             }
                             else
                             {
-                                var startLine = blockTextCOntainer.GetLocation(capture.Index).Line;
+                                var startLine = blockTextContainer.GetLocation(capture.Index).Line;
                                 // Before is already a negative number
-                                var start = blockTextCOntainer.LineEnds[Math.Max(0, startLine + wc.Before)];
-                                var end = blockTextCOntainer.LineEnds[Math.Min(blockTextCOntainer.LineEnds.Count - 1, startLine + wc.After)];
+                                var start = blockTextContainer.LineEnds[Math.Max(0, startLine + wc.Before)];
+                                var end = blockTextContainer.LineEnds[Math.Min(blockTextContainer.LineEnds.Count - 1, startLine + wc.After)];
 
                                 var res = ProcessLambda(
-                                    blockTextCOntainer.FullContent[start..end], 
+                                    blockTextContainer.FullContent[start..end], 
                                     capture
                                 );
 
@@ -138,11 +138,11 @@ namespace MuddyTurnip.RulesEngine.Commands
                                         Index = targetBoundary.Index + m.Index
                                     };
 
-                                    // Should return only scoped matches
-                                    if (blockTextCOntainer.ScopeMatch(wc.Scopes ?? new PatternScope[] { }, translatedBoundary))
-                                    {
+                                    //// Should return only scoped matches
+                                    //if (blockTextCOntainer.ScopeMatch(wc.Scopes ?? new PatternScope[] { }, translatedBoundary))
+                                    //{
                                         boundaries.Add(translatedBoundary);
-                                    }
+                                    //}
                                 }
                             }
                         }

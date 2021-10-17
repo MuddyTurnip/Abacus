@@ -101,7 +101,7 @@ namespace MuddyTurnip.RulesEngine.Commands
             object? state2, 
             IEnumerable<ClauseCapture>? captures)
         {
-            if (state1 is TextContainer tc 
+            if (state1 is BlockTextContainer blockTextCOntainer 
                 && clause is OATRegexWithIndexClause src 
                 && clause.Data is List<string> RegexList 
                 && RegexList.Count > 0)
@@ -131,7 +131,7 @@ namespace MuddyTurnip.RulesEngine.Commands
 
                     if (regex != null)
                     {
-                        foreach (var match in regex.Matches(tc.FullContent))
+                        foreach (var match in regex.Matches(blockTextCOntainer.FullContent))
                         {
                             if (match is Match m)
                             {
@@ -145,10 +145,10 @@ namespace MuddyTurnip.RulesEngine.Commands
                                 int patternIndex = Convert.ToInt32(clause.Label);
 
                                 // Should return only scoped matches
-                                if (tc.ScopeMatch(src.Scopes, translatedBoundary))
-                                {
+                                //if (blockTextCOntainer.ScopeMatch(src.Scopes, translatedBoundary))
+                                //{
                                     outmatches.Add((patternIndex, translatedBoundary));
-                                }
+                                //}
                             }
                         }
                     }

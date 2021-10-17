@@ -9,25 +9,25 @@ namespace MuddyTurnip.Metrics.Engine
     public class MetricsProcessor
     {
         public static void Aggregate(
-            MetricsRecord metrics,
+            AbacusRecord abacusRecord,
             BlockTextContainer codeContainer)
         {
-            if (metrics.Matches.Count() == 0)
+            if (abacusRecord.Matches.Count() == 0)
             {
                 return;
             }
 
-            string fileName = metrics.Matches.First()?.FileName ?? String.Empty;
+            string fileName = abacusRecord.Matches.First()?.FileName ?? String.Empty;
 
             if (String.IsNullOrWhiteSpace(fileName))
             {
                 return;
             }
 
-            MatchProcessor.Aggregate(metrics);
+            MatchProcessor.Aggregate(abacusRecord);
 
             BlockStatsProcessor.Aggregate(
-                metrics,
+                abacusRecord,
                 codeContainer
             );
         }
