@@ -6,43 +6,8 @@ Turn block stats data in to metrics
 Spit out block data in metrics only need identification open and close indices and if errored
 Remove fluff from json file we don't need
 Match record needs index start = index end as well as location
-
-Need to search strings comments pre-processors etc separately but the adjustment must relate to the FullContent
-
-Fork latest version of ApplicationInspector, make changes then build packages, then reference packages in Abacus
-
-
-TESTS
-	VERY IMPORTANT - Need to write tests to see that the expected block are children of the right blocks
-	Write tests for operators in if statements etc ie x^y != z%3 ie !^&|^ etc
-	test to see if protected internal and veriations is OK
-	tests that test naming of methods classes etc
-	TESTS MUST INCLUDE COUNTS - need to be sure the counts match a complex file and not missing or adding incorrect features.
-
-
-DEVELOPMENT
-
-Check can switch off storing text value in block with flag for groups and unmasks
-
-Name project abacus
-Reference Microsoft dlls from ApplicationInspector
-
-Need to have basic regex bricks that can be built up into other patterns ie <parameters>, <returnValue>, <name> etc
-
-Refactor everything so the are as few insertion points into the original code as possible and it is easy to extend to new languages
-It should all come in a folder on its own and not interfer with other folders for other languages
-It should only work for code for now
-It should only require a single line change to the ApplicationInspector to upgrade it to Codemology
-It should be callable from the command line. 
-Maybe it should reference the applicationInspector projects but run as an independent exe?
-
-Does regex account for attributes on methods classes etc use tests
-
-
-Need to understand how the spat out json works with all this new stuff...
-Quicker to do aggregation with sql.
+Search strings, code, preprocessors etc
 json will give begin and end locations for everything including blocks
-
 
 Need 
 	to treat all blocks the same and produce the same metrics for all of them by summming up their containing blocks and their raw code.
@@ -78,6 +43,28 @@ Need metrics for per text container:
 		Max nested depth
 		Average nested depth
 		number of first level blocks
+
+TESTS
+	VERY IMPORTANT - Need to write tests to see that the expected block are children of the right blocks
+	Write tests for operators in if statements etc ie x^y != z%3 ie !^&|^ etc
+	test to see if protected internal and veriations is OK
+	tests that test naming of methods classes etc
+	TESTS MUST INCLUDE COUNTS - need to be sure the counts match a complex file and not missing or adding incorrect features.
+
+
+DEVELOPMENT
+
+Check can switch off storing text value in block with flag for groups and unmasks
+Need to have basic regex bricks that can be built up into other patterns ie <parameters>, <returnValue>, <name> etc
+
+Refactor everything so the are as few insertion points into the original code as possible and it is easy to extend to new languages
+It should all come in a folder on its own and not interfer with other folders for other languages
+It should only work for code for now
+It should only require a single line change to the ApplicationInspector to upgrade it to Codemology
+It should be callable from the command line. 
+Maybe it should reference the applicationInspector projects but run as an independent exe?
+
+Does regex account for attributes on methods classes etc use tests
 
 	Need to modify newlines to include all these:
     : '<Carriage return character (U+000D)>'

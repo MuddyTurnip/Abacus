@@ -30,7 +30,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RulesPacker", "RulesPacker"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FA4EDFF4-13FB-4E29-A17A-3B87BAAC8FFE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{FD037853-F64F-4B8B-B25A-AA63E3920C96}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{FD037853-F64F-4B8B-B25A-AA63E3920C96}"
 	ProjectSection(SolutionItems) = preProject
 		Docs\Competitors.docx = Docs\Competitors.docx
 	EndProjectSection
