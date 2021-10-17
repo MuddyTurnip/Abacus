@@ -72,6 +72,7 @@ namespace MuddyTurnip.RulesEngine
 
                         if (stats.OpenIndex == matchEnd)
                         {
+                            stats.PrintMetrics = unitSetting.PrintMetrics;
                             stats.MatchStart = matchStart;
                             stats.MatchEnd = matchEnd;
                             stats.AdjustedMatchStart = boundaryCounter.GetFullIndexFromCodeIndex(stats.MatchStart);

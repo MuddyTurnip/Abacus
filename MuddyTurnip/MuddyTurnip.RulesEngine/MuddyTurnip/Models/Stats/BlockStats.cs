@@ -23,6 +23,9 @@ namespace MuddyTurnip.RulesEngine
         public BlockStatsError? Error { get; set; } = null;
 
         [JsonIgnore]
+        public bool PrintMetrics { get; set; } = false;
+
+        [JsonIgnore]
         public string Signature { get; set; } = string.Empty;
 
         [JsonProperty(PropertyName = "signature")]
