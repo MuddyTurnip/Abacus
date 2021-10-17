@@ -29,11 +29,11 @@ namespace MuddyTurnip.Metrics.Engine
         [JsonProperty(PropertyName = "syblings")]
         public int SyblingCount { get; set; }
 
-        [JsonProperty(PropertyName = "startIndex")]
-        public int AdjustedOpenIndex { get; set; }
+        [JsonProperty(PropertyName = "openIndex")]
+        public int OpenIndex { get; set; }
 
-        [JsonProperty(PropertyName = "endIndex")]
-        public int AdjustedCloseIndex { get; set; }
+        [JsonProperty(PropertyName = "closeIndex")]
+        public int CloseIndex { get; set; }
 
         [JsonProperty(PropertyName = "startLocation")]
         public Location BlockStartLocation { get; set; } = new();
@@ -41,8 +41,11 @@ namespace MuddyTurnip.Metrics.Engine
         [JsonProperty(PropertyName = "endLocation")]
         public Location BlockEndLocation { get; set; } = new();
 
-        [JsonIgnore]
+        [JsonProperty(PropertyName = "children")]
         public List<MetricsBlock> ChildBlocks { get; set; } = new();
+
+        [JsonProperty(PropertyName = "matches")]
+        public List<MtMatchRecord> Matches { get; set; } = new();
 
         [JsonIgnore]
         public MetricsBlock? Parent { get; set; }

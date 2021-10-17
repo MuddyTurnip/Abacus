@@ -1,4 +1,7 @@
 ﻿using MuddyTurnip.RulesEngine;
+using MuddyTurnip.RulesEngine.Commands;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace MuddyTurnip.Metrics.Engine
@@ -14,17 +17,67 @@ namespace MuddyTurnip.Metrics.Engine
                 metricsRecord.Blocks = codeContainer.BlockStatsCache.BlockStats;
             }
 
-            List<MetricsBlock> metricsList = new();
-
             BuildMetricBlocks(
                 codeContainer?.BlockStatsCache?.RootBlockStats,
-                metricsRecord.Metrics
+                metricsRecord.Structure
             );
+
+            DistributeMatches(metricsRecord);
+        }
+
+        private static void DistributeMatches(MetricsRecord metricsRecord)
+        {
+            metricsRecord.Matches.Sort(MtMatchRecordExtensions.Compare);
+            bool success;
+
+            foreach (MtMatchRecord match in metricsRecord.Matches)
+            {
+                success = MatchBlock(
+                    match,
+                    metricsRecord.Structure
+                );
+
+                if (!success)
+                {
+                    metricsRecord.Structure.Matches.Add(match);
+                }
+            }
+        }
+
+        private static bool MatchBlock(
+            MtMatchRecord match,
+            MetricsBlock metrics)
+        {
+            MetricsBlock block;
+            bool success;
+
+            for (int i = 0; i < metrics.ChildBlocks.Count; i++)
+            {
+                block = metrics.ChildBlocks[i];
+
+                if (block.OpenIndex <= match.StartIndex
+                    && block.CloseIndex >= match.EndIndex)
+                {
+                    success = MatchBlock(
+                        match,
+                        block
+                    );
+
+                    if (!success)
+                    {
+                        block.Matches.Add(match);
+                    }
+
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private static void BuildMetricBlocks(
             BlockStats? parentBlock,
-            List<MetricsBlock> metricsList)
+            MetricsBlock metrics)
         {
             if (parentBlock is null)
             {
@@ -40,27 +93,27 @@ namespace MuddyTurnip.Metrics.Engine
                         Type = child.Type,
                         Signature = child.CleanedSignature,
                         Content = child.Content,
-                        Partial = child.Flags.Contains("Partial"),
+                        Partial = child.Flags.Contains("partial"),
                         Depth = child.Depth,
                         SyblingCount = child.SyblingCount,
-                        AdjustedOpenIndex = child.AdjustedOpenIndex,
-                        AdjustedCloseIndex = child.AdjustedCloseIndex,
+                        OpenIndex = child.AdjustedOpenIndex,
+                        CloseIndex = child.AdjustedCloseIndex,
                         BlockStartLocation = child.BlockStartLocation,
                         BlockEndLocation = child.BlockEndLocation
                     };
 
-                    metricsList.Add(childMetrics);
+                    metrics.ChildBlocks.Add(childMetrics);
 
                     BuildMetricBlocks(
                         child,
-                        childMetrics.ChildBlocks
+                        childMetrics
                     );
                 }
                 else
                 {
                     BuildMetricBlocks(
                         child,
-                        metricsList
+                        metrics
                     );
                 }
             }

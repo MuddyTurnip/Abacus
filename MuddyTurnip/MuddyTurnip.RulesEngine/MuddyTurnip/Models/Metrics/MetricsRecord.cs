@@ -9,10 +9,14 @@ namespace MuddyTurnip.Metrics.Engine
         public List<TagCounter> TagCounts { get; } = new();
         public List<BlockStats> Blocks { get; set; } = new();
         public List<MtMatchRecord> Matches { get; set; } = new();
-        public List<MetricsBlock> Metrics { get; set; } = new();
+        public MetricsBlock Structure { get; set; }
 
         public MetricsRecord()
         {
+            Structure = new()
+            {
+                FullName = "File"
+            };
         }
     }
 }
