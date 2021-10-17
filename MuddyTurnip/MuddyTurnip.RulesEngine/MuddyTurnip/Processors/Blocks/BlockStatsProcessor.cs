@@ -8,7 +8,11 @@ namespace MuddyTurnip.Metrics.Engine
             AbacusRecord abacusRecord,
             BlockTextContainer codeContainer)
         {
-            string h = "";
+            if (codeContainer?.BlockStatsCache?.BlockStats is { })
+            {
+                abacusRecord.Blocks = codeContainer.BlockStatsCache.BlockStats;
+            }
         }
     }
 }
+

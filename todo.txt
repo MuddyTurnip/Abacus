@@ -1,7 +1,6 @@
 
 NEXT
 Add preprocessor, string, comments blocks to stat blocks but don't nest them - need a list of all blocks ordered by openIndex then closeIndex. 
-	A match should say what scope it was found in - easy to do with separate Contents. The iterate over matches with a list of blocks to publish metrics for and compare oipen and clos indices and increment counts accordingly
 Try to place metrics in classes, methods, comments, preprocessors etc
 Try to turn errors and blocks into metrics
 Turn block stats data in to metrics

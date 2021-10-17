@@ -45,7 +45,6 @@ namespace MuddyTurnip.RulesEngine
         public int LineNumber { get; }
         public List<int> LineStarts { get; }
         public List<int> LineEnds { get; }
-        //public string Target { get; }
 
         /// <summary>
         ///     Creates new instance
