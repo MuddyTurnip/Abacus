@@ -1,5 +1,7 @@
 
 NEXT
+Need to add comments, strings, preprocessors as blocks like Code and the look for matches in them too
+Need to count preprocessors, strings, comments, blocks, statements
 Add preprocessor, string, comments blocks to stat blocks but don't nest them - need a list of all blocks ordered by openIndex then closeIndex. 
 Try to place metrics in classes, methods, comments, preprocessors etc
 Try to turn errors and blocks into metrics

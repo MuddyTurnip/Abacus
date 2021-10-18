@@ -24,8 +24,6 @@ namespace MuddyTurnip.Metrics.Engine
                 return;
             }
 
-            MatchProcessor.Aggregate(metricsRecord);
-
             BlockStatsProcessor.Aggregate(
                 metricsRecord,
                 codeContainer

@@ -23,6 +23,7 @@ namespace MuddyTurnip.Metrics.Engine
             );
 
             DistributeMatches(metricsRecord);
+            MatchProcessor.Aggregate(metricsRecord.Structure);
         }
 
         private static void DistributeMatches(MetricsRecord metricsRecord)

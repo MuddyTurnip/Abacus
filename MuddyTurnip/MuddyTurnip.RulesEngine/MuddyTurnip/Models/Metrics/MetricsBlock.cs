@@ -50,6 +50,10 @@ namespace MuddyTurnip.Metrics.Engine
         [JsonIgnore]
         public MetricsBlock? Parent { get; set; }
 
+
+        public List<TagCounter> TagCounts { get; } = new();
+
+
         public MetricsBlock()
         {
         }

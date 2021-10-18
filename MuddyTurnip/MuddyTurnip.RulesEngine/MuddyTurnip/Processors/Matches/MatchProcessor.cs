@@ -6,12 +6,19 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class MatchProcessor
     {
-        public static void Aggregate(MetricsRecord metricsRecord)
+        public static List<TagCounter> Aggregate(MetricsBlock metrics)
         {
-            List<TagCounter> fileTagCounts = metricsRecord.TagCounts;
+            List<TagCounter> tagCounts;
+
+            foreach (MetricsBlock childMetrics in metrics.ChildBlocks)
+            {
+                tagCounts = Aggregate(childMetrics);
+                metrics.TagCounts.MergeTagCounts(tagCounts);
+            }
+
             string matchRecordTag;
 
-            foreach (MtMatchRecord matchRecord in metricsRecord.Matches)
+            foreach (MtMatchRecord matchRecord in metrics.Matches)
             {
                 if (matchRecord == null
                     || matchRecord.Tags == null)
@@ -22,34 +29,11 @@ namespace MuddyTurnip.Metrics.Engine
                 for (int j = 0; j < matchRecord.Tags.Length; j++)
                 {
                     matchRecordTag = matchRecord.Tags[j];
-
-                    IncrementTagCount(
-                        fileTagCounts, 
-                        matchRecordTag
-                    );
-                }
-            }
-        }
-
-        private static void IncrementTagCount(
-            List<TagCounter> tagCounts,
-            string tag)
-        {
-            TagCounter tagCount;
-
-            for (int i = 0; i < tagCounts.Count; i++)
-            {
-                tagCount = tagCounts[i];
-
-                if (String.Equals(tagCount.Tag, tag))
-                {
-                    tagCount.Count++;
-
-                    return;
+                    metrics.TagCounts.IncrementTagCount(matchRecordTag);
                 }
             }
 
-            tagCounts.Add(new TagCounter(tag, 1));
+            return metrics.TagCounts;
         }
     }
 }
