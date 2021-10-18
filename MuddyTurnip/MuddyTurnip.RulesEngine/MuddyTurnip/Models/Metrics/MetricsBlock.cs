@@ -20,6 +20,9 @@ namespace MuddyTurnip.Metrics.Engine
         [JsonProperty(PropertyName = "content")]
         public string Content { get; set; } = string.Empty;
 
+        [JsonProperty(PropertyName = "errors")]
+        public List<BlockStatsError> Errors { get; set; } = new();
+
         [JsonProperty(PropertyName = "partial")]
         public bool Partial { get; set; } = false;
 

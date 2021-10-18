@@ -23,7 +23,6 @@ namespace MuddyTurnip.Metrics.Engine
             );
 
             DistributeMatches(metricsRecord);
-            MatchProcessor.Aggregate(metricsRecord.Structure);
         }
 
         private static void DistributeMatches(MetricsRecord metricsRecord)
@@ -76,13 +75,15 @@ namespace MuddyTurnip.Metrics.Engine
             return false;
         }
 
-        private static void BuildMetricBlocks(
+        private static List<BlockStatsError> BuildMetricBlocks(
             BlockStats? parentBlock,
             MetricsBlock metrics)
         {
+            List<BlockStatsError> errors = new();
+
             if (parentBlock is null)
             {
-                return;
+                return errors;
             }
 
             foreach (BlockStats child in parentBlock.ChildBlocks)
@@ -105,19 +106,23 @@ namespace MuddyTurnip.Metrics.Engine
 
                     metrics.ChildBlocks.Add(childMetrics);
 
-                    BuildMetricBlocks(
+                    childMetrics.Errors = BuildMetricBlocks(
                         child,
                         childMetrics
                     );
                 }
                 else
                 {
-                    BuildMetricBlocks(
+                    List<BlockStatsError> childErrors = BuildMetricBlocks(
                         child,
                         metrics
                     );
+
+                    errors.AddRange(childErrors);
                 }
             }
+
+            return errors;
         }
     }
 }

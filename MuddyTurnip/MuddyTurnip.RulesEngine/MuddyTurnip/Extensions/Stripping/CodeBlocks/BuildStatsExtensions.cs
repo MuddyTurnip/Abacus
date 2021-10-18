@@ -72,7 +72,7 @@ namespace MuddyTurnip.Metrics.Engine
             {
                 if (child.CloseIndex < 1)
                 {
-                    child.Error = new BlockStatsError("Unclosed block", "There is a block without a closeIndex, this could corrupt all the results.");
+                    child.Errors.Add(new BlockStatsError("UnclosedBlock", "There is a block without a closeIndex, this could corrupt all the results."));
                 }
 
                 childStatementStats = new();

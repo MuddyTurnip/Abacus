@@ -19,8 +19,8 @@ namespace MuddyTurnip.RulesEngine
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; } = string.Empty;
 
-        [JsonProperty(PropertyName = "error")]
-        public BlockStatsError? Error { get; set; } = null;
+        [JsonProperty(PropertyName = "errors")]
+        public List<BlockStatsError> Errors { get; set; } = new();
 
         [JsonIgnore]
         public bool PrintMetrics { get; set; } = false;
@@ -105,7 +105,7 @@ namespace MuddyTurnip.RulesEngine
 
                 if (_closeIndex < OpenIndex)
                 {
-                    Error = new BlockStatsError("Unclosed block", "There is a block without a closeIndex, this could corrupt all the results.");
+                    Errors.Add(new BlockStatsError("UnclosedBlock", "There is a block without a closeIndex, this could corrupt all the results."));
                 }
             }
         }

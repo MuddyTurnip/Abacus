@@ -24,7 +24,7 @@ namespace MuddyTurnip.RegularExpression.Tests
             foreach (BlockStats block in _fixture.BlockStatsCache.BlockStats)
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
             {
-                if (block.Error is { })
+                if (block.Errors is { })
                 {
                     count++;
                 }

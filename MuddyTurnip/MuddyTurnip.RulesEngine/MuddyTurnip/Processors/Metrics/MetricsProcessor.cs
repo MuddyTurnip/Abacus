@@ -28,6 +28,10 @@ namespace MuddyTurnip.Metrics.Engine
                 metricsRecord,
                 codeContainer
             );
+
+            MatchProcessor.Aggregate(metricsRecord.Structure);
+            ErrorProcessor.Aggregate(metricsRecord.Structure);
+            TagCountsProcessor.Aggregate(metricsRecord.Structure);
         }
     }
 }
