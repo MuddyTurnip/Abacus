@@ -2,15 +2,10 @@
 NEXT
 Need to add comments, strings, preprocessors as blocks like Code and the look for matches in them too
 Need to count preprocessors, strings, comments, blocks, statements
-Add preprocessor, string, comments blocks to stat blocks but don't nest them - need a list of all blocks ordered by openIndex then closeIndex. 
-Try to place metrics in classes, methods, comments, preprocessors etc
 Try to turn errors and blocks into metrics
 Turn block stats data in to metrics
-Spit out block data in metrics only need identification open and close indices and if errored
 Remove fluff from json file we don't need
-Match record needs index start = index end as well as location
 Search strings, code, preprocessors etc
-json will give begin and end locations for everything including blocks
 
 Need 
 	to treat all blocks the same and produce the same metrics for all of them by summming up their containing blocks and their raw code.
