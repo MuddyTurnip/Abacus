@@ -7,7 +7,8 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class MetricsRecord
     {
-        [JsonProperty(PropertyName = "blocks")]
+        //[JsonProperty(PropertyName = "blocks")]
+        [JsonIgnore]
         public List<BlockStats> Blocks { get; set; } = new();
 
         [JsonIgnore]

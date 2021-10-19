@@ -24,6 +24,11 @@ namespace MuddyTurnip.Metrics.Engine
             string tag,
             int count = 1)
         {
+            if (count <= 0)
+            {
+                return;
+            }
+
             TagCounter tagCount;
 
             for (int i = 0; i < tagCounts.Count; i++)

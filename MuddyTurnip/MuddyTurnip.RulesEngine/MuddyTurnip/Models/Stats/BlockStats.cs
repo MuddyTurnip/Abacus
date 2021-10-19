@@ -75,6 +75,9 @@ namespace MuddyTurnip.RulesEngine
         [JsonIgnore]
         public int OpenIndex { get; set; }
 
+        [JsonIgnore]
+        public bool LinkedToMetrics { get; set; }
+
         [JsonProperty(PropertyName = "startIndex")]
         public int AdjustedOpenIndex { get; set; }
 

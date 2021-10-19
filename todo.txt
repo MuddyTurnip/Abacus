@@ -1,8 +1,18 @@
 
 NEXT
-Not agregating tags again...
-Try to turn blocks into metrics
-Turn block stats data in to metrics
+
+Need to sum up Tagcounts fro depth but they need to increment - probably?
+Need to look for recursion?
+
+Per line count:
+	number full stops
+	number of statements
+	number of spaces
+	number letters
+	number units of work
+	number columns
+	number of words
+	comment chars
 
 Need 
 	to treat all blocks the same and produce the same metrics for all of them by summming up their containing blocks and their raw code.
@@ -19,25 +29,9 @@ Need
 	spaces versus code chars
 	maximum number of code chars per line
 	code block max depth
-	number of sybling code blocks
-	number methods and number properties per class record struct
 	size of embedded strings
 	statements per line
 	ratio nested statements without brackets etc
-
-	Need metrics for per text container:
-	http 
-	https 
-	log 
-	logger 
-	<form 
-	<iframe etc
-	.(){}<> => :;/%+* on the same line
-	Nested blocks
-		total number of nested blocks
-		Max nested depth
-		Average nested depth
-		number of first level blocks
 
 Need to add comments, strings, preprocessors as blocks like Code and the look for matches in them too
 Search strings, code, preprocessors etc

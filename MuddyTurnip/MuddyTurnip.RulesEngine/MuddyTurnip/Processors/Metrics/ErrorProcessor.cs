@@ -8,7 +8,22 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class ErrorProcessor
     {
-        public static void Aggregate(MetricsBlock metrics)
+        public static void Aggregate(MetricsRecord metricsRecord)
+        {
+            SetLocalErrorTagCounts(metricsRecord.Structure);
+            AggregateChildren(metricsRecord.Structure);
+        }
+
+        private static void AggregateChildren(MetricsBlock metrics)
+        {
+            foreach (MetricsBlock child in metrics.ChildBlocks)
+            {
+                SetLocalErrorTagCounts(child);
+                AggregateChildren(child);
+            }
+        }
+
+        private static void SetLocalErrorTagCounts(MetricsBlock metrics)
         {
             foreach (BlockStatsError error in metrics.Errors)
             {

@@ -49,7 +49,8 @@ namespace MuddyTurnip.Metrics.Engine
         [JsonProperty(PropertyName = "children")]
         public List<MetricsBlock> ChildBlocks { get; set; } = new();
 
-        [JsonProperty(PropertyName = "matches")]
+        //[JsonProperty(PropertyName = "matches")]
+        [JsonIgnore]
         public List<MtMatchRecord> Matches { get; set; } = new();
 
         [JsonIgnore]

@@ -12,7 +12,7 @@ namespace MuddyTurnip.Metrics.Engine
             AggregateChildren(metricsRecord.Structure);
         }
 
-        public static void AggregateChildren(MetricsBlock metrics)
+        private static void AggregateChildren(MetricsBlock metrics)
         {
             foreach (MetricsBlock child in metrics.ChildBlocks)
             {
@@ -72,7 +72,9 @@ namespace MuddyTurnip.Metrics.Engine
                 block = metrics.ChildBlocks[i];
 
                 if (block.OpenIndex <= match.StartIndex
-                    && block.CloseIndex >= match.EndIndex)
+                    && (block.CloseIndex >= match.EndIndex
+                    || (block.CloseIndex == 0 
+                        && block.Errors.Count > 0)))
                 {
                     success = MatchBlock(
                         match,
