@@ -6,7 +6,22 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class MatchProcessor
     {
-        public static void Aggregate(MetricsBlock metrics)
+        public static void Aggregate(MetricsRecord metricsRecord)
+        {
+            SetLocalTagCounts(metricsRecord.Structure);
+            AggregateChildren(metricsRecord.Structure);
+        }
+
+        public static void AggregateChildren(MetricsBlock metrics)
+        {
+            foreach (MetricsBlock child in metrics.ChildBlocks)
+            {
+                SetLocalTagCounts(child);
+                AggregateChildren(child);
+            }
+        }
+
+        private static void SetLocalTagCounts(MetricsBlock metrics)
         {
             string matchRecordTag;
 

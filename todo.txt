@@ -1,37 +1,5 @@
 
 NEXT
-
-    "patterns": [
-      {
-        "confidence": "High",
-        "modifiers": [
-          "i"
-        ],
-        "pattern": "pbkdf",
-        "type": "Substring",
-        "scopes": [
-          "Code"
-        ]
-      }
-    ],
-    "conditions": [
-      {
-        "negate_finding": true,
-        "pattern": {
-          "modifiers": [
-            "i"
-          ],
-          "pattern": "pbkdf2",
-          "type": "Substring",
-          "scopes": [
-            "Code"
-          ]
-        },
-        "search_in": "same-line"
-      }
-    ]
-
-
 Not agregating tags again...
 Try to turn blocks into metrics
 Turn block stats data in to metrics
@@ -100,6 +68,7 @@ It should be callable from the command line.
 Maybe it should reference the applicationInspector projects but run as an independent exe?
 
 Does regex account for attributes on methods classes etc use tests
+Does regex account for @class variable names?
 
 	Need to modify newlines to include all these:
     : '<Carriage return character (U+000D)>'

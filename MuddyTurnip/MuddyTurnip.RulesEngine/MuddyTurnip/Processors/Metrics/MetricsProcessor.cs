@@ -30,7 +30,7 @@ namespace MuddyTurnip.Metrics.Engine
             );
 
             MatchProcessor.DistributeMatches(metricsRecord);
-            MatchProcessor.Aggregate(metricsRecord.Structure);
+            MatchProcessor.Aggregate(metricsRecord);
             ErrorProcessor.Aggregate(metricsRecord.Structure);
             TagCountsProcessor.Aggregate(metricsRecord.Structure);
         }

@@ -46,7 +46,7 @@ namespace MuddyTurnip.Metrics.Engine
                         Partial = child.Flags.Contains("partial"),
                         Depth = child.Depth,
                         SyblingCount = child.SyblingCount,
-                        OpenIndex = child.AdjustedOpenIndex,
+                        OpenIndex = child.AdjustedMatchStart < child.AdjustedOpenIndex ? child.AdjustedMatchStart : child.AdjustedOpenIndex,
                         CloseIndex = child.AdjustedCloseIndex,
                         BlockStartLocation = child.BlockStartLocation,
                         BlockEndLocation = child.BlockEndLocation,

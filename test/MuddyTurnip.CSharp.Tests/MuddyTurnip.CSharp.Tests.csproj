@@ -62,6 +62,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CustomToolNamespace>EmbeddedFiles</CustomToolNamespace>
     </Content>
+    <Content Include="Files\CSharp2.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CustomToolNamespace>EmbeddedFiles</CustomToolNamespace>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
