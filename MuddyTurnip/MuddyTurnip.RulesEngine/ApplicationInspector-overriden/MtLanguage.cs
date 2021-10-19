@@ -851,16 +851,24 @@ namespace MuddyTurnip.RulesEngine.Commands
 
         private static void LoadPatterns(
             IEnumerable<Pattern> readPatterns,
-            List<string> writePatterns)
+            List<PatternSettings> writePatterns)
         {
-            string? regex;
+            PatternSettings? patternSettings;
 
             foreach (Pattern pattern in readPatterns)
             {
-                if (pattern.RegexPattern is { })
+
+                if (pattern.RegexPattern is { }
+                    && !String.IsNullOrWhiteSpace(pattern.RegexPattern))
                 {
-                    regex = pattern.RegexPattern;
-                    writePatterns.Add(regex);
+                    patternSettings = new(pattern.RegexPattern);
+                    writePatterns.Add(patternSettings);
+
+                    if (pattern.RejectMatchRegexPattern is { }
+                        && !String.IsNullOrWhiteSpace(pattern.RejectMatchRegexPattern))
+                    {
+                        patternSettings.RejectMatchRegexPattern = pattern.RejectMatchRegexPattern;
+                    }
                 }
             }
         }

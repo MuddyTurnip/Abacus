@@ -33,6 +33,7 @@ namespace MuddyTurnip.RulesEngine
             int matchStart;
             int matchEnd;
             Regex regex;
+            Regex rejectMatchRegex;
             string regexPattern;
             MatchCollection matches;
             string parentText = String.Empty;
@@ -50,14 +51,24 @@ namespace MuddyTurnip.RulesEngine
             // ie Constructors before methods etc
             // stats named will be skipped on following matches
 
-            foreach (string pattern in unitSetting.Patterns)
+            foreach (PatternSettings patternSettings in unitSetting.Patterns)
             {
-                regexPattern = pattern.Replace($"|*|{componentSettings.Name.ToUpper()}|*|", parent.Name);
+                regexPattern = patternSettings.RegexPattern.Replace($"|*|{componentSettings.Name.ToUpper()}|*|", parent.Name);
                 regex = new Regex(regexPattern);
                 matches = regex.Matches(parentText);
 
                 foreach (Match match in matches)
                 {
+                    if (patternSettings.RejectMatchRegexPattern is { })
+                    {
+                        rejectMatchRegex = new Regex(patternSettings.RejectMatchRegexPattern);
+
+                        if (rejectMatchRegex.IsMatch(match.Value))
+                        {
+                            continue;
+                        }
+                    }
+
                     matchStart = match.Index + parent.OpenIndex;
                     matchEnd = matchStart + match.Value.Length;
 

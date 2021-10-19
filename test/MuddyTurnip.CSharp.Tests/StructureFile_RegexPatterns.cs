@@ -1797,7 +1797,7 @@ namespace MuddyTurnip.RegularExpression.Tests
             "Round",
             "(",
             ")",
-            "double BaseTemperature, IEnumerable<DailyTemperature> TempRecords",
+            "double BaseTemperature, IEnumerable<DailyTemperature> TempRecords = 3",
             11, 35,
             11, 104)]
         [InlineData(

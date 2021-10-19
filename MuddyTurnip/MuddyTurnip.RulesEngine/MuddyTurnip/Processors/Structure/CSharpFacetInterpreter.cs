@@ -16,14 +16,25 @@ namespace MuddyTurnip.RulesEngine
             int matchEnd;
             Regex regex;
             MatchCollection matches;
+            Regex rejectMatchRegex;
 
-            foreach (string pattern in facetSettings.Patterns)
+            foreach (PatternSettings patternSettings in facetSettings.Patterns)
             {
-                regex = new Regex(pattern);
+                regex = new Regex(patternSettings.RegexPattern);
                 matches = regex.Matches(text);
 
                 foreach (Match match in matches)
                 {
+                    if (patternSettings.RejectMatchRegexPattern is { })
+                    {
+                        rejectMatchRegex = new Regex(patternSettings.RejectMatchRegexPattern);
+
+                        if (rejectMatchRegex.IsMatch(match.Value))
+                        {
+                            continue;
+                        }
+                    }
+
                     matchEnd = match.Index + match.Value.Length;
 
                     foreach (BlockStats stats in blockStats)

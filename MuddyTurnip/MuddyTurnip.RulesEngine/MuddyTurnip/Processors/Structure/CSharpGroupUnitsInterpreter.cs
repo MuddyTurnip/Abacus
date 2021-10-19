@@ -45,6 +45,7 @@ namespace MuddyTurnip.RulesEngine
             int matchEnd;
             int matchStart;
             Regex regex;
+            Regex rejectMatchRegex;
             MatchCollection matches;
             List<BlockStats> units = new();
             BlockStats unit;
@@ -70,13 +71,23 @@ namespace MuddyTurnip.RulesEngine
             // add units to blockscache
             foreach (GroupUnitSettings unitSettings in groupSettings.Units)
             {
-                foreach (string pattern in unitSettings.Patterns)
+                foreach (PatternSettings patternSettings in unitSettings.Patterns)
                 {
-                    regex = new Regex(pattern);
+                    regex = new Regex(patternSettings.RegexPattern);
                     matches = regex.Matches(groupText);
 
                     foreach (Match match in matches)
                     {
+                        if (patternSettings.RejectMatchRegexPattern is { })
+                        {
+                            rejectMatchRegex = new Regex(patternSettings.RejectMatchRegexPattern);
+
+                            if (rejectMatchRegex.IsMatch(match.Value))
+                            {
+                                continue;
+                            }
+                        }
+
                         matchStart = parent.OpenIndex + match.Index;
                         matchEnd = matchStart + match.Value.Length;
 

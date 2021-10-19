@@ -7,7 +7,7 @@ namespace MuddyTurnip.RulesEngine
     {
         public string Name { get; }
         public string BlockType { get; } = string.Empty;
-        public List<string> Patterns { get; } = new();
+        public List<PatternSettings> Patterns { get; } = new();
 
         public FacetSettings(
             string name,

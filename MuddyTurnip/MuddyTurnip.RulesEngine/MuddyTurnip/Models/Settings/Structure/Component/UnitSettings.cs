@@ -8,7 +8,7 @@ namespace MuddyTurnip.RulesEngine
         public string Name { get; set; } = string.Empty;
         public string BlockType { get; } = string.Empty;
         public bool PrintMetrics { get; } = false;
-        public List<string> Patterns { get; } = new();
+        public List<PatternSettings> Patterns { get; } = new();
 
         public UnitSettings(
             string name,

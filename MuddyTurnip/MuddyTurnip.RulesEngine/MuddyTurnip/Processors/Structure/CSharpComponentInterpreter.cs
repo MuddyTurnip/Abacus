@@ -17,6 +17,7 @@ namespace MuddyTurnip.RulesEngine
         {
             int matchEnd;
             Regex regex;
+            Regex rejectMatchRegex;
             MatchCollection matches;
 
             // Parents should be run first then children
@@ -24,13 +25,23 @@ namespace MuddyTurnip.RulesEngine
             // ie Constructors before methods etc
             // stats named will be skipped on following matches
 
-            foreach (string pattern in componentSettings.Patterns)
+            foreach (PatternSettings patternSettings in componentSettings.Patterns)
             {
-                regex = new Regex(pattern);
+                regex = new Regex(patternSettings.RegexPattern);
                 matches = regex.Matches(text);
 
                 foreach (Match match in matches)
                 {
+                    if (patternSettings.RejectMatchRegexPattern is { })
+                    {
+                        rejectMatchRegex = new Regex(patternSettings.RejectMatchRegexPattern);
+
+                        if (rejectMatchRegex.IsMatch(match.Value))
+                        {
+                            continue;
+                        }
+                    }
+
                     matchEnd = match.Index + match.Value.Length;
 
                     foreach (BlockStats stats in blockStats)

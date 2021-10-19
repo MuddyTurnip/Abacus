@@ -13,7 +13,7 @@ namespace MuddyTurnip.RulesEngine
         public bool QualifiesName { get; set; } = false;
         public List<string> Parents { get; } = new();
         public List<UnitSettings> Units { get; } = new();
-        public List<string> Patterns { get; } = new();
+        public List<PatternSettings> Patterns { get; } = new();
 
         public ComponentSettings(
             string id,
