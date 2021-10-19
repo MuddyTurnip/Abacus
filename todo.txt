@@ -1,11 +1,40 @@
 
 NEXT
-Need to add comments, strings, preprocessors as blocks like Code and the look for matches in them too
-Need to count preprocessors, strings, comments, blocks, statements
-Try to turn errors and blocks into metrics
+
+    "patterns": [
+      {
+        "confidence": "High",
+        "modifiers": [
+          "i"
+        ],
+        "pattern": "pbkdf",
+        "type": "Substring",
+        "scopes": [
+          "Code"
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "negate_finding": true,
+        "pattern": {
+          "modifiers": [
+            "i"
+          ],
+          "pattern": "pbkdf2",
+          "type": "Substring",
+          "scopes": [
+            "Code"
+          ]
+        },
+        "search_in": "same-line"
+      }
+    ]
+
+
+Not agregating tags again...
+Try to turn blocks into metrics
 Turn block stats data in to metrics
-Remove fluff from json file we don't need
-Search strings, code, preprocessors etc
 
 Need 
 	to treat all blocks the same and produce the same metrics for all of them by summming up their containing blocks and their raw code.
@@ -28,7 +57,7 @@ Need
 	statements per line
 	ratio nested statements without brackets etc
 
-Need metrics for per text container:
+	Need metrics for per text container:
 	http 
 	https 
 	log 
@@ -41,6 +70,14 @@ Need metrics for per text container:
 		Max nested depth
 		Average nested depth
 		number of first level blocks
+
+Need to add comments, strings, preprocessors as blocks like Code and the look for matches in them too
+Search strings, code, preprocessors etc
+Need to count preprocessors, strings, comments, blocks, statements
+
+Remove fluff from json file we don't need
+
+
 
 TESTS
 	VERY IMPORTANT - Need to write tests to see that the expected block are children of the right blocks

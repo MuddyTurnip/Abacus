@@ -54,7 +54,7 @@ namespace TreeSolve.CompositeFlows.Export.JsonParsers
         JsonEdgesParser(string fred)
         {
         }
-        JsonEdgesParser((string fred, int joe) gaz, double kez)
+        JsonEdgesParser((string fred, int joe) gaz, double kez = "")
         {
         }
         JsonEdgesParser(Dictionary<string fred, int joe> gaz, double kez)
@@ -286,7 +286,7 @@ namespace TreeSolve.CompositeFlows.Export.JsonParsers
                 .PostJsonAsync(query)
                 .ConfigureAwait(false);
         }
-        internal abstract static Task<string> MoveBranch13(MoveBranch moveBranch)
+        internal abstract static Task<string> MoveBranch13(MoveBranch moveBranch = 1)
         {
             string url = $"{moveBranch.SubscriptionID}{_urlAgent.Node.MoveBranch}";
             string body = moveBranch.BuildSaveJsonString();
@@ -625,7 +625,7 @@ namespace TreeSolve.CompositeFlows.Export.JsonParsers
             return new DailyTemperature(HighTemp + 20, LowTemp);
         }
     }
-    public abstract record DegreeDays(double BaseTemperature, IEnumerable<DailyTemperature> TempRecords);
+    public abstract record DegreeDays(double BaseTemperature, IEnumerable<DailyTemperature> TempRecords = 3);
     public sealed record HeatingDegreeDays(double BaseTemperature, IEnumerable<DailyTemperature> TempRecords)
         : DegreeDays(BaseTemperature, TempRecords)
     {

@@ -1,5 +1,8 @@
-﻿namespace MuddyTurnip.RulesEngine
+﻿using System.Diagnostics;
+
+namespace MuddyTurnip.RulesEngine
 {
+    [DebuggerDisplay("{Type}")]
     public class BlockStatsError
     {
         public string Type { get; set; } = string.Empty;

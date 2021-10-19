@@ -375,8 +375,8 @@ namespace MuddyTurnip.RegularExpression.Tests
             75, 10)]
         [InlineData(
             "constructor",
-            "JsonEdgesParser((string fred, int joe) gaz, double kez)",
-            "JsonEdgesParser((string fred, int joe) gaz, double kez)",
+            "JsonEdgesParser((string fred, int joe) gaz, double kez = \"\")",
+            "JsonEdgesParser((string fred, int joe) gaz, double kez = \"\")",
             "JsonEdgesParser",
             "TreeSolve.CompositeFlows.Export.JsonParsers.JsonEdgesParser.JsonEdgesParser",
             80, 10,
@@ -794,8 +794,8 @@ namespace MuddyTurnip.RegularExpression.Tests
             421, 10)]
         [InlineData(
             "method",
-            "internal abstract static Task<string> MoveBranch13(MoveBranch moveBranch)",
-            "internal abstract static Task<string> MoveBranch13(MoveBranch moveBranch)",
+            "internal abstract static Task<string> MoveBranch13(MoveBranch moveBranch = 1)",
+            "internal abstract static Task<string> MoveBranch13(MoveBranch moveBranch = 1)",
             "MoveBranch13",
             "TreeSolve.CompositeFlows.Export.JsonParsers.JsonEdgesParser.MoveBranch13",
             437, 10,
@@ -1799,7 +1799,7 @@ namespace MuddyTurnip.RegularExpression.Tests
             ")",
             "double BaseTemperature, IEnumerable<DailyTemperature> TempRecords",
             11, 35,
-            11, 100)]
+            11, 104)]
         [InlineData(
             "Parameter",
             "Round",

@@ -72,7 +72,7 @@
             "printMetrics": true,
             "patterns": [
               {
-                "pattern": "(?<signature>((?<destructor>(~|*|CLASS|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\(\\)]*\\)))\\s*[^;]\\s*((=>)|{)"
+                "pattern": "(?<signature>((?<destructor>(~|*|CLASS|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\=\"\\(\\)]*\\)))\\s*[^;]\\s*((=>)|{)"
               }
             ]
           },
@@ -83,7 +83,7 @@
             "printMetrics": true,
             "patterns": [
               {
-                "pattern": "(?<signature>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((static)|(unsafe))\\s+){0,2}(?<constructor>(|*|CLASS|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\(\\)(\\[\\s*\\])]*\\))\\s*(?<base>(:\\s*base\\s*\\(\\s*[A-Za-z0-9\\s,.\\(\\)\\[\\]]*\\)))?\\s*((=>)|{)"
+                "pattern": "(?<signature>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((static)|(unsafe))\\s+){0,2}[^~](?<constructor>(|*|CLASS|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]*\\))\\s*(?<base>(:\\s*base\\s*\\(\\s*[A-Za-z0-9\\s,.\\(\\)\\[\\]]*\\)))?\\s*((=>)|{)"
               }
             ]
           }
@@ -117,7 +117,7 @@
             "printMetrics": true,
             "patterns": [
               {
-                "pattern": "(?<signature>((?<destructor>(~|*|STRUCT|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\(\\)]*\\)))\\s*[^;]\\s*((=>)|{)"
+                "pattern": "(?<signature>((?<destructor>(~|*|STRUCT|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\=\"\\(\\)]*\\)))\\s*[^;]\\s*((=>)|{)"
               }
             ]
           },
@@ -128,7 +128,7 @@
             "printMetrics": true,
             "patterns": [
               {
-                "pattern": "(?<signature>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((static)|(unsafe))\\s+){0,2}(?<constructor>(|*|STRUCT|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\(\\)(\\[\\s*\\])]*\\))\\s*(?<base>(:\\s*base\\s*\\(\\s*[A-Za-z0-9\\s,.\\(\\)\\[\\]]*\\)))?\\s*((=>)|{)"
+                "pattern": "(?<signature>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((static)|(unsafe))\\s+){0,2}[^~](?<constructor>(|*|STRUCT|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]*\\))\\s*(?<base>(:\\s*base\\s*\\(\\s*[A-Za-z0-9\\s,.\\(\\)\\[\\]]*\\)))?\\s*((=>)|{)"
               }
             ]
           }
@@ -151,7 +151,7 @@
         ],
         "patterns": [
           {
-            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(async)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})((?<partial>partial)\\s+)?(?<type>(record)\\s+)(?<record>[A-Za-z_][A-Za-z_0-9]*\\s*(<[A-Za-z_0-9,\\s]*>)?)\\s*(?<params>\\(\\s*[A-Za-z_0-9\\s,<>\\(\\)(\\[\\s*\\])]*\\))\\s*)[A-Za-z_0-9<>.:,\\(\\)\\[\\]\\s]*\\s*{"
+            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(async)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})((?<partial>partial)\\s+)?(?<type>(record)\\s+)(?<record>[A-Za-z_][A-Za-z_0-9]*\\s*(<[A-Za-z_0-9,\\s]*>)?)\\s*(?<params>\\(\\s*[A-Za-z_0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]*\\))\\s*)[A-Za-z_0-9<>.:,\\(\\)\\[\\]\\s]*\\s*{"
           }
         ],
         "units": [
@@ -162,7 +162,7 @@
             "printMetrics": true,
             "patterns": [
               {
-                "pattern": "(?<signature>((?<destructor>(~|*|RECORD|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\(\\)]*\\)))\\s*[^;]\\s*((=>)|{)"
+                "pattern": "(?<signature>((?<destructor>(~|*|RECORD|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\=\"\\(\\)]*\\)))\\s*[^;]\\s*((=>)|{)"
               }
             ]
           },
@@ -173,7 +173,7 @@
             "printMetrics": true,
             "patterns": [
               {
-                "pattern": "(?<signature>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((static)|(unsafe))\\s+){0,2}(?<constructor>(|*|RECORD|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\(\\)(\\[\\s*\\])]*\\))\\s*(?<base>(:\\s*base\\s*\\(\\s*[A-Za-z0-9\\s,.\\(\\)\\[\\]]*\\)))?\\s*((=>)|{)"
+                "pattern": "(?<signature>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((static)|(unsafe))\\s+){0,2}[^~](?<constructor>(|*|RECORD|*|))\\s*\\(\\s*[A-Za-z_0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]*\\))\\s*(?<base>(:\\s*base\\s*\\(\\s*[A-Za-z0-9\\s,.\\(\\)\\[\\]]*\\)))?\\s*((=>)|{)"
               }
             ]
           }
@@ -193,7 +193,7 @@
         ],
         "patterns": [
           {
-            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(async)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})(?<returnValue>(([A-Za-z_][A-Za-z_0-9]*\\s*(<[A-Za-z_0-9\\s,<>\\(\\)(\\[\\s*\\])]+>)?)|(\\([A-Za-z_0-9\\s,<>\\(\\)(\\[\\s*\\])]+\\)))\\s+)(?<indexer>this)\\s*(?<params>\\[\\s*[A-Za-z_0-9\\s,<>\\(\\)]*\\]))\\s*[^;]\\s*(({(?=(\\s*(\\b(public|internal|private|protected)\\s+)?(\\b(internal|private|protected)\\s+)?\\s*(get|set|init\\s*))))|(=>))"
+            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(async)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})(?<returnValue>(([A-Za-z_][A-Za-z_0-9]*\\s*(<[A-Za-z_0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]+>)?)|(\\([A-Za-z_0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]+\\)))\\s+)(?<indexer>this)\\s*(?<params>\\[\\s*[A-Za-z_0-9\\s,<>\\=\"\\(\\)]*\\]))\\s*[^;]\\s*(({(?=(\\s*(\\b(public|internal|private|protected)\\s+)?(\\b(internal|private|protected)\\s+)?\\s*(get|set|init\\s*))))|(=>))"
           }
         ]
       },
@@ -211,7 +211,7 @@
         ],
         "patterns": [
           {
-            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})event\\s+(?<returnValue>(([A-Za-z_][A-Za-z_0-9]*\\s*(<[A-Za-z_0-9\\s,<>\\(\\)]+>)?)|(\\([A-Za-z_0-9\\s,<>\\(\\)]+\\)))\\s+)(?<event>[A-Za-z_][A-Za-z_0-9]*(\\s*<[A-Za-z_0-9,\\s]*>)?))\\s*{"
+            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})event\\s+(?<returnValue>(([A-Za-z_][A-Za-z_0-9]*\\s*(<[A-Za-z_0-9\\s,<>\\=\"\\(\\)]+>)?)|(\\([A-Za-z_0-9\\s,<>\\=\"\\(\\)]+\\)))\\s+)(?<event>[A-Za-z_][A-Za-z_0-9]*(\\s*<[A-Za-z_0-9,\\s]*>)?))\\s*{"
           }
         ]
       },
@@ -229,10 +229,10 @@
         ],
         "patterns": [
           {
-            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})(?<returnValue>(([A-Za-z_][A-Za-z_0-9]*\\s*(<[A-Za-z_0-9\\s,<>\\(\\)]+>)?)|(\\([A-Za-z_0-9\\s,<>\\(\\)]+\\)))\\s+)(operator\\s+)(?<operator>((\\+)|(-)|(!)|(~)|(\\+\\+)|(--)|(true)|(false)|(\\*)|(/)|(%)|(\\&)|(\\|)|(\\^)|(<<)|(==)|(\\!=)|(>)|(<)|(>=)|(<=))\\s*)(?<params>\\(\\s*[A-Za-z_0-9\\s,<>\\(\\)(\\[\\s*\\])]+\\)))\\s*[^;]\\s*((=>)|{)"
+            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})(?<returnValue>(([A-Za-z_][A-Za-z_0-9]*\\s*(<[A-Za-z_0-9\\s,<>\\=\"\\(\\)]+>)?)|(\\([A-Za-z_0-9\\s,<>\\=\"\\(\\)]+\\)))\\s+)(operator\\s+)(?<operator>((\\+)|(-)|(!)|(~)|(\\+\\+)|(--)|(true)|(false)|(\\*)|(/)|(%)|(\\&)|(\\|)|(\\^)|(<<)|(==)|(\\!=)|(>)|(<)|(>=)|(<=))\\s*)(?<params>\\(\\s*[A-Za-z_0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]+\\)))\\s*[^;]\\s*((=>)|{)"
           },
           {
-            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})((explicit)|(implicit))\\s+(operator\\s+)(?<operator>(([A-Za-z_][A-Za-z_0-9]*\\s*(<[A-Za-z_0-9\\s,<>\\(\\)]+>)?)|(\\([A-Za-z_0-9\\s,<>\\(\\)]+\\)))\\s*)(?<params>\\(\\s*[A-Za-z_0-9\\s,<>\\(\\)(\\[\\s*\\])]+\\)))\\s*[^;]\\s*((=>)|{)"
+            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})((explicit)|(implicit))\\s+(operator\\s+)(?<operator>(([A-Za-z_][A-Za-z_0-9]*\\s*(<[A-Za-z_0-9\\s,<>\\=\"\\(\\)]+>)?)|(\\([A-Za-z_0-9\\s,<>\\=\"\\(\\)]+\\)))\\s*)(?<params>\\(\\s*[A-Za-z_0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]+\\)))\\s*[^;]\\s*((=>)|{)"
           }
         ]
       },
@@ -250,7 +250,7 @@
         ],
         "patterns": [
           {
-            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(async)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})((?<partial>partial)\\s+)?(?<returnValue>(([A-Za-z][A-Za-z0-9]*\\s*(<[A-Za-z0-9\\s,<>\\(\\)(\\[\\s*\\])]+>)?)|(\\([A-Za-z0-9\\s,<>\\(\\)(\\[\\s*\\])]+\\)))\\s+)(?<method>[A-Za-z][A-Za-z0-9]*\\s*(<[A-Za-z_0-9,\\s]*>)?)\\s*(?<params>\\(\\s*[A-Za-z0-9\\s,<>\\(\\)(\\[\\s*\\])]*\\)))\\s*[^;]\\s*((=>)|{)"
+            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(async)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})((?<partial>partial)\\s+)?(?<returnValue>(([A-Za-z][A-Za-z0-9]*\\s*(<[A-Za-z0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]+>)?)|(\\([A-Za-z0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]+\\)))\\s+)(?<method>[A-Za-z][A-Za-z0-9]*\\s*(<[A-Za-z_0-9,\\s]*>)?)\\s*(?<params>\\(\\s*[A-Za-z0-9\\s,<>\\=\"\\(\\)(\\[\\s*\\])]*\\)))\\s*[^;]\\s*((=>)|{)"
           }
         ],
         "units": [
@@ -280,7 +280,7 @@
         ],
         "patterns": [
           {
-            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})(?<returnValue>(([A-Za-z][A-Za-z0-9]*\\s*(<[A-Za-z0-9\\s,<>\\(\\)]+>)?)|(\\([A-Za-z0-9\\s,<>\\(\\)]+\\)))\\s+)(?<property>[A-Za-z][A-Za-z0-9]*(\\s*<[A-Za-z_0-9,\\s]*>)?))\\s*(({(?=(\\s*(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?\\s*((get)|(set)|(init)\\s*))))|(=>))"
+            "pattern": "(?<signature>(?<keywords>(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?(((abstract)|(extern)|(override)|(sealed)|(static)|(unsafe)|(new)|(virtual)|(volatile))\\s+){0,5})(?<returnValue>(([A-Za-z][A-Za-z0-9]*\\s*(<[A-Za-z0-9\\s,<>\\=\"\\(\\)]+>)?)|(\\([A-Za-z0-9\\s,<>\\=\"\\(\\)]+\\)))\\s+)(?<property>[A-Za-z][A-Za-z0-9]*(\\s*<[A-Za-z_0-9,\\s]*>)?))\\s*(({(?=(\\s*(\\b((public)|(internal)|(private)|(protected))\\s+)?(\\b((internal)|(private)|(protected))\\s+)?\\s*((get)|(set)|(init)\\s*))))|(=>))"
           }
         ]
       }

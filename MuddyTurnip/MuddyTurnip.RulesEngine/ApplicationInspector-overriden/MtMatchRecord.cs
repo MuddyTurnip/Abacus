@@ -3,12 +3,14 @@
 
 using Microsoft.ApplicationInspector.RulesEngine;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace MuddyTurnip.RulesEngine.Commands
 {
     /// <summary>
     /// Represents augmented record of result issue from rules engine
     /// </summary>
+    [DebuggerDisplay("{Pattern}")]
     public class MtMatchRecord
     {
         /// <summary>

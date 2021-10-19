@@ -3,9 +3,11 @@ using MuddyTurnip.RulesEngine;
 using MuddyTurnip.RulesEngine.Commands;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace MuddyTurnip.Metrics.Engine
 {
+    [DebuggerDisplay("{FullName} - {Signature}")]
     public class MetricsBlock
     {
         [JsonProperty(PropertyName = "fullName")]
@@ -52,6 +54,9 @@ namespace MuddyTurnip.Metrics.Engine
 
         [JsonIgnore]
         public MetricsBlock? Parent { get; set; }
+
+        [JsonIgnore]
+        public BlockStats? Block { get; set; }
 
 
         public List<TagCounter> TagCounts { get; } = new();
