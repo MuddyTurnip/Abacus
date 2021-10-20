@@ -38,7 +38,7 @@ namespace MuddyTurnip.Metrics.Engine
             syblingCount = syblingCount > 0 ? --syblingCount : 0;
 
             metrics.TagCounts.IncrementTagCount(
-                $"Abacus.Syblings.Count",
+                $"A.Syblings",
                 syblingCount
             );
         }
@@ -46,7 +46,7 @@ namespace MuddyTurnip.Metrics.Engine
         private static void CountChildBlocks(MetricsBlock metrics)
         {
             metrics.TagCounts.IncrementTagCount(
-                $"Abacus.ChildBlocks.FirstGen.Count",
+                $"A.ChildBlocks.FirstGen",
                 metrics.Block?.ChildBlocks.Count ?? 0
             );
         }
@@ -54,7 +54,7 @@ namespace MuddyTurnip.Metrics.Engine
         private static void CountChildStatements(MetricsBlock metrics)
         {
             metrics.TagCounts.IncrementTagCount(
-                $"Abacus.ChildStatements.FirstGen.Count",
+                $"A.ChildStatements.FirstGen",
                 metrics.Block?.ChildStatements.Count ?? 0
             );
         }
@@ -62,7 +62,7 @@ namespace MuddyTurnip.Metrics.Engine
         private static void CountChildMetricBlocks(MetricsBlock metrics)
         {
             metrics.TagCounts.IncrementTagCount(
-                $"Abacus.Blocks.Count",
+                $"A.ChildBlocks",
                 metrics.ChildBlocks?.Count ?? 0
             );
 
@@ -86,7 +86,7 @@ namespace MuddyTurnip.Metrics.Engine
                 if (result is { })
                 {
                     metrics.TagCounts.IncrementTagCount(
-                        $"Abacus.Blocks.{result.Type}",
+                        $"A.Blocks.{result.Type}",
                         result.Count
                     );
                 }

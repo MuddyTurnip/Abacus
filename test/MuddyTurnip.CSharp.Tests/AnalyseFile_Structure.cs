@@ -86,91 +86,91 @@ namespace MuddyTurnip.RegularExpression.Tests
         {
             Assert.Equal(15, file?.TagCounts.Count);
 
-            Assert.Equal(3, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.using"));
-            Assert.Equal(1, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.namespace"));
-            Assert.Equal(3, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.public"));
-            Assert.Equal(3, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.static"));
-            Assert.Equal(1, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.class"));
-            Assert.Equal(2, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.void"));
-            Assert.Equal(2, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.this"));
-            Assert.Equal(1, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.string"));
-            Assert.Equal(2, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.int"));
-            Assert.Equal(1, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.foreach"));
-            Assert.Equal(1, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.in"));
-            Assert.Equal(1, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.for"));
-            Assert.Equal(1, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.if"));
-            Assert.Equal(1, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.return"));
-            Assert.Equal(1, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.new"));
-            Assert.Equal(1, GetTagCount(file?.TagCounts, "Codemology-m.Code.CSharp.string"));
+            Assert.Equal(3, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.using"));
+            Assert.Equal(1, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.namespace"));
+            Assert.Equal(3, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.public"));
+            Assert.Equal(3, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.static"));
+            Assert.Equal(1, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.class"));
+            Assert.Equal(2, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.void"));
+            Assert.Equal(2, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.this"));
+            Assert.Equal(1, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.string"));
+            Assert.Equal(2, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.int"));
+            Assert.Equal(1, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.foreach"));
+            Assert.Equal(1, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.in"));
+            Assert.Equal(1, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.for"));
+            Assert.Equal(1, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.if"));
+            Assert.Equal(1, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.return"));
+            Assert.Equal(1, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.new"));
+            Assert.Equal(1, GetTagCount(file?.TagCounts, "C-m.Code.CSharp.string"));
         }
 
         private void RunNamespaceTests(MetricsBlock? nameSpace)
         {
             Assert.Equal(14, nameSpace?.TagCounts.Count);
 
-            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.namespace"));
-            Assert.Equal(3, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.public"));
-            Assert.Equal(3, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.static"));
-            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.class"));
-            Assert.Equal(2, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.void"));
-            Assert.Equal(2, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.this"));
-            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.string"));
-            Assert.Equal(2, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.int"));
-            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.foreach"));
-            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.in"));
-            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.for"));
-            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.if"));
-            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.return"));
-            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.new"));
-            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "Codemology-m.Code.CSharp.string"));
+            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.namespace"));
+            Assert.Equal(3, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.public"));
+            Assert.Equal(3, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.static"));
+            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.class"));
+            Assert.Equal(2, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.void"));
+            Assert.Equal(2, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.this"));
+            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.string"));
+            Assert.Equal(2, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.int"));
+            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.foreach"));
+            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.in"));
+            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.for"));
+            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.if"));
+            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.return"));
+            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.new"));
+            Assert.Equal(1, GetTagCount(nameSpace?.TagCounts, "C-m.Code.CSharp.string"));
         }
 
         private void RunClassTests(MetricsBlock? cSharp2)
         {
             Assert.Equal(13, cSharp2?.TagCounts.Count);
 
-            Assert.Equal(3, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.public"));
-            Assert.Equal(3, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.static"));
-            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.class"));
-            Assert.Equal(2, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.void"));
-            Assert.Equal(2, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.this"));
-            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.string"));
-            Assert.Equal(2, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.int"));
-            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.foreach"));
-            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.in"));
-            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.for"));
-            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.if"));
-            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.return"));
-            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.new"));
-            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "Codemology-m.Code.CSharp.string"));
+            Assert.Equal(3, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.public"));
+            Assert.Equal(3, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.static"));
+            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.class"));
+            Assert.Equal(2, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.void"));
+            Assert.Equal(2, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.this"));
+            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.string"));
+            Assert.Equal(2, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.int"));
+            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.foreach"));
+            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.in"));
+            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.for"));
+            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.if"));
+            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.return"));
+            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.new"));
+            Assert.Equal(1, GetTagCount(cSharp2?.TagCounts, "C-m.Code.CSharp.string"));
         }
 
         private void RunMergeTagCountsTests(MetricsBlock? mergeTagCounts)
         {
             Assert.Equal(6, mergeTagCounts?.TagCounts.Count);
 
-            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "Codemology-m.Code.CSharp.public"));
-            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "Codemology-m.Code.CSharp.static"));
-            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "Codemology-m.Code.CSharp.void"));
-            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "Codemology-m.Code.CSharp.this"));
-            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "Codemology-m.Code.CSharp.foreach"));
-            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "Codemology-m.Code.CSharp.in"));
+            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "C-m.Code.CSharp.public"));
+            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "C-m.Code.CSharp.static"));
+            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "C-m.Code.CSharp.void"));
+            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "C-m.Code.CSharp.this"));
+            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "C-m.Code.CSharp.foreach"));
+            Assert.Equal(1, GetTagCount(mergeTagCounts?.TagCounts, "C-m.Code.CSharp.in"));
         }
 
         private void RunIncrementTagCountTests(MetricsBlock? incrementTagCount)
         {
             Assert.Equal(10, incrementTagCount?.TagCounts.Count);
 
-            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "Codemology-m.Code.CSharp.public"));
-            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "Codemology-m.Code.CSharp.static"));
-            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "Codemology-m.Code.CSharp.void"));
-            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "Codemology-m.Code.CSharp.this"));
-            Assert.Equal(2, GetTagCount(incrementTagCount?.TagCounts, "Codemology-m.Code.CSharp.int"));
-            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "Codemology-m.Code.CSharp.string"));
-            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "Codemology-m.Code.CSharp.for"));
-            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "Codemology-m.Code.CSharp.if"));
-            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "Codemology-m.Code.CSharp.return"));
-            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "Codemology-m.Code.CSharp.new"));
+            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "C-m.Code.CSharp.public"));
+            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "C-m.Code.CSharp.static"));
+            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "C-m.Code.CSharp.void"));
+            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "C-m.Code.CSharp.this"));
+            Assert.Equal(2, GetTagCount(incrementTagCount?.TagCounts, "C-m.Code.CSharp.int"));
+            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "C-m.Code.CSharp.string"));
+            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "C-m.Code.CSharp.for"));
+            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "C-m.Code.CSharp.if"));
+            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "C-m.Code.CSharp.return"));
+            Assert.Equal(1, GetTagCount(incrementTagCount?.TagCounts, "C-m.Code.CSharp.new"));
         }
 
         private int GetTagCount(

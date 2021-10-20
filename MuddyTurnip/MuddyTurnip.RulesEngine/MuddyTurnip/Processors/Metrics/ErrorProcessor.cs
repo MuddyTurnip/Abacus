@@ -27,7 +27,7 @@ namespace MuddyTurnip.Metrics.Engine
         {
             foreach (BlockStatsError error in metrics.Errors)
             {
-                metrics.TagCounts.IncrementTagCount($"Abacus.Error.{error.Type}");
+                metrics.TagCounts.IncrementTagCount($"A.Error.{error.Type}");
             }
         }
     }

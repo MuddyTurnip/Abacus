@@ -2,6 +2,7 @@
 using MuddyTurnip.RulesEngine;
 using MuddyTurnip.RulesEngine.Commands;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -43,8 +44,11 @@ namespace MuddyTurnip.Metrics.Engine
         [JsonProperty(PropertyName = "closeIndex")]
         public int CloseIndex { get; set; }
 
+        [JsonIgnore]
+        public int LineStartIndex { get; set; }
+
         [JsonProperty(PropertyName = "startLocation")]
-        public Location BlockStartLocation { get; set; } = new();
+        public Location BlockStartLocation { get; private set; } = new();
 
         [JsonProperty(PropertyName = "endLocation")]
         public Location BlockEndLocation { get; set; } = new();
@@ -60,17 +64,38 @@ namespace MuddyTurnip.Metrics.Engine
         public List<LocationIndex> UnitsOfWork { get; set; } = new();
 
         [JsonIgnore]
+        public List<LineCounts> LineCounts { get; set; } = new();
+
+        [JsonIgnore]
         public MetricsBlock? Parent { get; set; }
 
         [JsonIgnore]
         public BlockStats? Block { get; set; }
 
         [JsonProperty(PropertyName = "tagCounts")]
+        //[JsonIgnore]
         public List<TagCounter> TagCounts { get; } = new();
+
+        //[JsonIgnore]
+        public int TagCountsCount => TagCounts.Count;
 
 
         public MetricsBlock()
         {
+        }
+
+        public void SetBlockStartLocation(
+            Location blockStartLocation,
+            int openIndex = -1)
+        {
+            if (openIndex >= 0)
+            {
+                OpenIndex = openIndex;
+            }
+
+            BlockStartLocation = blockStartLocation;
+            LineStartIndex = OpenIndex - blockStartLocation.Column;
+            LineStartIndex = LineStartIndex < 0 ? 0 : LineStartIndex;
         }
     }
 }

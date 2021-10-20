@@ -2,22 +2,12 @@
 NEXT
 
 Need to add comments, strings, preprocessors to blocks
+UNits of work Line number does not relate to FullContent but codeContent this needs to be fixed
+statements should use the end not the start per line
 
 foreach char in text
-	collect . space non-space columns
-	number of words
 	comment chars
 	string chars
-
-Per line count:
-	number of spaces
-	number letters
-	number columns
-	number of words
-	comment chars
-	Lowercaswe to uppercase changes etc
-	underscore
-	hyphen
 
 Need 
 	total number blocks per block etc

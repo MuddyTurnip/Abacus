@@ -433,7 +433,7 @@ namespace MuddyTurnip.RulesEngine
         /// <param name = "pattern" > Pattern with scope</param>
         /// <param name = "boundary" > Boundary in a text </param>
         /// <param name = "text" > Text </ param >
-   
+
         //   / < returns > True if boundary is matching the pattern scope </returns>
         //public bool ScopeMatch(
         //    IEnumerable<PatternScope> patterns,

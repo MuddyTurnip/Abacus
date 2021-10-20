@@ -69,7 +69,7 @@ namespace MuddyTurnip.Metrics.Engine
                 if (result is { })
                 {
                     metrics.TagCounts.IncrementTagCount(
-                        $"Abacus.Blocks.UnitsOfWork.Line.{result.Line}",
+                        $"A.Blocks.UnitsOfWork.Line.{result.Line}",
                         result.Count
                     );
                 }

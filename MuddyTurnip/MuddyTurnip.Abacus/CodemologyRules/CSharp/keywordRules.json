@@ -1,12 +1,12 @@
 [
 
   {
-    "name": "Codemology-m: CSharp abstract",
+    "name": "C-m: CSharp abstract",
     "id": "CY00001100",
-    "description": "Codemology-m: CSharp abstract",
+    "description": "C-m: CSharp abstract",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.abstract"
+      "C-m.Code.CSharp.abstract"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -22,12 +22,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp as",
+    "name": "C-m: CSharp as",
     "id": "CY00001200",
-    "description": "Codemology-m: CSharp as",
+    "description": "C-m: CSharp as",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.as"
+      "C-m.Code.CSharp.as"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -43,12 +43,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp base",
+    "name": "C-m: CSharp base",
     "id": "CY00001300",
-    "description": "Codemology-m: CSharp base",
+    "description": "C-m: CSharp base",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.base"
+      "C-m.Code.CSharp.base"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -64,12 +64,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp bool",
+    "name": "C-m: CSharp bool",
     "id": "CY00001400",
-    "description": "Codemology-m: CSharp bool",
+    "description": "C-m: CSharp bool",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.bool"
+      "C-m.Code.CSharp.bool"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -85,12 +85,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp break",
+    "name": "C-m: CSharp break",
     "id": "CY00001500",
-    "description": "Codemology-m: CSharp break",
+    "description": "C-m: CSharp break",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.break"
+      "C-m.Code.CSharp.break"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -106,12 +106,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp byte",
+    "name": "C-m: CSharp byte",
     "id": "CY00001600",
-    "description": "Codemology-m: CSharp byte",
+    "description": "C-m: CSharp byte",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.byte"
+      "C-m.Code.CSharp.byte"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -127,12 +127,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp case",
+    "name": "C-m: CSharp case",
     "id": "CY00001700",
-    "description": "Codemology-m: CSharp case",
+    "description": "C-m: CSharp case",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.case"
+      "C-m.Code.CSharp.case"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -148,12 +148,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp catch",
+    "name": "C-m: CSharp catch",
     "id": "CY00001800",
-    "description": "Codemology-m: CSharp catch",
+    "description": "C-m: CSharp catch",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.catch"
+      "C-m.Code.CSharp.catch"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -169,12 +169,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp char",
+    "name": "C-m: CSharp char",
     "id": "CY00001900",
-    "description": "Codemology-m: CSharp char",
+    "description": "C-m: CSharp char",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.char"
+      "C-m.Code.CSharp.char"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -190,12 +190,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp checked",
+    "name": "C-m: CSharp checked",
     "id": "CY00002000",
-    "description": "Codemology-m: CSharp checked",
+    "description": "C-m: CSharp checked",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.checked"
+      "C-m.Code.CSharp.checked"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -211,12 +211,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp class",
+    "name": "C-m: CSharp class",
     "id": "CY00002100",
-    "description": "Codemology-m: CSharp class",
+    "description": "C-m: CSharp class",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.class"
+      "C-m.Code.CSharp.class"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -232,12 +232,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp const",
+    "name": "C-m: CSharp const",
     "id": "CY00002200",
-    "description": "Codemology-m: CSharp const",
+    "description": "C-m: CSharp const",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.const"
+      "C-m.Code.CSharp.const"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -253,12 +253,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp continue",
+    "name": "C-m: CSharp continue",
     "id": "CY00002300",
-    "description": "Codemology-m: CSharp continue",
+    "description": "C-m: CSharp continue",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.continue"
+      "C-m.Code.CSharp.continue"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -274,12 +274,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp decimal",
+    "name": "C-m: CSharp decimal",
     "id": "CY00002400",
-    "description": "Codemology-m: CSharp decimal",
+    "description": "C-m: CSharp decimal",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.decimal"
+      "C-m.Code.CSharp.decimal"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -295,12 +295,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp default",
+    "name": "C-m: CSharp default",
     "id": "CY00002500",
-    "description": "Codemology-m: CSharp default",
+    "description": "C-m: CSharp default",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.default"
+      "C-m.Code.CSharp.default"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -316,12 +316,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp delegate",
+    "name": "C-m: CSharp delegate",
     "id": "CY00002600",
-    "description": "Codemology-m: CSharp delegate",
+    "description": "C-m: CSharp delegate",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.delegate"
+      "C-m.Code.CSharp.delegate"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -337,12 +337,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp do",
+    "name": "C-m: CSharp do",
     "id": "CY00002700",
-    "description": "Codemology-m: CSharp do",
+    "description": "C-m: CSharp do",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.do"
+      "C-m.Code.CSharp.do"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -358,12 +358,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp double",
+    "name": "C-m: CSharp double",
     "id": "CY00002800",
-    "description": "Codemology-m: CSharp double",
+    "description": "C-m: CSharp double",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.double"
+      "C-m.Code.CSharp.double"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -379,12 +379,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp else",
+    "name": "C-m: CSharp else",
     "id": "CY00002900",
-    "description": "Codemology-m: CSharp else",
+    "description": "C-m: CSharp else",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.else"
+      "C-m.Code.CSharp.else"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -400,12 +400,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp enum",
+    "name": "C-m: CSharp enum",
     "id": "CY00003000",
-    "description": "Codemology-m: CSharp enum",
+    "description": "C-m: CSharp enum",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.enum"
+      "C-m.Code.CSharp.enum"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -421,12 +421,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp event",
+    "name": "C-m: CSharp event",
     "id": "CY00003100",
-    "description": "Codemology-m: CSharp event",
+    "description": "C-m: CSharp event",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.event"
+      "C-m.Code.CSharp.event"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -442,12 +442,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp explicit",
+    "name": "C-m: CSharp explicit",
     "id": "CY00003200",
-    "description": "Codemology-m: CSharp explicit",
+    "description": "C-m: CSharp explicit",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.explicit"
+      "C-m.Code.CSharp.explicit"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -463,12 +463,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp extern",
+    "name": "C-m: CSharp extern",
     "id": "CY00003300",
-    "description": "Codemology-m: CSharp extern",
+    "description": "C-m: CSharp extern",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.extern"
+      "C-m.Code.CSharp.extern"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -484,12 +484,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp false",
+    "name": "C-m: CSharp false",
     "id": "CY00003400",
-    "description": "Codemology-m: CSharp false",
+    "description": "C-m: CSharp false",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.false"
+      "C-m.Code.CSharp.false"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -505,12 +505,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp finally",
+    "name": "C-m: CSharp finally",
     "id": "CY00003500",
-    "description": "Codemology-m: CSharp finally",
+    "description": "C-m: CSharp finally",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.finally"
+      "C-m.Code.CSharp.finally"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -526,12 +526,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp fixed",
+    "name": "C-m: CSharp fixed",
     "id": "CY00003600",
-    "description": "Codemology-m: CSharp fixed",
+    "description": "C-m: CSharp fixed",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.fixed"
+      "C-m.Code.CSharp.fixed"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -547,12 +547,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp float",
+    "name": "C-m: CSharp float",
     "id": "CY00003700",
-    "description": "Codemology-m: CSharp float",
+    "description": "C-m: CSharp float",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.float"
+      "C-m.Code.CSharp.float"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -568,12 +568,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp for",
+    "name": "C-m: CSharp for",
     "id": "CY00003800",
-    "description": "Codemology-m: CSharp for",
+    "description": "C-m: CSharp for",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.for"
+      "C-m.Code.CSharp.for"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -589,12 +589,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp foreach",
+    "name": "C-m: CSharp foreach",
     "id": "CY00003900",
-    "description": "Codemology-m: CSharp foreach",
+    "description": "C-m: CSharp foreach",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.foreach"
+      "C-m.Code.CSharp.foreach"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -610,12 +610,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp goto",
+    "name": "C-m: CSharp goto",
     "id": "CY00004000",
-    "description": "Codemology-m: CSharp goto",
+    "description": "C-m: CSharp goto",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.goto"
+      "C-m.Code.CSharp.goto"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -631,12 +631,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp if",
+    "name": "C-m: CSharp if",
     "id": "CY00004100",
-    "description": "Codemology-m: CSharp if",
+    "description": "C-m: CSharp if",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.if"
+      "C-m.Code.CSharp.if"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -652,12 +652,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp implicit",
+    "name": "C-m: CSharp implicit",
     "id": "CY00004200",
-    "description": "Codemology-m: CSharp implicit",
+    "description": "C-m: CSharp implicit",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.implicit"
+      "C-m.Code.CSharp.implicit"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -673,12 +673,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp in",
+    "name": "C-m: CSharp in",
     "id": "CY00004300",
-    "description": "Codemology-m: CSharp in",
+    "description": "C-m: CSharp in",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.in"
+      "C-m.Code.CSharp.in"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -694,12 +694,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp int",
+    "name": "C-m: CSharp int",
     "id": "CY00004400",
-    "description": "Codemology-m: CSharp int",
+    "description": "C-m: CSharp int",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.int"
+      "C-m.Code.CSharp.int"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -715,12 +715,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp interface",
+    "name": "C-m: CSharp interface",
     "id": "CY00004500",
-    "description": "Codemology-m: CSharp interface",
+    "description": "C-m: CSharp interface",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.interface"
+      "C-m.Code.CSharp.interface"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -736,12 +736,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp internal",
+    "name": "C-m: CSharp internal",
     "id": "CY00004600",
-    "description": "Codemology-m: CSharp internal",
+    "description": "C-m: CSharp internal",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.internal"
+      "C-m.Code.CSharp.internal"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -757,12 +757,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp is",
+    "name": "C-m: CSharp is",
     "id": "CY00004700",
-    "description": "Codemology-m: CSharp is",
+    "description": "C-m: CSharp is",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.is"
+      "C-m.Code.CSharp.is"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -778,12 +778,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp lock",
+    "name": "C-m: CSharp lock",
     "id": "CY00004800",
-    "description": "Codemology-m: CSharp lock",
+    "description": "C-m: CSharp lock",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.lock"
+      "C-m.Code.CSharp.lock"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -799,12 +799,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp long",
+    "name": "C-m: CSharp long",
     "id": "CY00004900",
-    "description": "Codemology-m: CSharp long",
+    "description": "C-m: CSharp long",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.long"
+      "C-m.Code.CSharp.long"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -820,12 +820,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp namespace",
+    "name": "C-m: CSharp namespace",
     "id": "CY00005000",
-    "description": "Codemology-m: CSharp namespace",
+    "description": "C-m: CSharp namespace",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.namespace"
+      "C-m.Code.CSharp.namespace"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -841,12 +841,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp new",
+    "name": "C-m: CSharp new",
     "id": "CY00005100",
-    "description": "Codemology-m: CSharp new",
+    "description": "C-m: CSharp new",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.new"
+      "C-m.Code.CSharp.new"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -862,12 +862,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp null",
+    "name": "C-m: CSharp null",
     "id": "CY00005200",
-    "description": "Codemology-m: CSharp null",
+    "description": "C-m: CSharp null",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.null"
+      "C-m.Code.CSharp.null"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -883,12 +883,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp object",
+    "name": "C-m: CSharp object",
     "id": "CY00005300",
-    "description": "Codemology-m: CSharp object",
+    "description": "C-m: CSharp object",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.object"
+      "C-m.Code.CSharp.object"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -904,12 +904,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp operator",
+    "name": "C-m: CSharp operator",
     "id": "CY00005400",
-    "description": "Codemology-m: CSharp operator",
+    "description": "C-m: CSharp operator",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.operator"
+      "C-m.Code.CSharp.operator"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -925,12 +925,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp out",
+    "name": "C-m: CSharp out",
     "id": "CY00005500",
-    "description": "Codemology-m: CSharp out",
+    "description": "C-m: CSharp out",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.out"
+      "C-m.Code.CSharp.out"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -946,12 +946,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp override",
+    "name": "C-m: CSharp override",
     "id": "CY00005600",
-    "description": "Codemology-m: CSharp override",
+    "description": "C-m: CSharp override",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.override"
+      "C-m.Code.CSharp.override"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -967,12 +967,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp params",
+    "name": "C-m: CSharp params",
     "id": "CY00005700",
-    "description": "Codemology-m: CSharp params",
+    "description": "C-m: CSharp params",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.params"
+      "C-m.Code.CSharp.params"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -988,12 +988,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp private",
+    "name": "C-m: CSharp private",
     "id": "CY00005800",
-    "description": "Codemology-m: CSharp private",
+    "description": "C-m: CSharp private",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.private"
+      "C-m.Code.CSharp.private"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1009,12 +1009,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp protected",
+    "name": "C-m: CSharp protected",
     "id": "CY00005900",
-    "description": "Codemology-m: CSharp protected",
+    "description": "C-m: CSharp protected",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.protected"
+      "C-m.Code.CSharp.protected"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1030,12 +1030,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp public",
+    "name": "C-m: CSharp public",
     "id": "CY00006000",
-    "description": "Codemology-m: CSharp public",
+    "description": "C-m: CSharp public",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.public"
+      "C-m.Code.CSharp.public"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1051,12 +1051,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp readonly",
+    "name": "C-m: CSharp readonly",
     "id": "CY00006100",
-    "description": "Codemology-m: CSharp readonly",
+    "description": "C-m: CSharp readonly",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.readonly"
+      "C-m.Code.CSharp.readonly"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1072,12 +1072,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp ref",
+    "name": "C-m: CSharp ref",
     "id": "CY00006200",
-    "description": "Codemology-m: CSharp ref",
+    "description": "C-m: CSharp ref",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.ref"
+      "C-m.Code.CSharp.ref"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1093,12 +1093,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp return",
+    "name": "C-m: CSharp return",
     "id": "CY00006300",
-    "description": "Codemology-m: CSharp return",
+    "description": "C-m: CSharp return",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.return"
+      "C-m.Code.CSharp.return"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1114,12 +1114,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp sbyte",
+    "name": "C-m: CSharp sbyte",
     "id": "CY00006400",
-    "description": "Codemology-m: CSharp sbyte",
+    "description": "C-m: CSharp sbyte",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.sbyte"
+      "C-m.Code.CSharp.sbyte"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1135,12 +1135,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp sealed",
+    "name": "C-m: CSharp sealed",
     "id": "CY00006500",
-    "description": "Codemology-m: CSharp sealed",
+    "description": "C-m: CSharp sealed",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.sealed"
+      "C-m.Code.CSharp.sealed"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1156,12 +1156,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp short",
+    "name": "C-m: CSharp short",
     "id": "CY00006600",
-    "description": "Codemology-m: CSharp short",
+    "description": "C-m: CSharp short",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.short"
+      "C-m.Code.CSharp.short"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1177,12 +1177,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp sizeof",
+    "name": "C-m: CSharp sizeof",
     "id": "CY00006700",
-    "description": "Codemology-m: CSharp sizeof",
+    "description": "C-m: CSharp sizeof",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.sizeof"
+      "C-m.Code.CSharp.sizeof"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1198,12 +1198,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp stackalloc",
+    "name": "C-m: CSharp stackalloc",
     "id": "CY00006800",
-    "description": "Codemology-m: CSharp stackalloc",
+    "description": "C-m: CSharp stackalloc",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.stackalloc"
+      "C-m.Code.CSharp.stackalloc"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1219,12 +1219,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp static",
+    "name": "C-m: CSharp static",
     "id": "CY00006900",
-    "description": "Codemology-m: CSharp static",
+    "description": "C-m: CSharp static",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.static"
+      "C-m.Code.CSharp.static"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1240,12 +1240,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp string",
+    "name": "C-m: CSharp string",
     "id": "CY00007000",
-    "description": "Codemology-m: CSharp string",
+    "description": "C-m: CSharp string",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.string"
+      "C-m.Code.CSharp.string"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1261,12 +1261,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp struct",
+    "name": "C-m: CSharp struct",
     "id": "CY00007100",
-    "description": "Codemology-m: CSharp struct",
+    "description": "C-m: CSharp struct",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.struct"
+      "C-m.Code.CSharp.struct"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1282,12 +1282,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp switch",
+    "name": "C-m: CSharp switch",
     "id": "CY00007200",
-    "description": "Codemology-m: CSharp switch",
+    "description": "C-m: CSharp switch",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.switch"
+      "C-m.Code.CSharp.switch"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1303,12 +1303,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp this",
+    "name": "C-m: CSharp this",
     "id": "CY00007300",
-    "description": "Codemology-m: CSharp this",
+    "description": "C-m: CSharp this",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.this"
+      "C-m.Code.CSharp.this"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1324,12 +1324,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp throw",
+    "name": "C-m: CSharp throw",
     "id": "CY00007400",
-    "description": "Codemology-m: CSharp throw",
+    "description": "C-m: CSharp throw",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.throw"
+      "C-m.Code.CSharp.throw"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1345,12 +1345,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp true",
+    "name": "C-m: CSharp true",
     "id": "CY00007500",
-    "description": "Codemology-m: CSharp true",
+    "description": "C-m: CSharp true",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.true"
+      "C-m.Code.CSharp.true"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1366,12 +1366,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp try",
+    "name": "C-m: CSharp try",
     "id": "CY00007600",
-    "description": "Codemology-m: CSharp try",
+    "description": "C-m: CSharp try",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.try"
+      "C-m.Code.CSharp.try"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1387,12 +1387,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp typeof",
+    "name": "C-m: CSharp typeof",
     "id": "CY00007700",
-    "description": "Codemology-m: CSharp typeof",
+    "description": "C-m: CSharp typeof",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.typeof"
+      "C-m.Code.CSharp.typeof"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1408,12 +1408,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp uint",
+    "name": "C-m: CSharp uint",
     "id": "CY00007800",
-    "description": "Codemology-m: CSharp uint",
+    "description": "C-m: CSharp uint",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.uint"
+      "C-m.Code.CSharp.uint"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1429,12 +1429,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp ulong",
+    "name": "C-m: CSharp ulong",
     "id": "CY00007900",
-    "description": "Codemology-m: CSharp ulong",
+    "description": "C-m: CSharp ulong",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.ulong"
+      "C-m.Code.CSharp.ulong"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1450,12 +1450,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp unchecked",
+    "name": "C-m: CSharp unchecked",
     "id": "CY00008000",
-    "description": "Codemology-m: CSharp unchecked",
+    "description": "C-m: CSharp unchecked",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.unchecked"
+      "C-m.Code.CSharp.unchecked"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1471,12 +1471,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp unsafe",
+    "name": "C-m: CSharp unsafe",
     "id": "CY00008100",
-    "description": "Codemology-m: CSharp unsafe",
+    "description": "C-m: CSharp unsafe",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.unsafe"
+      "C-m.Code.CSharp.unsafe"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1492,12 +1492,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp ushort",
+    "name": "C-m: CSharp ushort",
     "id": "CY00008200",
-    "description": "Codemology-m: CSharp ushort",
+    "description": "C-m: CSharp ushort",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.ushort"
+      "C-m.Code.CSharp.ushort"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1513,12 +1513,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp using",
+    "name": "C-m: CSharp using",
     "id": "CY00008300",
-    "description": "Codemology-m: CSharp using",
+    "description": "C-m: CSharp using",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.using"
+      "C-m.Code.CSharp.using"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1534,12 +1534,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp virtual",
+    "name": "C-m: CSharp virtual",
     "id": "CY00008400",
-    "description": "Codemology-m: CSharp virtual",
+    "description": "C-m: CSharp virtual",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.virtual"
+      "C-m.Code.CSharp.virtual"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1555,12 +1555,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp void",
+    "name": "C-m: CSharp void",
     "id": "CY00008500",
-    "description": "Codemology-m: CSharp void",
+    "description": "C-m: CSharp void",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.void"
+      "C-m.Code.CSharp.void"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1576,12 +1576,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp volatile",
+    "name": "C-m: CSharp volatile",
     "id": "CY00008600",
-    "description": "Codemology-m: CSharp volatile",
+    "description": "C-m: CSharp volatile",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.volatile"
+      "C-m.Code.CSharp.volatile"
     ],
     "severity": "moderate",
     "_comment": "",
@@ -1597,12 +1597,12 @@
   },
 
   {
-    "name": "Codemology-m: CSharp while",
+    "name": "C-m: CSharp while",
     "id": "CY00008700",
-    "description": "Codemology-m: CSharp while",
+    "description": "C-m: CSharp while",
     "applies_to": [ "csharp" ],
     "tags": [
-      "Codemology-m.Code.CSharp.while"
+      "C-m.Code.CSharp.while"
     ],
     "severity": "moderate",
     "_comment": "",

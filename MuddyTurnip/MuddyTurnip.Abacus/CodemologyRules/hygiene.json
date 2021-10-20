@@ -1,10 +1,10 @@
 [
   {
-    "name": "Codemology-m: Logging Call",
+    "name": "C-m: Logging Call",
     "id": "AI026100",
     "description": "Logging Call",
     "tags": [
-      "Codemology-m.Code.Logging.Call"
+      "C-m.Code.Logging.Call"
     ],
     "severity": "moderate",
     "_comment": "",

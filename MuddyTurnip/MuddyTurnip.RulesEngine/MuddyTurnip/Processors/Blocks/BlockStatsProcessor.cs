@@ -53,11 +53,12 @@ namespace MuddyTurnip.Metrics.Engine
                         SyblingCount = child.SyblingCount,
                         OpenIndex = child.AdjustedMatchStart < child.AdjustedOpenIndex ? child.AdjustedMatchStart : child.AdjustedOpenIndex,
                         CloseIndex = child.AdjustedCloseIndex,
-                        BlockStartLocation = child.BlockStartLocation,
                         BlockEndLocation = child.BlockEndLocation,
                         Block = child,
                         Errors = child.Errors
                     };
+
+                    childMetrics.SetBlockStartLocation(child.BlockStartLocation);
 
                     metrics.ChildBlocks.Add(childMetrics);
                     child.LinkedToMetrics = true;
@@ -99,7 +100,7 @@ namespace MuddyTurnip.Metrics.Engine
             foreach ((int Depth, int Count) tuple in depthLog)
             {
                 metrics.TagCounts.IncrementTagCount(
-                    $"Abacus.ChildBlock.Depth.{tuple.Depth}",
+                    $"A.ChildBlock.Depth.{tuple.Depth}",
                     tuple.Count
                 );
             }

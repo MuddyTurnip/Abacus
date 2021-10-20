@@ -9,7 +9,7 @@
       {
         "name": "namespace",
         "id": "CY1000001",
-        "description": "Codemology-m: namespace",
+        "description": "C-m: namespace",
         "enabled": true,
         "qualifiesName": true,
         "blockType": "Code",
@@ -27,7 +27,7 @@
       {
         "name": "interface",
         "id": "CY1000002",
-        "description": "Codemology-m: interface",
+        "description": "C-m: interface",
         "enabled": true,
         "blockType": "Code",
         "printMetrics": true,
@@ -47,7 +47,7 @@
       {
         "name": "class",
         "id": "CY1000003",
-        "description": "Codemology-m: class",
+        "description": "C-m: class",
         "enabled": true,
         "qualifiesName": true,
         "blockType": "Code",
@@ -94,7 +94,7 @@
       {
         "name": "struct",
         "id": "CY1000004",
-        "description": "Codemology-m: struct",
+        "description": "C-m: struct",
         "enabled": true,
         "qualifiesName": true,
         "blockType": "Code",
@@ -141,7 +141,7 @@
       {
         "name": "record",
         "id": "CY1000005",
-        "description": "Codemology-m: record",
+        "description": "C-m: record",
         "enabled": true,
         "qualifiesName": true,
         "blockType": "Code",
@@ -189,7 +189,7 @@
       {
         "name": "indexer",
         "id": "CY10000008",
-        "description": "Codemology-m: indexer",
+        "description": "C-m: indexer",
         "enabled": true,
         "blockType": "Code",
         "printMetrics": true,
@@ -208,7 +208,7 @@
       {
         "name": "event",
         "id": "CY10000009",
-        "description": "Codemology-m: event",
+        "description": "C-m: event",
         "enabled": true,
         "blockType": "Code",
         "printMetrics": true,
@@ -227,7 +227,7 @@
       {
         "name": "operator",
         "id": "CY10000010",
-        "description": "Codemology-m: operator",
+        "description": "C-m: operator",
         "enabled": true,
         "blockType": "Code",
         "printMetrics": true,
@@ -250,7 +250,7 @@
       {
         "name": "method",
         "id": "CY10000006",
-        "description": "Codemology-m: method",
+        "description": "C-m: method",
         "enabled": true,
         "blockType": "Code",
         "printMetrics": true,
@@ -281,7 +281,7 @@
       {
         "name": "property",
         "id": "CY10000007",
-        "description": "Codemology-m: property",
+        "description": "C-m: property",
         "enabled": true,
         "blockType": "Code",
         "printMetrics": true,

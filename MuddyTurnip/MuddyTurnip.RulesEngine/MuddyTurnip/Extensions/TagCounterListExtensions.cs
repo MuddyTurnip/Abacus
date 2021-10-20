@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace MuddyTurnip.Metrics.Engine
 {
-    public static class TagCounterExtensions
+    public static class TagCounterListExtensions
     {
         public static void MergeTagCounts(
             this List<TagCounter> a,
@@ -44,6 +44,21 @@ namespace MuddyTurnip.Metrics.Engine
             }
 
             tagCounts.Add(new TagCounter(tag, count));
+        }
+
+        public static void PrintTagCount(
+            this List<TagCounter> tagCounts,
+            string name,
+            int value,
+            int index)
+        {
+            if (value > 0)
+            {
+                tagCounts.IncrementTagCount(
+                    $"A.Blocks.Line.{index}.{name}",
+                    value
+                );
+            }
         }
     }
 }

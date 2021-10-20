@@ -6,12 +6,12 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class BlockStatsCache
     {
-        private int _nextGroupID = 0;
         public FileStructureSettings FileStructureSettings { get; set; }
         public CodeBlockSettings CodeBlockSettings { get; }
         public BlockStats RootBlockStats { get; }
         public List<BlockStats> BlockStats { get; }
         public List<LocationIndex> UnitsOfWorkStart { get; } = new();
+        public List<LineCounts> LineCountList { get; } = new();
 
         public BlockStatsCache(
             FileStructureSettings fileStructureSettings,

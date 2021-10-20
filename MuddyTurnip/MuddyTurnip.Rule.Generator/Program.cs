@@ -45,12 +45,12 @@ namespace MuddyTurnip.Rule.Generator
 
             string rule = 
 $@"{{
-    ""name"": ""Codemology-m: CSharp {keyword}"",
+    ""name"": ""C-m: CSharp {keyword}"",
     ""id"": ""CY{counter.ToString(pattern)}"",
-    ""description"": ""Codemology-m: CSharp {keyword}"",
+    ""description"": ""C-m: CSharp {keyword}"",
     ""applies_to"": [ ""csharp"" ],
     ""tags"": [
-      ""Codemology-m.Code.CSharp.{keyword}""
+      ""C-m.Code.CSharp.{keyword}""
     ],
     ""severity"": ""moderate"",
     ""_comment"": """",

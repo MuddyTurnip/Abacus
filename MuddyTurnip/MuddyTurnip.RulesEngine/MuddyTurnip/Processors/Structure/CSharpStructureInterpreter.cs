@@ -1,5 +1,6 @@
 ﻿using MuddyTurnip.Metrics.Engine;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace MuddyTurnip.RulesEngine
@@ -53,6 +54,11 @@ namespace MuddyTurnip.RulesEngine
                 fullContent,
                 codeContent,
                 setBlockContent
+            );
+
+            blockStatsCache.CountCharacters(
+                codeContent,
+                boundaryCounter
             );
         }
     }
