@@ -1,13 +1,17 @@
 
 NEXT
 
-Need to add comments, strings, preprocessors to blocks
-UNits of work Line number does not relate to FullContent but codeContent this needs to be fixed
+There is a problem with the new line numbering of unitsOfWork!!!!
+The line numbers are worng and then it sums up all the tagCounts!!!
+StringboundariesProcessor commented out
+
+Block comments can extend over many lines - these need to be divided up into lines
 statements should use the end not the start per line
 
 foreach char in text
 	comment chars
 	string chars
+	preprocessor chars
 
 Need 
 	total number blocks per block etc
@@ -24,15 +28,13 @@ Need
 	ratio nested statements without brackets etc
 
 Need to add comments, strings, preprocessors as blocks like Code and the look for matches in them too
-Search strings, code, preprocessors etc
-Need to count preprocessors, strings, comments, blocks, statements
+Search strings, code, preprocessors by desing from json configs
+Need to count preprocessors, strings, comments, blocks, statements as well as char count
 
 Remove fluff from json file we don't need
 Need to add all code to search only strings etc.
 Need to handle ?? ?: etc as branching
 Need to look for recursion?
-
-
 
 TESTS
 	VERY IMPORTANT - Need to write tests to see that the expected block are children of the right blocks

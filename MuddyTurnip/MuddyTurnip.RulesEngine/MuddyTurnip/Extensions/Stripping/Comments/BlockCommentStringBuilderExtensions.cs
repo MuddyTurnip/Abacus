@@ -1,4 +1,5 @@
 ﻿using Microsoft.ApplicationInspector.RulesEngine;
+using MuddyTurnip.RulesEngine.Commands;
 using System.Text;
 
 namespace MuddyTurnip.Metrics.Engine
@@ -17,7 +18,7 @@ namespace MuddyTurnip.Metrics.Engine
             int adjustedIndex;
             string comment;
             int startSearchIndex = commentStartIndex + prefixLength;
-            Boundary blockBoundary;
+            MtBoundary blockBoundary;
 
             while (commentStartIndex > -1)
             {
@@ -39,11 +40,11 @@ namespace MuddyTurnip.Metrics.Engine
                     commentLength
                 );
 
-                blockBoundary = new Boundary()
-                {
-                    Index = commentStartIndex,
-                    Length = commentLength
-                };
+                blockBoundary = new MtBoundary(
+                    commentStartIndex,
+                    commentLength,
+                    "blockComment"
+                );
 
                 cache.MergeInBoundary(blockBoundary);
 
@@ -83,10 +84,10 @@ namespace MuddyTurnip.Metrics.Engine
 
         private static void MergeInBoundary(
             this BlockCommentStripLoopCache cache,
-            Boundary blockBoundary)
+            MtBoundary blockBoundary)
         {
             int i = cache.InputCounter;
-            Boundary inlineBoundary;
+            MtBoundary inlineBoundary;
             int adjustedIndex;
 
             for (; i < cache.InputBoundaries.Count; i++)
@@ -125,7 +126,7 @@ namespace MuddyTurnip.Metrics.Engine
 
         public static void AddBlockBoundary(
             this BlockCommentStripLoopCache cache,
-            Boundary blockBoundary)
+            MtBoundary blockBoundary)
         {
             blockBoundary.Index += cache.InputAdjustment + cache.OutputAdjustment;
             cache.OutputBoundaries.Add(blockBoundary);
@@ -135,7 +136,7 @@ namespace MuddyTurnip.Metrics.Engine
             this BlockCommentStripLoopCache cache,
             int strippedIndex)
         {
-            Boundary inputBoundary;
+            MtBoundary inputBoundary;
             int adjustedIndex = strippedIndex;
 
             for (int i = 0; i < cache.OutputBoundaries.Count; i++)

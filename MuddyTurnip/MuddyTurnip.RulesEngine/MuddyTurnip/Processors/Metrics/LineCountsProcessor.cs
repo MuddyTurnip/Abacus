@@ -12,6 +12,16 @@ namespace MuddyTurnip.Metrics.Engine
             MetricsRecord metricsRecord,
             BlockTextContainer codeContainer)
         {
+            if (codeContainer.BlockStatsCache is null)
+            {
+                return;
+            }
+
+            AddLineNumbers(
+                codeContainer.BlockStatsCache.LineCountList,
+                codeContainer.BlockStatsCache.LineStarts
+            );
+
             DistributeLineCounts(
                 metricsRecord,
                 codeContainer
@@ -21,55 +31,88 @@ namespace MuddyTurnip.Metrics.Engine
             AggregateChildren(metricsRecord.Structure);
         }
 
+        private static void AddLineNumbers(
+            List<LineCounts> lineCounts,
+            List<int> lineStarts)
+        {
+            lineCounts.Sort(LineCountsExtensions.Compare);
+
+            int lineStart;
+            int nextLineStart;
+            int i = 1;
+            int nextIndex;
+
+            foreach (LineCounts count in lineCounts)
+            {
+                for (; i < lineStarts.Count; i++)
+                {
+                    lineStart = lineStarts[i];
+                    nextIndex = i + 1;
+
+                    if (nextIndex >= lineStarts.Count)
+                    {
+                        count.LineNumber = i;
+                    }
+                    else
+                    {
+                        nextLineStart = lineStarts[nextIndex];
+
+                        if (count.StartIndex >= lineStart
+                            && count.StartIndex < nextLineStart)
+                        {
+                            count.LineNumber = i;
+                        }
+                    }
+                }
+            }
+        }
+
         private static void ConvertLineCountsToTagCounts(MetricsBlock metrics)
         {
             List<TagCounter> tagCounts = metrics.TagCounts;
-            LineCounts counts;
 
-            for (int i = 0; i < metrics.LineCounts.Count; i++)
+            foreach (LineCounts counts in metrics.LineCounts)
             {
-                counts = metrics.LineCounts[i];
-
                 tagCounts.PrintTagCount(
                     "Spaces",
                     counts.SpacesCount,
-                    i
+                    counts.LineNumber
                 );
 
                 tagCounts.PrintTagCount(
                     "Uppercase",
                     counts.UpperCaseCount,
-                    counts.Number
+                    counts.LineNumber
                 );
 
                 tagCounts.PrintTagCount(
                     "Lowercase",
                     counts.LowerCaseCount,
-                    counts.Number
+                    counts.LineNumber
                 );
 
                 tagCounts.PrintTagCount(
                     "_",
                     counts.UnderscoreCount,
-                    counts.Number
+                    counts.LineNumber
                 );
 
                 tagCounts.PrintTagCount(
                     "-",
                     counts.HyphenCount,
-                    counts.Number
+                    counts.LineNumber
                 );
 
                 tagCounts.PrintTagCount(
                     "Length",
                     counts.Length,
-                    counts.Number
+                    counts.LineNumber
                 );
 
                 tagCounts.PrintTagCount(
                     "Words",
                     counts.WordCount,
-                    counts.Number
+                    counts.LineNumber
                 );
             }
         }
@@ -100,7 +143,6 @@ namespace MuddyTurnip.Metrics.Engine
             for (int i = 0; i < lineCounts.Count; i++)
             {
                 counts = lineCounts[i];
-                counts.Number = i + 1;
 
                 success = MatchBlock(
                      counts,
@@ -144,6 +186,5 @@ namespace MuddyTurnip.Metrics.Engine
 
             return false;
         }
-
     }
 }

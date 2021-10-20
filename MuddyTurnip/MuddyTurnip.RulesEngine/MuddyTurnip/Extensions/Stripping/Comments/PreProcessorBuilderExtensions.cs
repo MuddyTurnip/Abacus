@@ -1,4 +1,5 @@
 ﻿using Microsoft.ApplicationInspector.RulesEngine;
+using MuddyTurnip.RulesEngine.Commands;
 using System;
 using System.Text;
 
@@ -66,7 +67,7 @@ namespace MuddyTurnip.Metrics.Engine
             string preProcess;
             int startSearchIndex = commentStartIndex;
             int contentLength = content.Length;
-            Boundary preProcessorBoundary;
+            MtBoundary preProcessorBoundary;
 
             while (startSearchIndex < contentLength)
             {
@@ -119,11 +120,11 @@ namespace MuddyTurnip.Metrics.Engine
 
                 // Adjust the startIndex so it relates to the FullContent
                 // not the content which might have had phrases removed
-                preProcessorBoundary = new Boundary()
-                {
-                    Index = lineStartIndex,
-                    Length = lineLength
-                };
+                preProcessorBoundary = new MtBoundary(
+                    lineStartIndex,
+                    lineLength,
+                    "preProcessor"
+                );
 
                 cache.MergeInBoundary(preProcessorBoundary);
 
@@ -139,10 +140,10 @@ namespace MuddyTurnip.Metrics.Engine
 
         private static void MergeInBoundary(
             this PreProcessorStripLoopCache cache,
-            Boundary blockBoundary)
+            MtBoundary blockBoundary)
         {
             int i = cache.InputCounter;
-            Boundary inlineBoundary;
+            MtBoundary inlineBoundary;
             int adjustedIndex;
 
             for (; i < cache.InputBoundaries.Count; i++)
@@ -181,7 +182,7 @@ namespace MuddyTurnip.Metrics.Engine
 
         public static void AddBlockBoundary(
             this PreProcessorStripLoopCache cache,
-            Boundary blockBoundary)
+            MtBoundary blockBoundary)
         {
             blockBoundary.Index += cache.InputAdjustment + cache.OutputAdjustment;
             cache.OutputBoundaries.Add(blockBoundary);

@@ -67,6 +67,9 @@ namespace MuddyTurnip.Metrics.Engine
         public List<LineCounts> LineCounts { get; set; } = new();
 
         [JsonIgnore]
+        public List<MtBoundary> StringBoundaries { get; set; } = new();
+
+        [JsonIgnore]
         public MetricsBlock? Parent { get; set; }
 
         [JsonIgnore]

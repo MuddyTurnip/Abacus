@@ -40,6 +40,11 @@ namespace MuddyTurnip.Metrics.Engine
             MetricsRecord metricsRecord,
             BlockTextContainer codeContainer)
         {
+            //StringBoundariesProcessor.Aggregate(
+            //    metricsRecord,
+            //    codeContainer
+            //);
+
             BlockStatsProcessor.Aggregate(
                 metricsRecord,
                 codeContainer
@@ -60,7 +65,6 @@ namespace MuddyTurnip.Metrics.Engine
             MatchProcessor.Aggregate(metricsRecord);
             ErrorProcessor.Aggregate(metricsRecord);
             BlockStatsProcessor.AggregateBlockDepth(metricsRecord);
-
         }
 
         private static void PostTagCountAggregator(

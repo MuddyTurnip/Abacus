@@ -1,12 +1,13 @@
 ﻿using Microsoft.ApplicationInspector.RulesEngine;
+using MuddyTurnip.RulesEngine.Commands;
 using System.Collections.Generic;
 
 namespace MuddyTurnip.Metrics.Engine
 {
     public class BlockCommentStripLoopCache
     {
-        public List<Boundary> InputBoundaries { get; }
-        public List<Boundary> OutputBoundaries { get; }
+        public List<MtBoundary> InputBoundaries { get; }
+        public List<MtBoundary> OutputBoundaries { get; }
         public int InputCounter { get; set; }
         public string PrefixComment { get; set; }
         public string SuffixComment { get; set; }
@@ -15,8 +16,8 @@ namespace MuddyTurnip.Metrics.Engine
         public SortedList<int, string> CommentContent { get; }
 
         public BlockCommentStripLoopCache(
-            List<Boundary> inputBoundaries,
-            List<Boundary> outputBoundaries,
+            List<MtBoundary> inputBoundaries,
+            List<MtBoundary> outputBoundaries,
             string prefixComment,
             string suffixComment,
             SortedList<int, string> commentContent)

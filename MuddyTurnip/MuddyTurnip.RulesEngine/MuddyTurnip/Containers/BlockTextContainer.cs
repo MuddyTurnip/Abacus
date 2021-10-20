@@ -30,7 +30,7 @@ namespace MuddyTurnip.RulesEngine
         private StringBuilder _preProcessorContent;
         private StringBuilder _stringContent;
 
-        private List<Boundary> _outputBoundaries;
+        private List<MtBoundary> _outputBoundaries;
         private BlockStatsCache? _blockStatsCache;
 
         private string _fullContent;
@@ -66,7 +66,6 @@ namespace MuddyTurnip.RulesEngine
             Language = language;
             LineNumber = lineNumber;
             _fullContent = content;
-            //Target = LineNumber == 0 ? _fullContent : GetLineContent(lineNumber);
             LineEnds = new List<int>() { 0 };
             LineStarts = new List<int>() { 0, 0 };
 
@@ -87,7 +86,8 @@ namespace MuddyTurnip.RulesEngine
             // Find line end in the text
             int pos = 0;
 
-            while (pos > -1 && pos < _fullContent.Length)
+            while (pos > -1 
+                && pos < _fullContent.Length)
             {
                 if (++pos < _fullContent.Length)
                 {
@@ -108,28 +108,28 @@ namespace MuddyTurnip.RulesEngine
             }
 
             // Run these before adding last EndLine if it doesn't end in a new line...
-            List<Boundary> inlineBoundaries = new();
-            List<Boundary> commentBoundaries = new();
+            List<MtBoundary> inlineBoundaries = new();
+            List<MtBoundary> commentBoundaries = new();
 
-            StripComments(
+            List<MtBoundary> commentBounadaries = StripComments(
                 inlineBoundaries,
                 commentBoundaries
             );
 
-            List<Boundary> preProcessorBoundaries = new();
+            List<MtBoundary> preProcessorBoundaries = new();
 
             StripPreProcessors(
                 commentBoundaries,
                 preProcessorBoundaries
             );
 
-            List<Boundary> blankLineBoundaries = new();
+            List<MtBoundary> blankLineBoundaries = new();
 
             StripBlankLines(
                 preProcessorBoundaries,
                 blankLineBoundaries);
 
-            List<Boundary> stringBoundaries = new();
+            List<MtBoundary> stringBoundaries = new();
 
             StripStrings(
                 blankLineBoundaries,
@@ -163,37 +163,9 @@ namespace MuddyTurnip.RulesEngine
             return _fullContent;
         }
 
-        /// <summary>
-        ///     Returns the Boundary of a specified line number
-        /// </summary>
-        /// <param name="lineNumber"> The line number to return the boundary for </param>
-        /// <returns> </returns>
-        public Boundary GetBoundaryFromLine(int lineNumber)
-        {
-            Boundary result = new Boundary();
-
-            if (lineNumber >= LineEnds.Count)
-            {
-                return result;
-            }
-
-            // Fine when the line number is 0
-            var start = 0;
-
-            if (lineNumber > 0)
-            {
-                start = LineEnds[lineNumber - 1] + 1;
-            }
-
-            result.Index = start;
-            result.Length = LineEnds[lineNumber] - result.Index + 1;
-
-            return result;
-        }
-
         public int GetFullIndexFromCodeIndex(int codeIndex)
         {
-            Boundary inputBoundary;
+            MtBoundary inputBoundary;
             int fullIndex = codeIndex;
 
             for (int i = 0; i < _outputBoundaries.Count; i++)
@@ -224,31 +196,6 @@ namespace MuddyTurnip.RulesEngine
             return _fullContent[contentStart..contentEnd];
         }
 
-        /// <summary>
-        ///     Returns boundary for a given index in text
-        /// </summary>
-        /// <param name="index"> Position in text </param>
-        /// <returns> Boundary </returns>
-        public Boundary GetLineBoundary(
-            int index,
-            MtPatternScope[] scopes)
-        {
-            Boundary result = new Boundary();
-
-            for (int i = 0; i < LineEnds.Count; i++)
-            {
-                if (LineEnds[i] >= index)
-                {
-                    result.Index = (i > 0 && LineEnds[i - 1] > 0) ? LineEnds[i - 1] + 1 : 0;
-                    result.Length = LineEnds[i] - result.Index + 1;
-
-                    break;
-                }
-            }
-
-            return result;
-        }
-
         public void StructureFile(
              CodeBlockLoopCache codeBlockLoopCache,
              bool setBlockContent)
@@ -257,7 +204,9 @@ namespace MuddyTurnip.RulesEngine
                 _fileStructureSettings,
                 codeBlockLoopCache.CodeBlockSettings,
                 codeBlockLoopCache.RootCodeBlock,
-                codeBlockLoopCache.BlockStats
+                codeBlockLoopCache.BlockStats,
+                _outputBoundaries,
+                LineStarts
             );
 
             _fileStructureProcessor.StructureFile(
@@ -299,9 +248,9 @@ namespace MuddyTurnip.RulesEngine
             return codeBlockLoopCache;
         }
 
-        public void StripComments(
-            List<Boundary> inlineBoundaries,
-            List<Boundary> allCommentBoundaries)
+        public List<MtBoundary> StripComments(
+            List<MtBoundary> inlineBoundaries,
+            List<MtBoundary> allCommentBoundaries)
         {
             InlineCommentStripLoopCache inlineCache = new(
                 inlineBoundaries,
@@ -322,11 +271,13 @@ namespace MuddyTurnip.RulesEngine
             {
                 _commentContent.AppendLine(comment.Value);
             }
+
+            return blockCache.OutputBoundaries;
         }
 
         public void StripPreProcessors(
-            List<Boundary> inputBoundaries,
-            List<Boundary> outputBoundaries)
+            List<MtBoundary> inputBoundaries,
+            List<MtBoundary> outputBoundaries)
         {
             PreProcessorStripLoopCache cache = new(
                 inputBoundaries,
@@ -345,8 +296,8 @@ namespace MuddyTurnip.RulesEngine
         }
 
         public void StripBlankLines(
-            List<Boundary> commentBoundaries,
-            List<Boundary> allBoundaries)
+            List<MtBoundary> commentBoundaries,
+            List<MtBoundary> allBoundaries)
         {
             BlankLineStripLoopCache blankLineCache = new(
                 commentBoundaries,
@@ -356,8 +307,8 @@ namespace MuddyTurnip.RulesEngine
         }
 
         public void StripStrings(
-            List<Boundary> blankLineBoundaries,
-            List<Boundary> allBoundaries)
+            List<MtBoundary> blankLineBoundaries,
+            List<MtBoundary> allBoundaries)
         {
             StringStripLoopCache stringCache = new(
                 blankLineBoundaries,
@@ -367,25 +318,6 @@ namespace MuddyTurnip.RulesEngine
             );
 
             _strippedContent.StripStrings(stringCache);
-        }
-
-        /// <summary>
-        ///     Return content of the line
-        /// </summary>
-        /// <param name="line"> Line number </param>
-        /// <returns> Text </returns>
-        public string GetLineContent(
-            int line,
-            MtPatternScope[] scopes)
-        {
-            int index = LineEnds[line];
-
-            Boundary bound = GetLineBoundary(
-                index,
-                scopes
-            );
-
-            return _fullContent.Substring(bound.Index, bound.Length);
         }
 
         /// <summary>
@@ -426,39 +358,6 @@ namespace MuddyTurnip.RulesEngine
 
             return result;
         }
-
-        /// <summary>
-        ///     Check whether the boundary in a text matches the scope of a search pattern(code, comment etc.)
-        /// </summary>
-        /// <param name = "pattern" > Pattern with scope</param>
-        /// <param name = "boundary" > Boundary in a text </param>
-        /// <param name = "text" > Text </ param >
-
-        //   / < returns > True if boundary is matching the pattern scope </returns>
-        //public bool ScopeMatch(
-        //    IEnumerable<PatternScope> patterns,
-        //    Boundary boundary)
-        //{
-        //    if (patterns is null)
-        //    {
-        //        return true;
-        //    }
-
-        //    if (patterns.Contains(PatternScope.All)
-        //        || string.IsNullOrEmpty(_commentSettings.Prefix))
-        //    {
-        //        return true;
-        //    }
-
-        //    bool isInComment = IsBetween(
-        //        _fullContent,
-        //        boundary.Index,
-        //        _commentSettings.Prefix,
-        //        _commentSettings.Suffix,
-        //        _commentSettings.Inline);
-
-        //    return !(isInComment && !patterns.Contains(PatternScope.Comment));
-        //}
 
         /// <summary>
         ///     Return boundary defined by line and its offset

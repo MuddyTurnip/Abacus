@@ -10,7 +10,7 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class LineCounts
     {
-        public int Number { get; set; }
+        public int LineNumber { get; set; }
         public int StartIndex { get; }
         public bool OnWord { get; set; }
         public int SpacesCount { get; set; }

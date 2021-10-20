@@ -375,22 +375,6 @@
         "enabled": true
       },
       {
-        "name": "?:",
-        "id": "CY10000016",
-        "type": "Branch",
-        "keyword": "(?<!else\\s+)if",
-        "blocks": [
-          "Parameter",
-          "Code"
-        ],
-        "gang": {
-          "name": "ifElse",
-          "type": "single",
-          "position": 1
-        },
-        "enabled": true
-      },
-      {
         "name": "else",
         "id": "CY10000014",
         "type": "Branch",

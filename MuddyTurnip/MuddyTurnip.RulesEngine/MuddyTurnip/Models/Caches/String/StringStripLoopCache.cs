@@ -1,5 +1,6 @@
 ﻿using Microsoft.ApplicationInspector.RulesEngine;
 using MuddyTurnip.RulesEngine;
+using MuddyTurnip.RulesEngine.Commands;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,8 +8,8 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class StringStripLoopCache
     {
-        public List<Boundary> InputBoundaries { get; }
-        public List<Boundary> OutputBoundaries { get; }
+        public List<MtBoundary> InputBoundaries { get; }
+        public List<MtBoundary> OutputBoundaries { get; }
         public StringBuilder StringContent { get; }
         public int InputCounter { get; set; }
         public StringSettings StringSettings { get; set; }
@@ -17,8 +18,8 @@ namespace MuddyTurnip.Metrics.Engine
         public StringState? Current { get; set; }
 
         public StringStripLoopCache(
-            List<Boundary> inputBoundaries,
-            List<Boundary> outputBoundaries,
+            List<MtBoundary> inputBoundaries,
+            List<MtBoundary> outputBoundaries,
             StringBuilder stringContent,
             StringSettings stringSettinge)
         {

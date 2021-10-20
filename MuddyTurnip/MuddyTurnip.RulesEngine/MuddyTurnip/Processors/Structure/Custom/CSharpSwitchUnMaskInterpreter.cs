@@ -195,7 +195,9 @@ namespace MuddyTurnip.RulesEngine
                 blockStatsCache.FileStructureSettings,
                 codeBlockSettings,
                 parent,
-                codeBlockLoopCache.BlockStats
+                codeBlockLoopCache.BlockStats,
+                blockStatsCache.StringOutputBoundaries,
+                blockStatsCache.LineStarts
             );
 
             childBlockStatsCache.FindGroups(

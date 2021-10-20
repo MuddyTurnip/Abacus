@@ -1,4 +1,5 @@
 ﻿using Microsoft.ApplicationInspector.RulesEngine;
+using MuddyTurnip.RulesEngine.Commands;
 using System.Text;
 
 namespace MuddyTurnip.Metrics.Engine
@@ -19,7 +20,7 @@ namespace MuddyTurnip.Metrics.Engine
             string comment;
             int adjustedCommentStartIndex;
             int startSearchIndex = commentStartIndex;
-            Boundary inlineBoundary;
+            MtBoundary inlineBoundary;
 
             while (commentStartIndex > -1)
             {
@@ -46,11 +47,11 @@ namespace MuddyTurnip.Metrics.Engine
                     commentLength
                 );
 
-                inlineBoundary = new Boundary()
-                {
-                    Index = adjustedCommentStartIndex,
-                    Length = commentLength
-                };
+                inlineBoundary = new MtBoundary(
+                    adjustedCommentStartIndex,
+                    commentLength,
+                    "inlineComment"
+                );
 
                 cache.InlineBoundaries.Add(inlineBoundary);
 

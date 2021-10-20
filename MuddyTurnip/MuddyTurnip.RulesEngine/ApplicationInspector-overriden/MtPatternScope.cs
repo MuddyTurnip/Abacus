@@ -5,7 +5,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Globalization;
 
-namespace Microsoft.ApplicationInspector.RulesEngine
+namespace MuddyTurnip.RulesEngine.Commands
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum MtPatternScope

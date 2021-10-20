@@ -137,7 +137,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         public string Excerpt { get; set; } = "";
 
         [JsonIgnore]
-        public Boundary Boundary { get; set; } = new Boundary();
+        public Boundary Boundary { get; set; } = new();
 
         /// <summary>
         /// Starting line location of the matching text

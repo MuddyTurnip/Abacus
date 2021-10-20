@@ -1,5 +1,6 @@
 ﻿using Microsoft.ApplicationInspector.RulesEngine;
 using MuddyTurnip.RulesEngine;
+using MuddyTurnip.RulesEngine.Commands;
 using System;
 using System.Text;
 
@@ -136,9 +137,9 @@ namespace MuddyTurnip.Metrics.Engine
 
         private static void MergeInBoundary(
             this StringStripLoopCache cache,
-            Boundary stringBoundary)
+            MtBoundary stringBoundary)
         {
-            Boundary inputBoundary;
+            MtBoundary inputBoundary;
             int adjustedIndex;
 
             for (int i = cache.InputCounter; i < cache.InputBoundaries.Count; i++)
@@ -236,11 +237,11 @@ namespace MuddyTurnip.Metrics.Engine
 
             // Adjust the startStringIndex so it relates to the FullContent
             // not the content which might have had phrases removed
-            Boundary stringBoundary = new Boundary()
-            {
-                Index = startStringIndex,
-                Length = stringLength
-            };
+            MtBoundary stringBoundary = new MtBoundary(
+                startStringIndex,
+                stringLength,
+                "codeString"
+            );
 
             cache.MergeInBoundary(stringBoundary);
 
@@ -252,7 +253,7 @@ namespace MuddyTurnip.Metrics.Engine
 
         public static void AddStringBoundary(
             this StringStripLoopCache cache,
-            Boundary blockBoundary)
+            MtBoundary blockBoundary)
         {
             blockBoundary.Index += cache.InputAdjustment + cache.OutputAdjustment;
             cache.OutputBoundaries.Add(blockBoundary);

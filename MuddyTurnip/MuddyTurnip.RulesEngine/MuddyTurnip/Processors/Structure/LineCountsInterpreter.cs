@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MuddyTurnip.RulesEngine
 {
-    internal static class LineCountsIInterpreter
+    internal static class LineCountsInterpreter
     {
 
         public static void CountCharacters(

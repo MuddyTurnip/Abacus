@@ -1,17 +1,18 @@
 ﻿using Microsoft.ApplicationInspector.RulesEngine;
+using MuddyTurnip.RulesEngine.Commands;
 using System.Collections.Generic;
 
 namespace MuddyTurnip.Metrics.Engine
 {
     public class InlineCommentStripLoopCache
     {
-        public List<Boundary> InlineBoundaries { get; }
+        public List<MtBoundary> InlineBoundaries { get; }
         public int Adjustment { get; set; }
         public string InlineComment { get; set; }
         public SortedList<int, string> CommentContent { get; } = new();
 
         public InlineCommentStripLoopCache(
-            List<Boundary> inlineBoundaries,
+            List<MtBoundary> inlineBoundaries,
             string inlineComment)
         {
             InlineBoundaries = inlineBoundaries;

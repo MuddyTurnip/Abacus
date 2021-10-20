@@ -1,5 +1,6 @@
 using Microsoft.ApplicationInspector.RulesEngine;
 using MuddyTurnip.Metrics.Engine;
+using MuddyTurnip.RulesEngine.Commands;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +14,7 @@ namespace MuddyTurnip.RegularExpression.Tests
     {
         private readonly string _code = String.Empty;
         private readonly string _result = String.Empty;
-        private readonly List<Boundary> _outputBoundaries = new();
+        private readonly List<MtBoundary> _outputBoundaries = new();
         private readonly List<int> _lineEnds = new List<int>() { 0 };
         private readonly List<int> _lineStarts = new List<int>() { 0, 0 };
 
@@ -46,7 +47,7 @@ namespace MuddyTurnip.RegularExpression.Tests
                 }
 
             StringBuilder stringBuilder = new(_code);
-            List<Boundary> inputBoundaries = new();
+            List<MtBoundary> inputBoundaries = new();
 
             BlankLineStripLoopCache blankLineCache = new(
                 inputBoundaries,
@@ -76,7 +77,7 @@ namespace MuddyTurnip.RegularExpression.Tests
 
         private int AdjustLineNumber(int strippedIndex)
         {
-            Boundary inputBoundary;
+            MtBoundary inputBoundary;
             int adjustedIndex = strippedIndex;
 
             for (int i = 0; i < _outputBoundaries.Count; i++)

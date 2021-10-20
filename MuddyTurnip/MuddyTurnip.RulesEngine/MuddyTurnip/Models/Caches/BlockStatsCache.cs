@@ -1,5 +1,6 @@
 ﻿using Microsoft.ApplicationInspector.RulesEngine;
 using MuddyTurnip.RulesEngine;
+using MuddyTurnip.RulesEngine.Commands;
 using System.Collections.Generic;
 
 namespace MuddyTurnip.Metrics.Engine
@@ -12,17 +13,23 @@ namespace MuddyTurnip.Metrics.Engine
         public List<BlockStats> BlockStats { get; }
         public List<LocationIndex> UnitsOfWorkStart { get; } = new();
         public List<LineCounts> LineCountList { get; } = new();
+        public List<MtBoundary> StringOutputBoundaries { get; }
+        public List<int> LineStarts { get; }
 
         public BlockStatsCache(
             FileStructureSettings fileStructureSettings,
             CodeBlockSettings codeBlockSettings,
             BlockStats rootBlockStats,
-            List<BlockStats> blockStats)
+            List<BlockStats> blockStats,
+            List<MtBoundary> stringOutputBoundaries,
+            List<int> lineStarts)
         {
             FileStructureSettings = fileStructureSettings;
             CodeBlockSettings = codeBlockSettings;
             RootBlockStats = rootBlockStats;
             BlockStats = blockStats;
+            StringOutputBoundaries = stringOutputBoundaries;
+            LineStarts = lineStarts;
         }
     }
 }
