@@ -1,8 +1,13 @@
 
 NEXT
 
-Need to sum up Tagcounts fro depth but they need to increment - probably?
-Need to look for recursion?
+Need to add comments, strings, preprocessors to blocks
+
+foreach char in text
+	collect . space non-space columns
+	number of words
+	comment chars
+	string chars
 
 Per line count:
 	number full stops
@@ -13,6 +18,9 @@ Per line count:
 	number columns
 	number of words
 	comment chars
+	Lowercaswe to uppercase changes etc
+	underscore
+	hyphen
 
 Need 
 	to treat all blocks the same and produce the same metrics for all of them by summming up their containing blocks and their raw code.
@@ -38,6 +46,9 @@ Search strings, code, preprocessors etc
 Need to count preprocessors, strings, comments, blocks, statements
 
 Remove fluff from json file we don't need
+Need to add all code to search only strings etc.
+Need to handle ?? ?: etc as branching
+Need to look for recursion?
 
 
 

@@ -29,6 +29,11 @@ namespace MuddyTurnip.Metrics.Engine
                 codeContainer
             );
 
+            UnitsOfWorkProcessor.Aggregate(
+                metricsRecord,
+                codeContainer
+            );
+
             MatchProcessor.DistributeMatches(metricsRecord);
 
             MatchProcessor.Aggregate(metricsRecord);

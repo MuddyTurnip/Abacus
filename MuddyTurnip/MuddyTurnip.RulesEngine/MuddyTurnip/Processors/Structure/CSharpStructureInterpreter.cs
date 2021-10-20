@@ -41,6 +41,12 @@ namespace MuddyTurnip.RulesEngine
                 new GroupBoundarySettingsBuilder()
             );
 
+            blockStatsCache.FindUnitsOfWork(
+                codeContent,
+                boundaryCounter,
+                new GroupBoundarySettingsBuilder()
+            );
+
             blockStatsCache.RootBlockStats.BuildFullNames(
                 String.Empty,
                 blockStatsCache.FileStructureSettings.NameJoiner,

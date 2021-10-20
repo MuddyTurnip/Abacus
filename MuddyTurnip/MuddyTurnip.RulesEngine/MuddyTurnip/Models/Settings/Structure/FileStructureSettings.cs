@@ -11,6 +11,7 @@ namespace MuddyTurnip.RulesEngine
         public List<ComponentSettings> Components { get; } = new();
         public List<GroupSettings> Groups { get; } = new();
         public List<UnMaskSettings> UnMasking { get; } = new();
+        public UnitOfWorkSettings UnitsOfWork { get; } = new();
 
         public FileStructureSettings(
             string language,

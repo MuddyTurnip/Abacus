@@ -522,6 +522,11 @@ namespace MuddyTurnip.RulesEngine.Commands
                         structureSettings
                     );
 
+                    LoadUnitOfWork(
+                        fileStructure.UnitsOfWork,
+                        structureSettings
+                    );
+
                     break;
                 }
             }
@@ -532,6 +537,24 @@ namespace MuddyTurnip.RulesEngine.Commands
             }
 
             return structureSettings;
+        }
+
+        private static void LoadUnitOfWork(
+            UnitsOfWork unitsOfWork,
+            FileStructureSettings structureSettings)
+        {
+            if (unitsOfWork.Enabled != true)
+            {
+                return;
+            }
+
+            if (unitsOfWork.NonBlockPatterns?.Count > 0)
+            {
+                LoadPatterns(
+                    unitsOfWork.NonBlockPatterns,
+                    structureSettings.UnitsOfWork.NonBlockPatterns
+                );
+            }
         }
 
         private static void LoadUnMasking(

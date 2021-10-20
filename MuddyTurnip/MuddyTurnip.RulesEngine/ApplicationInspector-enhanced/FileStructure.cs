@@ -22,5 +22,8 @@ namespace MuddyTurnip.RulesEngine
 
         [JsonProperty(PropertyName = "unmasking")]
         public List<UnMask> UnMasking { get; set; } = new();
+
+        [JsonProperty(PropertyName = "unitsOfWork")]
+        public UnitsOfWork UnitsOfWork { get; set; } = new();
     }
 }

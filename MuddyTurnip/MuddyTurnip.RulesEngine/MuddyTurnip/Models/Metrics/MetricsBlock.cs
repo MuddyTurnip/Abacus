@@ -19,10 +19,12 @@ namespace MuddyTurnip.Metrics.Engine
         [JsonProperty(PropertyName = "signature")]
         public string Signature { get; set; } = string.Empty;
 
-        [JsonProperty(PropertyName = "content")]
+        //[JsonProperty(PropertyName = "content")]
+        [JsonIgnore]
         public string Content { get; set; } = string.Empty;
 
-        [JsonProperty(PropertyName = "errors")]
+        //[JsonProperty(PropertyName = "errors")]
+        [JsonIgnore]
         public List<BlockStatsError> Errors { get; set; } = new();
 
         [JsonProperty(PropertyName = "partial")]
@@ -31,7 +33,8 @@ namespace MuddyTurnip.Metrics.Engine
         [JsonProperty(PropertyName = "depth")]
         public int Depth { get; set; }
 
-        [JsonProperty(PropertyName = "syblings")]
+        //[JsonProperty(PropertyName = "syblings")]
+        [JsonIgnore]
         public int SyblingCount { get; set; }
 
         [JsonProperty(PropertyName = "openIndex")]
@@ -54,12 +57,15 @@ namespace MuddyTurnip.Metrics.Engine
         public List<MtMatchRecord> Matches { get; set; } = new();
 
         [JsonIgnore]
+        public List<LocationIndex> UnitsOfWork { get; set; } = new();
+
+        [JsonIgnore]
         public MetricsBlock? Parent { get; set; }
 
         [JsonIgnore]
         public BlockStats? Block { get; set; }
 
-
+        [JsonProperty(PropertyName = "tagCounts")]
         public List<TagCounter> TagCounts { get; } = new();
 
 

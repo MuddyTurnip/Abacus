@@ -1,4 +1,5 @@
-﻿using MuddyTurnip.RulesEngine;
+﻿using Microsoft.ApplicationInspector.RulesEngine;
+using MuddyTurnip.RulesEngine;
 using System.Collections.Generic;
 
 namespace MuddyTurnip.Metrics.Engine
@@ -10,7 +11,7 @@ namespace MuddyTurnip.Metrics.Engine
         public CodeBlockSettings CodeBlockSettings { get; }
         public BlockStats RootBlockStats { get; }
         public List<BlockStats> BlockStats { get; }
-        public int NextGroupID => ++_nextGroupID;
+        public List<LocationIndex> UnitsOfWorkStart { get; } = new();
 
         public BlockStatsCache(
             FileStructureSettings fileStructureSettings,
