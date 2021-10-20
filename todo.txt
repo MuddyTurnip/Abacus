@@ -10,11 +10,8 @@ foreach char in text
 	string chars
 
 Per line count:
-	number full stops
-	number of statements
 	number of spaces
 	number letters
-	number units of work
 	number columns
 	number of words
 	comment chars
@@ -23,14 +20,10 @@ Per line count:
 	hyphen
 
 Need 
-	to treat all blocks the same and produce the same metrics for all of them by summming up their containing blocks and their raw code.
-	number units (of work) per line
-	number blocks per block etc
+	total number blocks per block etc
 	number lines per block
 	comment line count per block, 
 	blank line count per block, 
-	number columns per line
-	number of words (word boundaries) per line
 	ratio of letters to words can mean long words or short words which is 
 	comment chars versus code chars
 	code lines versus code chars
@@ -38,7 +31,6 @@ Need
 	maximum number of code chars per line
 	code block max depth
 	size of embedded strings
-	statements per line
 	ratio nested statements without brackets etc
 
 Need to add comments, strings, preprocessors as blocks like Code and the look for matches in them too
