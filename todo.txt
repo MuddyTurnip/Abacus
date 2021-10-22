@@ -5,11 +5,9 @@ statements should use the end not the start per line
 
 Need to add comments, strings, preprocessors as blocks like Code and the look for matches in them too
 Search strings, code, preprocessors by desing from json configs
-Need to count preprocessors, strings, comments, blocks, statements as well as char count
+Need to add all code to search only strings etc.
 
 Remove fluff from json file we don't need
-Need to add all code to search only strings etc.
-Need to handle ?? ?: etc as branching
 Need to look for recursion?
 
 TESTS

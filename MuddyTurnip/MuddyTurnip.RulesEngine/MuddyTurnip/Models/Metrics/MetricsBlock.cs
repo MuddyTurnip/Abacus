@@ -79,7 +79,7 @@ namespace MuddyTurnip.Metrics.Engine
         //[JsonIgnore]
         public List<TagCounter> TagCounts { get; } = new();
 
-        //[JsonIgnore]
+        [JsonIgnore]
         public int TagCountsCount => TagCounts.Count;
 
 

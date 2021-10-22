@@ -1,5 +1,7 @@
 ﻿using MuddyTurnip.RulesEngine;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 /*
     Search for any open,
@@ -86,7 +88,7 @@ namespace MuddyTurnip.Metrics.Engine
                         continue;
                     }
 
-                    if (childStatement.CloseIndex > child.OpenIndex
+                    if (childStatement.CloseIndex >= child.OpenIndex
                         && childStatement.CloseIndex < child.CloseIndex)
                     {
                         childStatementStats.Add(childStatement);

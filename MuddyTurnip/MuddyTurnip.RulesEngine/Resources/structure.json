@@ -443,16 +443,121 @@
     "unitsOfWork": {
       "nonBlockPatterns": [
         {
+          "pattern": "\\<\\<\\="
+        },
+        {
+          "pattern": "\\>\\>\\="
+        },
+        {
+          "pattern": "\\?\\?\\="
+        },
+        {
           "pattern": "\\?\\?"
         },
         {
-          "pattern": "\\?"
+          "pattern": "\\>\\>"
+        },
+        {
+          "pattern": "\\<\\<"
+        },
+        {
+          "pattern": "\\<\\="
+        },
+        {
+          "pattern": "\\>\\="
+        },
+        {
+          "pattern": "\\.\\."
+        },
+        {
+          "pattern": "\\?\\."
+        },
+        {
+          "pattern": "\\+\\+"
+        },
+        {
+          "pattern": "\\-\\-"
+        },
+        {
+          "pattern": "\\=\\="
+        },
+        {
+          "pattern": "\\!\\="
+        },
+        {
+          "pattern": "\\|\\|"
+        },
+        {
+          "pattern": "\\-\\="
+        },
+        {
+          "pattern": "\\+\\="
+        },
+        {
+          "pattern": "\\*\\="
+        },
+        {
+          "pattern": "\\/\\="
+        },
+        {
+          "pattern": "\\%\\="
+        },
+        {
+          "pattern": "\\&\\="
+        },
+        {
+          "pattern": "\\|\\="
+        },
+        {
+          "pattern": "\\^\\="
+        },
+        {
+          "pattern": "\\=\\>"
+        },
+        {
+          "pattern": "\\^"
+        },
+        {
+          "pattern": "\\|"
+        },
+        {
+          "pattern": "\\&"
+        },
+        {
+          "pattern": "\\!"
+        },
+        {
+          "pattern": "\\="
         },
         {
           "pattern": "\\."
         },
         {
-          "pattern": ":"
+          "pattern": "\\:"
+        },
+        {
+          "pattern": "\\*"
+        },
+        {
+          "pattern": "\\+"
+        },
+        {
+          "pattern": "\\-"
+        },
+        {
+          "pattern": "\\/"
+        },
+        {
+          "pattern": "\\~"
+        },
+        {
+          "pattern": "\\%"
+        },
+        {
+          "pattern": "\\>"
+        },
+        {
+          "pattern": "\\<"
         }
       ],
       "enabled": true
