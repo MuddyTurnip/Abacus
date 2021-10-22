@@ -40,6 +40,7 @@ namespace MuddyTurnip.RulesEngine
 
                     adjustedMatchStart = boundaryCounter.GetFullIndexFromCodeIndex(match.Index);
                     matchStartLocation = boundaryCounter.GetLocation(adjustedMatchStart);
+
                     blockStatsCache.UnitsOfWorkStart.Add(
                         new(
                             adjustedMatchStart,

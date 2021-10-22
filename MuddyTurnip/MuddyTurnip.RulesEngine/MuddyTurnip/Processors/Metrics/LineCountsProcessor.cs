@@ -52,6 +52,8 @@ namespace MuddyTurnip.Metrics.Engine
                     if (nextIndex >= lineStarts.Count)
                     {
                         count.LineNumber = i;
+
+                        break;
                     }
                     else
                     {
@@ -61,6 +63,8 @@ namespace MuddyTurnip.Metrics.Engine
                             && count.StartIndex < nextLineStart)
                         {
                             count.LineNumber = i;
+
+                            break;
                         }
                     }
                 }
@@ -105,7 +109,7 @@ namespace MuddyTurnip.Metrics.Engine
 
                 tagCounts.PrintTagCount(
                     "Length",
-                    counts.Length,
+                    counts.Value.Length,
                     counts.LineNumber
                 );
 

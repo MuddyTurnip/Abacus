@@ -12,15 +12,15 @@ namespace MuddyTurnip.RulesEngine
             string codeContent,
             IBoundaryCounter boundaryCounter)
         {
-            LineCounts lineCounts = new(0);
+            LineCounts lineCounts = new();
             blockStatsCache.LineCountList.Add(lineCounts);
-            int lineStartIndex;
             int lineEndIndex;
             char c;
 
             for (int i = 0; i < codeContent.Length; i++)
             {
                 c = codeContent[i];
+                lineCounts.Value.Append(c);
 
                 if (Char.IsWhiteSpace(c))
                 {
@@ -30,10 +30,9 @@ namespace MuddyTurnip.RulesEngine
                     if (Char.Equals('\n', c))
                     {
                         lineEndIndex = boundaryCounter.GetFullIndexFromCodeIndex(i);
-                        lineCounts.Length = lineEndIndex - lineCounts.StartIndex;
+                        lineCounts.StartIndex = lineEndIndex - lineCounts.Value.Length + 1;
 
-                        lineStartIndex = lineEndIndex + 1;
-                        lineCounts = new(lineStartIndex);
+                        lineCounts = new();
                         blockStatsCache.LineCountList.Add(lineCounts);
                     }
                 }

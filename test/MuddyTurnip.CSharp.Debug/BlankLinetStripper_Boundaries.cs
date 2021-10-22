@@ -10,7 +10,7 @@ using Xunit;
 
 namespace MuddyTurnip.RegularExpression.Tests
 {
-    public class BlankLinetripper_Boundaries
+    public class BlankLinetStripper_Boundaries
     {
         private readonly string _code = String.Empty;
         private readonly string _result = String.Empty;
@@ -18,7 +18,7 @@ namespace MuddyTurnip.RegularExpression.Tests
         private readonly List<int> _lineEnds = new List<int>() { 0 };
         private readonly List<int> _lineStarts = new List<int>() { 0, 0 };
 
-        public BlankLinetripper_Boundaries()
+        public BlankLinetStripper_Boundaries()
         {
             Assembly thisAssembly = Assembly.GetExecutingAssembly();
             string? dirPath = Path.GetDirectoryName(thisAssembly.Location);

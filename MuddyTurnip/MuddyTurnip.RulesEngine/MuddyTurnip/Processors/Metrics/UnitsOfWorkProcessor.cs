@@ -19,9 +19,6 @@ namespace MuddyTurnip.Metrics.Engine
                 codeContainer
             );
 
-            // Then per metric need to group them
-            // Then cascade them down to ancestors
-
             ConvertUnitsOfWorkToTagCounts(metricsRecord.Structure);
             AggregateChildren(metricsRecord.Structure);
         }

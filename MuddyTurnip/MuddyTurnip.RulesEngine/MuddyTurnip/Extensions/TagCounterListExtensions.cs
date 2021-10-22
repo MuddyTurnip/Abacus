@@ -6,6 +6,13 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public static class TagCounterListExtensions
     {
+        public static int Compare(
+            this TagCounter a,
+            TagCounter b)
+        {
+            return a.Tag.CompareTo(b.Tag);
+        }
+
         public static void MergeTagCounts(
             this List<TagCounter> a,
             List<TagCounter> b)

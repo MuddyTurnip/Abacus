@@ -48,18 +48,32 @@ namespace MuddyTurnip.Metrics.Engine
             int lineStart;
             int nextLineStart;
             int i = 1;
+            int nextIndex;
 
             foreach (MtBoundary boundary in stringBoundaries)
             {
                 for (; i < lineStarts.Count; i++)
                 {
                     lineStart = lineStarts[i];
-                    nextLineStart = lineStarts[i + 1];
+                    nextIndex = i + 1;
 
-                    if (boundary.Index >= lineStart
-                        && boundary.Index < nextLineStart)
+                    if (nextIndex >= lineStarts.Count)
                     {
                         boundary.LineNumber = i;
+
+                        break;
+                    }
+                    else
+                    {
+                        nextLineStart = lineStarts[nextIndex];
+
+                        if (boundary.Index >= lineStart
+                            && boundary.Index < nextLineStart)
+                        {
+                            boundary.LineNumber = i;
+
+                            break;
+                        }
                     }
                 }
             }
@@ -76,13 +90,10 @@ namespace MuddyTurnip.Metrics.Engine
 
             List<MtBoundary> stringBoundaries = codeContainer.BlockStatsCache.StringOutputBoundaries;
             stringBoundaries.Sort(MtBoundaryExtensions.Compare);
-            MtBoundary boundary;
             bool success;
 
-            for (int i = 0; i < stringBoundaries.Count; i++)
+            foreach (MtBoundary boundary in stringBoundaries)
             {
-                boundary = stringBoundaries[i];
-
                 success = MatchBlock(
                      boundary,
                      metricsRecord.Structure
@@ -128,11 +139,11 @@ namespace MuddyTurnip.Metrics.Engine
 
         private static void AggregateChildren(MetricsBlock metrics)
         {
-            IEnumerable<MtBoundary> groupedBoundaries;
+            IEnumerable<MtBoundary>? groupedBoundaries;
 
             foreach (MetricsBlock child in metrics.ChildBlocks)
             {
-                groupedBoundaries = GroupBoundariesByLine(metrics);
+                groupedBoundaries = GroupBoundariesByLine(child);
 
                 ConvertBoundariesToTagCounts(
                     child,
@@ -172,11 +183,14 @@ namespace MuddyTurnip.Metrics.Engine
 
             foreach (MtBoundary boundary in groupedBoundaries)
             {
-                tagCounts.PrintTagCount(
-                    boundary.Type,
-                    boundary.Length,
-                    boundary.LineNumber
-                );
+                if (!String.Equals(boundary.Type, "blankLine"))
+                {
+                    tagCounts.PrintTagCount(
+                        boundary.Type,
+                        boundary.Length,
+                        boundary.LineNumber
+                    );
+                }
             }
         }
     }

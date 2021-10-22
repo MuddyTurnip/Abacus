@@ -1,31 +1,7 @@
 
 NEXT
 
-There is a problem with the new line numbering of unitsOfWork!!!!
-The line numbers are worng and then it sums up all the tagCounts!!!
-StringboundariesProcessor commented out
-
-Block comments can extend over many lines - these need to be divided up into lines
 statements should use the end not the start per line
-
-foreach char in text
-	comment chars
-	string chars
-	preprocessor chars
-
-Need 
-	total number blocks per block etc
-	number lines per block
-	comment line count per block, 
-	blank line count per block, 
-	ratio of letters to words can mean long words or short words which is 
-	comment chars versus code chars
-	code lines versus code chars
-	spaces versus code chars
-	maximum number of code chars per line
-	code block max depth
-	size of embedded strings
-	ratio nested statements without brackets etc
 
 Need to add comments, strings, preprocessors as blocks like Code and the look for matches in them too
 Search strings, code, preprocessors by desing from json configs

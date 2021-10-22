@@ -34,18 +34,21 @@ namespace MuddyTurnip.Metrics.Engine
             PostTagCountAggregator(
                 metricsRecord,
                 codeContainer);
+
+            //// Remove later
+            //TagCountsProcessor.OrderTagCounts(metricsRecord);
         }
 
         private static void PreTagCountAggregator(
             MetricsRecord metricsRecord,
             BlockTextContainer codeContainer)
         {
-            //StringBoundariesProcessor.Aggregate(
-            //    metricsRecord,
-            //    codeContainer
-            //);
-
             BlockStatsProcessor.Aggregate(
+                metricsRecord,
+                codeContainer
+            );
+
+            StringBoundariesProcessor.Aggregate(
                 metricsRecord,
                 codeContainer
             );
@@ -69,7 +72,7 @@ namespace MuddyTurnip.Metrics.Engine
 
         private static void PostTagCountAggregator(
             MetricsRecord metricsRecord,
-            BlockTextContainer codeContainer)
+            BlockTextContainer _codeContainer)
         {
             LocalBlockStatsProcessor.Aggregate(metricsRecord);
         }
