@@ -13,7 +13,7 @@ namespace MuddyTurnip.RegularExpression.Tests
         public MtAnalyzeResult? _analyzeResult = null;
         public AnalyseFile_Structure()
         {
-            MtAnalyzeCommand command = new MtAnalyzeCommand(new AnalyzeOptions()
+            MtAnalyzeCommand command = new MtAnalyzeCommand(new MtAnalyzeOptions()
             {
                 SourcePath = new String[] { "C:\\GitHub\\Abacus\\test\\MuddyTurnip.CSharp.Tests\\Files" },
                 CustomRulesPath = "C:\\GitHub\\Abacus\\MuddyTurnip\\MuddyTurnip.Abacus\\CodemologyRules\\",

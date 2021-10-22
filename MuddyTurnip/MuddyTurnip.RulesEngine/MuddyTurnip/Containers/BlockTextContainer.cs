@@ -111,7 +111,7 @@ namespace MuddyTurnip.RulesEngine
             List<MtBoundary> inlineBoundaries = new();
             List<MtBoundary> commentBoundaries = new();
 
-            List<MtBoundary> commentBounadaries = StripComments(
+            List<BlockStatsError> fileErrors = StripComments(
                 inlineBoundaries,
                 commentBoundaries
             );
@@ -139,6 +139,7 @@ namespace MuddyTurnip.RulesEngine
             _outputBoundaries = stringBoundaries;
 
             CodeBlockLoopCache codeBlockLoopCache = CountCodeBlocks();
+            codeBlockLoopCache.RootCodeBlock.Errors.AddRange(fileErrors);
 
             StructureFile(
                 codeBlockLoopCache,
@@ -248,7 +249,7 @@ namespace MuddyTurnip.RulesEngine
             return codeBlockLoopCache;
         }
 
-        public List<MtBoundary> StripComments(
+        public List<BlockStatsError> StripComments(
             List<MtBoundary> inlineBoundaries,
             List<MtBoundary> allCommentBoundaries)
         {
@@ -272,7 +273,7 @@ namespace MuddyTurnip.RulesEngine
                 _commentContent.AppendLine(comment.Value);
             }
 
-            return blockCache.OutputBoundaries;
+            return blockCache.Errors;
         }
 
         public void StripPreProcessors(

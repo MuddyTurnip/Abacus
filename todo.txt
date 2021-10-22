@@ -2,6 +2,10 @@
 NEXT
 
 statements should use the end not the start per line
+Need to move string processing to first then preprocessor then comments then blank lines and see it makes a difference
+Then need to add string removed back into comments that were removed
+
+Need to be able to recover from an errored file
 
 Need to add comments, strings, preprocessors as blocks like Code and the look for matches in them too
 Search strings, code, preprocessors by desing from json configs

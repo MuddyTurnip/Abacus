@@ -526,6 +526,111 @@ namespace MuddyTurnip.RegularExpression.Tests
             "",
             123, 67,
             123, 67)]
+        [InlineData(
+            "Block",
+            "Parameter",
+            "",
+            "",
+            127, 50,
+            127, 61)]
+        [InlineData(
+            "Block",
+            "Code",
+            "method",
+            "GetParser",
+            128, 15,
+            137, 14)]
+        [InlineData(
+            "Group",
+            "Code",
+            "Branch",
+            "switch expression",
+            128, 21,
+            137, 13)]
+        [InlineData(
+            "Block",
+            "Code",
+            "",
+            "",
+            129, 14,
+            137, 13)]
+        [InlineData(
+            "Block",
+            "Parameter",
+            "",
+            "",
+            130, 24,
+            130, 31)]
+        [InlineData(
+            "UnMask",
+            "SwitchArm",
+            "Branch",
+            "nameof(Boolean)",
+            130, 35,
+            134, 48)]
+        [InlineData(
+            "Block",
+            "Parameter",
+            "",
+            "",
+            134, 34,
+            134, 47)]
+        [InlineData(
+            "Block",
+            "Parameter",
+            "",
+            "",
+            134, 45,
+            134, 46)]
+        [InlineData(
+            "Block",
+            "Parameter",
+            "",
+            "",
+            135, 24,
+            135, 29)]
+        [InlineData(
+            "UnMask",
+            "SwitchArm",
+            "Branch",
+            "nameof(Int32)",
+            135, 33,
+            135, 60)]
+        [InlineData(
+            "Block",
+            "Parameter",
+            "",
+            "",
+            135, 47,
+            135, 59)]
+        [InlineData(
+            "Block",
+            "Parameter",
+            "",
+            "",
+            135, 57,
+            135, 58)]
+        [InlineData(
+            "UnMask",
+            "SwitchArm",
+            "Branch",
+            "_",
+            136, 21,
+            137, 13)]
+        [InlineData(
+            "Block",
+            "Parameter",
+            "",
+            "",
+            136, 28,
+            136, 29)]
+        [InlineData(
+            "Block",
+            "Parameter",
+            "",
+            "",
+            136, 31,
+            136, 37)]
         public void GroupMatches(
             string model,
             string blockType,

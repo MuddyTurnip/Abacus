@@ -40,8 +40,10 @@ namespace MuddyTurnip.Abacus
         public string ConfidenceFilters { get; set; } = "high,medium";
 
         [Option('g', "exclusion-globs", Required = false, HelpText = "Exclude source files that match glob patterns. Example: \"**/.git/**,*Tests*\".  Use \"none\" to disable.", Default = new string[] { "**/bin/**", "**/obj/**", "**/.vs/**", "**/.git/**" }, Separator = ',')]
-
         public IEnumerable<string> FilePathExclusions { get; set; } = new string[0];
+
+        [Option('w', "white-list-extensions", Required = false, HelpText = "If not empty exclusion-globs is ignored. Example: \"*.cs,.js\" ", Default = new string[] {}, Separator = ',')]
+        public IEnumerable<string> WhiteListExtensions { get; set; } = new string[0];
 
         [Option('f', "output-file-format", Required = false, HelpText = "Output format [html|json|text]", Default = "html")]
         public new string OutputFileFormat { get; set; } = "html";

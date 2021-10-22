@@ -100,3 +100,12 @@ analyze -s "C:\GitHub\Abacus\test\MuddyTurnip.CSharp.Tests\Files" -f json -o "E:
 
 analyze -s "C:\GitHub\Abacus\test\MuddyTurnip.CSharp.Tests\Files" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" --S
 
+analyze -s "C:\GitHub\Abacus" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -g "**/bin/**","**/obj/**","**/.vs/**","**/.git/**,**.cpp,**.testlog,**.js,**.json,**.html,**.yml,**.csproj,**.sln,**.css" -u false
+
+
+analyze -s "C:\GitHub\Abacus" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs"
+
+
+analyze -s "C:\Code4\core-main" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs"
+
+analyze -s "C:\Code4\roslyn-main" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs"

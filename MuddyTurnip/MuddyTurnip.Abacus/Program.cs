@@ -42,8 +42,15 @@ namespace MuddyTurnip.Abacus
                 //    errs => 2
                 //  );
 
-                var argsResult = Parser.Default.ParseArguments<MtCLIAnalyzeCmdOptions>(args)
-                  .MapResult(
+                //var argsResult = Parser.Default.ParseArguments<MtCLIAnalyzeCmdOptions>(args)
+                //.MapResult(
+                //  (MtCLIAnalyzeCmdOptions cliOptions) => VerifyOutputArgsRun(cliOptions),
+                //  errs => 2
+                //);
+
+                var arguments = Parser.Default.ParseArguments<MtCLIAnalyzeCmdOptions>(args);
+
+                var argsResult = arguments.MapResult(
                     (MtCLIAnalyzeCmdOptions cliOptions) => VerifyOutputArgsRun(cliOptions),
                     errs => 2
                   );
@@ -251,13 +258,14 @@ namespace MuddyTurnip.Abacus
 
         private static int RunAnalyzeCommand(MtCLIAnalyzeCmdOptions cliOptions)
         {
-            MtAnalyzeCommand command = new MtAnalyzeCommand(new AnalyzeOptions()
+            MtAnalyzeCommand command = new MtAnalyzeCommand(new MtAnalyzeOptions()
             {
                 SourcePath = cliOptions.SourcePath ?? Array.Empty<string>(),
                 CustomRulesPath = cliOptions.CustomRulesPath ?? "",
                 IgnoreDefaultRules = cliOptions.IgnoreDefaultRules,
                 ConfidenceFilters = cliOptions.ConfidenceFilters,
                 FilePathExclusions = cliOptions.FilePathExclusions,
+                WhiteListExtensions = cliOptions.WhiteListExtensions,
                 ConsoleVerbosityLevel = cliOptions.ConsoleVerbosityLevel,
                 Log = cliOptions.Log,
                 SingleThread = cliOptions.SingleThread,

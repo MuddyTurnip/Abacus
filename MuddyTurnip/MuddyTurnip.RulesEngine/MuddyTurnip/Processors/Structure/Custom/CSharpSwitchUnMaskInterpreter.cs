@@ -341,20 +341,17 @@ namespace MuddyTurnip.RulesEngine
             string code)
         {
             int commaIndex = 0;
+            bool open = false;
             BlockStats? switchArm = null;
             List<BlockStats> switchArmBlocks = new();
             string type = "SwitchArm";
 
             for (int i = 0; i < content.Length; i++)
             {
-                if (content[i] == '='
+                if (!open
+                    && content[i] == '='
                     && content[i + 1] == '>')
                 {
-                    if (switchArm is { })
-                    {
-                        switchArm.CloseIndex = commaIndex + parent.OpenIndex;
-                    }
-
                     switchArm = new(
                         parent,
                         i + 2 + parent.OpenIndex,
@@ -365,10 +362,17 @@ namespace MuddyTurnip.RulesEngine
                     switchArm.MatchStart = commaIndex + parent.OpenIndex + 1;
                     switchArm.MatchEnd = switchArm.OpenIndex - 2;
                     switchArmBlocks.Add(switchArm);
+                    open = true;
                 }
                 else if (content[i] == ',')
                 {
                     commaIndex = i;
+
+                    if (switchArm is { })
+                    {
+                        switchArm.CloseIndex = commaIndex + parent.OpenIndex;
+                        open = false;
+                    }
                 }
             }
 
@@ -381,6 +385,11 @@ namespace MuddyTurnip.RulesEngine
 
             for (int i = 0; i < switchArmBlocks.Count; i++)
             {
+                if (switchArmBlocks[i].CloseIndex == 0)
+                {
+                    throw new NotImplementedException("CloseIndex cannot be zero for a child block");
+                }
+
                 switchArmBlocks[i].BuildUnMaskProperties(
                     boundaryCounter,
                     "Branch",

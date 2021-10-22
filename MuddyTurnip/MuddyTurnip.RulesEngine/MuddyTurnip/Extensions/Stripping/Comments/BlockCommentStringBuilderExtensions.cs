@@ -27,7 +27,25 @@ namespace MuddyTurnip.Metrics.Engine
                     startSearchIndex
                 );
 
+                if (commentEndIndex < 0)
+                {
+                    cache.Errors.Add(
+                        new("BlockComment", "Comment block prefix found with no matching suffix")
+                    );
+
+                    return;
+                }
+
                 commentLength = commentEndIndex + suffixLength - commentStartIndex;
+
+                if (commentLength < 0)
+                {
+                    cache.Errors.Add(
+                        new("BlockComment", "Comment block length was negative")
+                    );
+
+                    return;
+                }
 
                 comment = content.ToString(
                     commentStartIndex,

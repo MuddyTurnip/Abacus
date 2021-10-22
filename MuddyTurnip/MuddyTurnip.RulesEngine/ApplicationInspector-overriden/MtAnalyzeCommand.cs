@@ -36,13 +36,13 @@ namespace MuddyTurnip.RulesEngine.Commands
 
         private readonly List<Glob> _fileExclusionList = new();
         private Confidence _confidence;
-        private readonly AnalyzeOptions _options; //copy of incoming caller options
+        private readonly MtAnalyzeOptions _options; //copy of incoming caller options
 
         /// <summary>
         /// Constructor for AnalyzeCommand.
         /// </summary>
         /// <param name="opt"></param>
-        public MtAnalyzeCommand(AnalyzeOptions opt)
+        public MtAnalyzeCommand(MtAnalyzeOptions opt)
         {
             _options = opt;
 
@@ -312,7 +312,7 @@ namespace MuddyTurnip.RulesEngine.Commands
         /// <param name="populatedEntries"></param>
         public MtAnalyzeResult.ExitCode PopulateRecords(
             CancellationToken cancellationToken,
-            AnalyzeOptions opts,
+            MtAnalyzeOptions opts,
             IEnumerable<FileEntry> populatedEntries)
         {
             WriteOnce.SafeLog(
@@ -735,6 +735,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                         {
                             Parallel = false,
                             DenyFilters = _options.FilePathExclusions,
+                            AllowFilters = _options.WhiteListExtensions,
                             MemoryStreamCutoff = 1
                         })
                     )
@@ -777,6 +778,7 @@ namespace MuddyTurnip.RulesEngine.Commands
                         {
                             Parallel = false,
                             DenyFilters = _options.FilePathExclusions,
+                            AllowFilters = _options.WhiteListExtensions,
                             MemoryStreamCutoff = 1
                         })
                     )
