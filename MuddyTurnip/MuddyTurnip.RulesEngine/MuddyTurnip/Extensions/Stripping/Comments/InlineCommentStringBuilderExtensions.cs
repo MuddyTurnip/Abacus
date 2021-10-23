@@ -28,7 +28,7 @@ namespace MuddyTurnip.Metrics.Engine
             {
                 // Is comment preceded by a single line quote
                 // or  
-                isShieldedByQuote = content.CheckQuotes(
+                isShieldedByQuote = content.CheckQuotesAndBlockComments(
                     cache,
                     commentStartIndex
                 );
@@ -103,6 +103,29 @@ namespace MuddyTurnip.Metrics.Engine
             }
         }
 
+        private static bool CheckQuotesAndBlockComments(
+            this StringBuilder content,
+            InlineCommentStripLoopCache cache,
+            int commentStartIndex)
+        {
+            bool skip = CheckQuotes(
+                content,
+                cache,
+                commentStartIndex
+            );
+
+            if (skip)
+            {
+                return true;
+            }
+
+            return CheckBlockComments(
+                content,
+                cache,
+                commentStartIndex
+            );
+        }
+
         private static bool CheckQuotes(
             this StringBuilder content,
             InlineCommentStripLoopCache cache,
@@ -111,13 +134,13 @@ namespace MuddyTurnip.Metrics.Engine
             int inlineCommentEndIndex = commentStartIndex + cache.InlineComment.Length;
             int stopIndex = inlineCommentEndIndex > content.Length ? content.Length : inlineCommentEndIndex;
 
-            List <MtBoundary> emotyBoundaries = new();
+            List<MtBoundary> emptyBoundaries = new();
             List<MtBoundary> stringBoundaries = new();
             StringBuilder copiedContent = new StringBuilder(content.ToString());
             StringBuilder stringContent = new StringBuilder();
 
             StringStripLoopCache stringCache = new(
-                emotyBoundaries,
+                emptyBoundaries,
                 stringBoundaries,
                 stringContent,
                 cache.StringSettings
@@ -131,7 +154,44 @@ namespace MuddyTurnip.Metrics.Engine
             foreach (MtBoundary stringBoundary in stringCache.OutputBoundaries)
             {
                 if (stringBoundary.Index <= commentStartIndex
-                    && stringBoundary.Index + stringBoundary.Length >= inlineCommentEndIndex)
+                    && (stringBoundary.Index + stringBoundary.Length) >= inlineCommentEndIndex)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool CheckBlockComments(
+            this StringBuilder content,
+            InlineCommentStripLoopCache cache,
+            int commentStartIndex)
+        {
+            int prefixEndIndex = commentStartIndex + cache.CommentSettings.Prefix.Length;
+            int stopIndex = prefixEndIndex > content.Length ? content.Length : prefixEndIndex;
+
+            List<MtBoundary> emptyBoundaries = new();
+            List<MtBoundary> stringBoundaries = new();
+            StringBuilder copiedContent = new StringBuilder(content.ToString());
+
+            BlockCommentStripLoopCache blockCache = new(
+                emptyBoundaries,
+                stringBoundaries,
+                cache.CommentSettings.Prefix,
+                cache.CommentSettings.Suffix,
+                new()
+            );
+
+            copiedContent.StripBlockComments(
+                blockCache,
+                stopIndex
+            );
+
+            foreach (MtBoundary stringBoundary in blockCache.OutputBoundaries)
+            {
+                if (stringBoundary.Index <= commentStartIndex
+                    && (stringBoundary.Index + stringBoundary.Length) >= prefixEndIndex)
                 {
                     return true;
                 }

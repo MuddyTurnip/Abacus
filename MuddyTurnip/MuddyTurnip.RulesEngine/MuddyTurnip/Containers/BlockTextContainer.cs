@@ -239,7 +239,8 @@ namespace MuddyTurnip.RulesEngine
             InlineCommentStripLoopCache inlineCache = new(
                 inlineBoundaries,
                 _commentSettings.Inline,
-                _stringSettings
+                _stringSettings,
+                _commentSettings
             );
 
             _strippedContent.StripInlineComments(inlineCache);

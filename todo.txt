@@ -1,7 +1,8 @@
 
 NEXT
 
-BUG - see switch unit tests
+Need to add block commnet checker like string checker in inkine comments
+
 
 statements should use the end not the start per line
 Need to move string processing to first then preprocessor then comments then blank lines and see it makes a difference

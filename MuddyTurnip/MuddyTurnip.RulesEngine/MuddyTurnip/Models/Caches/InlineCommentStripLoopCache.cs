@@ -11,17 +11,20 @@ namespace MuddyTurnip.Metrics.Engine
         public int Adjustment { get; set; }
         public string InlineComment { get; set; }
         public StringSettings StringSettings { get; set; }
+        public CommentSettings CommentSettings { get; set; }
         public SortedList<int, string> CommentContent { get; } = new();
 
         public InlineCommentStripLoopCache(
             List<MtBoundary> inlineBoundaries,
             string inlineComment,
-            StringSettings stringSettinge)
+            StringSettings stringSettinge,
+            CommentSettings commentSettings)
 
         {
             InlineBoundaries = inlineBoundaries;
             InlineComment = inlineComment;
             StringSettings = stringSettinge;
+            CommentSettings = commentSettings;
         }
     }
 }
