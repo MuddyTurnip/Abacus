@@ -109,3 +109,6 @@ analyze -s "C:\GitHub\Abacus" -f json -o "E:\Delete\ApplicationInspector\output.
 analyze -s "C:\Code4\core-main" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs"
 
 analyze -s "C:\Code4\roslyn-main" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs"
+
+analyze -s "C:\Code4\roslyn-main" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs"
+

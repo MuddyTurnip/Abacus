@@ -135,6 +135,34 @@ namespace Test.Switch
                 nameof(Int32) => v => Convert(int.Parse(v)),
                 _ => v => (T)(object)v
             };
+
+        public static int GetParentheses(SyntaxNode node)
+        {
+            switch (node)
+            {
+                case SwitchStatementSyntax when n.OpenParenToken != default: return (n.OpenParenToken, n.CloseParenToken);
+                case TupleExpressionSyntax n: return (n.OpenParenToken, n.CloseParenToken);
+                case CatchDeclarationSyntax n:
+                {
+                    switch (matchStart)
+                    {
+                        case < 0:
+                        case > 100:
+                            {
+                                Console.WriteLine($"Measured value is {matchStart}; out of an acceptable range.");
+                                break;
+                            }
+
+                        default:
+                            {
+                                Console.WriteLine($"Measured value is {matchStart}.");
+                                break;
+                            }
+                    }
+                }
+                default: return default;
+            }
+        }
     }
 }
 
