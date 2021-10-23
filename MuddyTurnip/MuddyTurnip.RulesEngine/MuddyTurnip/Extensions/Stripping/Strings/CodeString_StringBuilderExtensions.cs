@@ -66,11 +66,23 @@ namespace MuddyTurnip.Metrics.Engine
                         {
                             stringLength = cache.End(
                                 content,
-                                i);
+                                i
+                            );
 
                             i -= stringLength;
                         }
                     }
+                }
+                else if (cache.Current?.StringStarted == true
+                        && cache.Current?.MultiLine == false
+                        && c == '\n')
+                {
+                    stringLength = cache.End(
+                        content,
+                        i
+                    );
+
+                    i -= stringLength;
                 }
                 else if (cache.Current?.StringStarted == true
                         && cache.Current?.Format.Enabled == true
@@ -266,10 +278,12 @@ namespace MuddyTurnip.Metrics.Engine
         {
             StringEscape escape = cache.StringSettings.CharacterEscape;
             bool formatEnabled = false;
+            bool multiLine = false;
 
             if (content[i - 1] == cache.StringSettings.PhrasePrefix)
             {
                 escape = cache.StringSettings.PhraseCharacterEscape;
+                multiLine = true;
 
                 if (content[i - 2] == cache.StringSettings.FormatPhrasePrefix)
                 {
@@ -290,7 +304,8 @@ namespace MuddyTurnip.Metrics.Engine
                 escape,
                 formatEnabled,
                 cache.Current,
-                i + 1
+                i + 1,
+                multiLine
             );
         }
 
