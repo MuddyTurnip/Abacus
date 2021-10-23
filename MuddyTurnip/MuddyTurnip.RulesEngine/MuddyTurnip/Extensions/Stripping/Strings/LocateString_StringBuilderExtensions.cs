@@ -6,11 +6,12 @@ using System.Text;
 
 namespace MuddyTurnip.Metrics.Engine
 {
-    public static class CodeString_StringBuilderExtensions
+    public static class LocateString_StringBuilderExtensions
     {
-        public static void StripStrings(
+        public static void LocateStrings(
             this StringBuilder content,
-            StringStripLoopCache cache)
+            StringStripLoopCache cache,
+            int stopIndex)
         {
             // Start at zero then look for "
             // The character after is the start of the string
@@ -37,6 +38,12 @@ namespace MuddyTurnip.Metrics.Engine
 
             for (int i = startStringIndex; i < content.Length; i++)
             {
+                if (cache.Current?.StringStarted != true
+                    && i > stopIndex)
+                {
+                    return;
+                }
+
                 c = content[i];
 
                 if (c == cache.StringSettings.Quote)
@@ -143,50 +150,8 @@ namespace MuddyTurnip.Metrics.Engine
                     }
                 }
             }
-
-            cache.CompleteMergeInBoundaries();
         }
 
-        private static void MergeInBoundary(
-            this StringStripLoopCache cache,
-            MtBoundary stringBoundary)
-        {
-            MtBoundary inputBoundary;
-            int adjustedIndex;
-
-            for (int i = cache.InputCounter; i < cache.InputBoundaries.Count; i++)
-            {
-                inputBoundary = cache.InputBoundaries[i];
-                cache.InputCounter = i;
-                adjustedIndex = stringBoundary.Index + cache.OutputAdjustment + cache.InputAdjustment;
-
-                if (inputBoundary.Index > adjustedIndex)
-                {
-                    break;
-                }
-
-                cache.OutputBoundaries.Add(inputBoundary);
-                cache.InputAdjustment += inputBoundary.Length;
-                cache.InputCounter++;
-
-                if (inputBoundary.Index == stringBoundary.Index)
-                {
-                    break;
-                }
-            }
-
-            cache.AddStringBoundary(stringBoundary);
-        }
-
-        private static void CompleteMergeInBoundaries(this StringStripLoopCache cache)
-        {
-            int i = cache.InputCounter;
-
-            for (; i < cache.InputBoundaries.Count; i++)
-            {
-                cache.OutputBoundaries.Add(cache.InputBoundaries[i]);
-            }
-        }
 
         private static int Pause(
             this StringStripLoopCache cache,
@@ -234,41 +199,15 @@ namespace MuddyTurnip.Metrics.Engine
             // end the string
             int stringLength = endStringIndex - startStringIndex;
 
-            string value = content.ToString(
-                startStringIndex,
-                stringLength
-            );
-
-            cache.StringContent.AppendLine(value);
-
-            // Remove line from content
-            content.Remove(
-                startStringIndex,
-                stringLength
-            );
-
-            // Adjust the startStringIndex so it relates to the FullContent
-            // not the content which might have had phrases removed
             MtBoundary stringBoundary = new MtBoundary(
                 startStringIndex,
                 stringLength,
                 "codeString"
             );
 
-            cache.MergeInBoundary(stringBoundary);
-
-            // Include the length of the removed string to the adjuster
-            cache.OutputAdjustment += stringBoundary.Length;
+            cache.OutputBoundaries.Add(stringBoundary);
 
             return stringLength;
-        }
-
-        private static void AddStringBoundary(
-            this StringStripLoopCache cache,
-            MtBoundary blockBoundary)
-        {
-            blockBoundary.Index += cache.InputAdjustment + cache.OutputAdjustment;
-            cache.OutputBoundaries.Add(blockBoundary);
         }
 
         private static void StartNewString(

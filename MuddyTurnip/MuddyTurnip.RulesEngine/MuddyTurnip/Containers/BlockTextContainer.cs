@@ -86,7 +86,7 @@ namespace MuddyTurnip.RulesEngine
             // Find line end in the text
             int pos = 0;
 
-            while (pos > -1 
+            while (pos > -1
                 && pos < _fullContent.Length)
             {
                 if (++pos < _fullContent.Length)
@@ -145,23 +145,6 @@ namespace MuddyTurnip.RulesEngine
                 codeBlockLoopCache,
                 setBlockContent
             );
-        }
-
-        public string GetTarget(MtPatternScope[] scopes)
-        {
-            if (scopes.Length == 1)
-            {
-                if (scopes.Contains(MtPatternScope.Code))
-                {
-                    return CodeContent;
-                }
-                else if (scopes.Contains(MtPatternScope.Comment))
-                {
-                    return CommentContent;
-                }
-            }
-
-            return _fullContent;
         }
 
         public int GetFullIndexFromCodeIndex(int codeIndex)
@@ -255,7 +238,9 @@ namespace MuddyTurnip.RulesEngine
         {
             InlineCommentStripLoopCache inlineCache = new(
                 inlineBoundaries,
-                _commentSettings.Inline);
+                _commentSettings.Inline,
+                _stringSettings
+            );
 
             _strippedContent.StripInlineComments(inlineCache);
 

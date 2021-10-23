@@ -17,7 +17,12 @@
     <Compile Remove="Files\CSharp1PreProcessorContent.cs" />
     <Compile Remove="Files\CSharp1StringContent.cs" />
     <Compile Remove="Files\CSharp2.cs" />
+    <Compile Remove="Files\CSharp3 - Copy.cs" />
     <Compile Remove="Files\CSharp3.cs" />
+    <Compile Remove="Files\CSharp3Code.cs" />
+    <Compile Remove="Files\CSharp3Comments.cs" />
+    <Compile Remove="Files\CSharp3PreProcessor.cs" />
+    <Compile Remove="Files\CSharp3Strings.cs" />
     <Compile Remove="Files\CSharp4.cs" />
     <Compile Remove="Files\CSharp5.cs" />
     <Compile Remove="Files\CSharp6.cs" />
@@ -63,6 +68,30 @@
       <CustomToolNamespace>EmbeddedFiles</CustomToolNamespace>
     </Content>
     <Content Include="Files\CSharp2.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CustomToolNamespace>EmbeddedFiles</CustomToolNamespace>
+    </Content>
+    <Content Include="Files\CSharp3 - Copy.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CustomToolNamespace>EmbeddedFiles</CustomToolNamespace>
+    </Content>
+    <Content Include="Files\CSharp3PreProcessor.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CustomToolNamespace>EmbeddedFiles</CustomToolNamespace>
+    </Content>
+    <Content Include="Files\CSharp3Comments.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CustomToolNamespace>EmbeddedFiles</CustomToolNamespace>
+    </Content>
+    <Content Include="Files\CSharp3Strings.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CustomToolNamespace>EmbeddedFiles</CustomToolNamespace>
+    </Content>
+    <Content Include="Files\CSharp3Code.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CustomToolNamespace>EmbeddedFiles</CustomToolNamespace>
+    </Content>
+    <Content Include="Files\CSharp3.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CustomToolNamespace>EmbeddedFiles</CustomToolNamespace>
     </Content>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.ApplicationInspector.RulesEngine;
 using MuddyTurnip.RulesEngine.Commands;
+using System.Collections.Generic;
 using System.Text;
 
 namespace MuddyTurnip.Metrics.Engine
@@ -21,9 +22,29 @@ namespace MuddyTurnip.Metrics.Engine
             int adjustedCommentStartIndex;
             int startSearchIndex = commentStartIndex;
             MtBoundary inlineBoundary;
+            bool isShieldedByQuote;
 
             while (commentStartIndex > -1)
             {
+                // Is comment preceded by a single line quote
+                // or  
+                isShieldedByQuote = content.CheckQuotes(
+                    cache,
+                    commentStartIndex
+                );
+
+                if (isShieldedByQuote)
+                {
+                    // Look for the next inline comment
+                    startSearchIndex += cache.InlineComment.Length;
+
+                    commentStartIndex = content.IndexOf(
+                        cache.InlineComment,
+                        startSearchIndex);
+
+                    continue;
+                }
+
                 commentEndIndex = content.IndexOf(
                     '\n', 
                     commentStartIndex);
@@ -80,6 +101,43 @@ namespace MuddyTurnip.Metrics.Engine
                     break;
                 }
             }
+        }
+
+        private static bool CheckQuotes(
+            this StringBuilder content,
+            InlineCommentStripLoopCache cache,
+            int commentStartIndex)
+        {
+            int inlineCommentEndIndex = commentStartIndex + cache.InlineComment.Length;
+            int stopIndex = inlineCommentEndIndex > content.Length ? content.Length : inlineCommentEndIndex;
+
+            List <MtBoundary> emotyBoundaries = new();
+            List<MtBoundary> stringBoundaries = new();
+            StringBuilder copiedContent = new StringBuilder(content.ToString());
+            StringBuilder stringContent = new StringBuilder();
+
+            StringStripLoopCache stringCache = new(
+                emotyBoundaries,
+                stringBoundaries,
+                stringContent,
+                cache.StringSettings
+            );
+
+            copiedContent.LocateStrings(
+                stringCache,
+                stopIndex)
+            ;
+
+            foreach (MtBoundary stringBoundary in stringCache.OutputBoundaries)
+            {
+                if (stringBoundary.Index <= commentStartIndex
+                    && stringBoundary.Index + stringBoundary.Length >= inlineCommentEndIndex)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
