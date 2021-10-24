@@ -94,27 +94,6 @@ namespace MuddyTurnip.Metrics.Engine
             return haystack.IndexOf(needle, startIndex) != -1;
         }
 
-        public static int IndexOf(
-            this StringBuilder haystack,
-            char needle,
-            int startIndex)
-        {
-            if (haystack == null)
-            {
-                throw new ArgumentNullException();
-            }
-
-            for (int idx = startIndex; idx != haystack.Length; ++idx)
-            {
-                if (haystack[idx] == needle)
-                {
-                    return idx;
-                }
-            }
-
-            return -1;
-        }
-
         public static int LastIndexOf(
             this StringBuilder haystack,
             char needle,
@@ -244,6 +223,27 @@ namespace MuddyTurnip.Metrics.Engine
 
         public static int IndexOf(
             this StringBuilder haystack,
+            char needle,
+            int startIndex)
+        {
+            if (haystack == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            for (int idx = startIndex; idx != haystack.Length; ++idx)
+            {
+                if (haystack[idx] == needle)
+                {
+                    return idx;
+                }
+            }
+
+            return -1;
+        }
+
+        public static int IndexOf(
+            this StringBuilder haystack,
             string needle,
             int startIndex)
         {
@@ -258,6 +258,49 @@ namespace MuddyTurnip.Metrics.Engine
                 needle,
                 startIndex
             );
+        }
+
+        public static bool IsMatchAt(
+            this StringBuilder haystack,
+            string needle,
+            int startIndex)
+        {
+            for (int i = 0; i < needle.Length; ++i)
+            {
+                if (haystack[i + startIndex] != needle[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool IsMatchAnyAt(
+            this StringBuilder haystack,
+            string[] needles,
+            int startIndex)
+        {
+            string needle;
+            bool success = true;
+
+            for (int j = 0; j < needles.Length; ++j)
+            {
+                needle = needles[j];
+                success = true;
+
+                for (int i = 0; i < needle.Length; ++i)
+                {
+                    if (haystack[i + startIndex] != needle[i])
+                    {
+                        success = false;
+
+                        break;
+                    }
+                }
+            }
+
+            return success;
         }
 
         private static int[] KMPTable(string sought)

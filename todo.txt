@@ -1,7 +1,7 @@
 
 NEXT
 
-Need to add block commnet checker like string checker in inkine comments
+Need to check formats in strings!!!!
 
 
 statements should use the end not the start per line

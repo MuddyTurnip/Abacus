@@ -168,10 +168,6 @@
 
 /// </summary>
 
-// Uri properties should not be strings
-
-// Uri properties should not be strings
-
 /// <summary>
 
 /// Test

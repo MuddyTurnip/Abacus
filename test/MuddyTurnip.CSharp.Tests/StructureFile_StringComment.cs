@@ -49,7 +49,7 @@ namespace MuddyTurnip.RegularExpression.Tests
             Assert.NotNull(_fixture.DirectoryPath);
 
 #pragma warning disable CS8604 // Possible null reference argument.
-            string path = Path.Combine(_fixture.DirectoryPath, "Files\\CSharpComments.cs");
+            string path = Path.Combine(_fixture.DirectoryPath, "Files\\CSharp3Comments.cs");
 #pragma warning restore CS8604 // Possible null reference argument.
 
             string stringContent = File.ReadAllText(path);
@@ -63,7 +63,7 @@ namespace MuddyTurnip.RegularExpression.Tests
             Assert.NotNull(_fixture.DirectoryPath);
 
 #pragma warning disable CS8604 // Possible null reference argument.
-            string path = Path.Combine(_fixture.DirectoryPath, "Files\\CSharpPreProcessor.cs");
+            string path = Path.Combine(_fixture.DirectoryPath, "Files\\CSharp3PreProcessor.cs");
 #pragma warning restore CS8604 // Possible null reference argument.
 
             string stringContent = File.ReadAllText(path);

@@ -8,25 +8,19 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class StringStripLoopCache
     {
-        public List<MtBoundary> InputBoundaries { get; }
-        public List<MtBoundary> OutputBoundaries { get; }
         public StringBuilder StringContent { get; }
-        public int InputCounter { get; set; }
         public StringSettings StringSettings { get; set; }
-        public int InputAdjustment { get; set; }
-        public int OutputAdjustment { get; set; }
         public StringState? Current { get; set; }
+        public OutputBoundaries OutputBoundaries { get; }
 
         public StringStripLoopCache(
-            List<MtBoundary> inputBoundaries,
-            List<MtBoundary> outputBoundaries,
             StringBuilder stringContent,
-            StringSettings stringSettinge)
+            StringSettings stringSettinge,
+            OutputBoundaries outputBoundaries)
         {
-            OutputBoundaries = outputBoundaries;
-            InputBoundaries = inputBoundaries;
             StringContent = stringContent;
             StringSettings = stringSettinge;
+            OutputBoundaries = outputBoundaries;
         }
     }
 }

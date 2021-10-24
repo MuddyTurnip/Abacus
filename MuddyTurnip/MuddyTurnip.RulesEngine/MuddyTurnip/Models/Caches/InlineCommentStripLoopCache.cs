@@ -7,24 +7,17 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class InlineCommentStripLoopCache
     {
-        public List<MtBoundary> InlineBoundaries { get; }
-        public int Adjustment { get; set; }
+        //public int Adjustment { get; set; }
         public string InlineComment { get; set; }
-        public StringSettings StringSettings { get; set; }
-        public CommentSettings CommentSettings { get; set; }
-        public SortedList<int, string> CommentContent { get; } = new();
+        public List<CommentBoundary> Comments { get; } = new();
+        public OutputBoundaries OutputBoundaries { get; }
 
         public InlineCommentStripLoopCache(
-            List<MtBoundary> inlineBoundaries,
             string inlineComment,
-            StringSettings stringSettinge,
-            CommentSettings commentSettings)
-
+            OutputBoundaries outputBoundaries)
         {
-            InlineBoundaries = inlineBoundaries;
             InlineComment = inlineComment;
-            StringSettings = stringSettinge;
-            CommentSettings = commentSettings;
+            OutputBoundaries = outputBoundaries;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.ApplicationInspector.RulesEngine;
+using MuddyTurnip.RulesEngine;
 using MuddyTurnip.RulesEngine.Commands;
 using System.Collections.Generic;
 using System.Text;
@@ -7,25 +8,20 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class PreProcessorStripLoopCache
     {
-        public List<MtBoundary> InputBoundaries { get; }
-        public List<MtBoundary> OutputBoundaries { get; }
         public StringBuilder PreProcessorContent { get; }
         public int InputCounter { get; set; }
-        public int InputAdjustment { get; set; }
-        public int OutputAdjustment { get; set; }
         public string[] PreProcessors { get; }
         public char[] PreProcessorFirstChars { get; }
+        public OutputBoundaries OutputBoundaries { get; }
 
         public PreProcessorStripLoopCache(
-            List<MtBoundary> inputBoundaries,
-            List<MtBoundary> outputBoundaries,
             StringBuilder preProcessorContent,
-            string[] preProcessors)
+            string[] preProcessors,
+            OutputBoundaries outputBoundaries)
         {
-            InputBoundaries = inputBoundaries;
-            OutputBoundaries = outputBoundaries;
             PreProcessorContent = preProcessorContent;
             PreProcessors = preProcessors;
+            OutputBoundaries = outputBoundaries;
 
             List<char> preProcessorFirstChars = new();
 

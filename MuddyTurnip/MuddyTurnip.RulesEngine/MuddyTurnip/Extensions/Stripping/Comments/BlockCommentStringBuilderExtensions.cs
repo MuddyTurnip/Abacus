@@ -1,175 +1,229 @@
-﻿using Microsoft.ApplicationInspector.RulesEngine;
-using MuddyTurnip.RulesEngine.Commands;
-using System.Text;
+﻿//using Microsoft.ApplicationInspector.RulesEngine;
+//using MuddyTurnip.RulesEngine.Commands;
+//using System.Collections.Generic;
+//using System.Text;
 
-namespace MuddyTurnip.Metrics.Engine
-{
-    static class BlockCommentStringBuilderExtensions
-    {
-        public static void StripBlockComments(
-            this StringBuilder content,
-            BlockCommentStripLoopCache cache)
-        {
-            int suffixLength = cache.SuffixComment.Length;
-            int prefixLength = cache.PrefixComment.Length;
-            int commentStartIndex = content.IndexOf(cache.PrefixComment, 0);
-            int commentEndIndex;
-            int commentLength;
-            int adjustedIndex;
-            string comment;
-            int startSearchIndex = commentStartIndex + prefixLength;
-            MtBoundary blockBoundary;
+//namespace MuddyTurnip.Metrics.Engine
+//{
+//    static class BlockCommentStringBuilderExtensions
+//    {
+//        public static void StripBlockComments(
+//            this StringBuilder content,
+//            BlockCommentStripLoopCache cache)
+//        {
+//            int suffixLength = cache.SuffixComment.Length;
+//            int prefixLength = cache.PrefixComment.Length;
+//            int commentStartIndex = content.IndexOf(cache.PrefixComment, 0);
+//            int commentEndIndex = 0;
+//            int commentLength;
+//            int adjustedIndex;
+//            string comment;
+//            int startSearchIndex = commentStartIndex + prefixLength;
+//            MtBoundary blockBoundary;
+//            bool isShieldedByQuote;
 
-            while (commentStartIndex > -1)
-            {
-                commentEndIndex = content.IndexOf(
-                    cache.SuffixComment,
-                    startSearchIndex
-                );
+//            while (commentStartIndex > -1)
+//            {
+//                isShieldedByQuote = content.CheckQuotes(
+//                    cache,
+//                    cache.PrefixComment,
+//                    commentStartIndex
+//                );
 
-                if (commentEndIndex < 0)
-                {
-                    cache.Errors.Add(
-                        new("BlockComment", "Comment block prefix found with no matching suffix")
-                    );
+//                if (isShieldedByQuote)
+//                {
+//                    // Look for the next inline comment
+//                    startSearchIndex += cache.PrefixComment.Length;
 
-                    return;
-                }
+//                    commentStartIndex = content.IndexOf(
+//                        cache.PrefixComment,
+//                        startSearchIndex);
 
-                commentLength = commentEndIndex + suffixLength - commentStartIndex;
+//                    continue;
+//                }
 
-                if (commentLength < 0)
-                {
-                    cache.Errors.Add(
-                        new("BlockComment", "Comment block length was negative")
-                    );
+//                commentEndIndex = content.IndexOf(
+//                    cache.SuffixComment,
+//                    startSearchIndex
+//                );
 
-                    return;
-                }
+//                if (commentEndIndex < 0)
+//                {
+//                    cache.Errors.Add(
+//                        new("BlockComment", "Comment block prefix found with no matching suffix")
+//                    );
 
-                comment = content.ToString(
-                    commentStartIndex,
-                    commentLength
-                );
+//                    return;
+//                }
 
-                // Remove comment from content
-                content.Remove(
-                    commentStartIndex,
-                    commentLength
-                );
+//                commentLength = commentEndIndex + suffixLength - commentStartIndex;
 
-                blockBoundary = new MtBoundary(
-                    commentStartIndex,
-                    commentLength,
-                    "blockComment"
-                );
+//                if (commentLength < 0)
+//                {
+//                    cache.Errors.Add(
+//                        new("BlockComment", "Comment block length was negative")
+//                    );
 
-                cache.MergeInBoundary(blockBoundary);
+//                    return;
+//                }
 
-                adjustedIndex = AdjustIndexNumber(
-                    cache,
-                    commentStartIndex
-                );
+//                comment = content.ToString(
+//                    commentStartIndex,
+//                    commentLength
+//                );
 
-                cache.CommentContent.Add(
-                    (adjustedIndex * 10) + 1,
-                    comment
-                );
+//                // Remove comment from content
+//                content.Remove(
+//                    commentStartIndex,
+//                    commentLength
+//                );
 
-                // Include the length of the removed string to the adjuster
-                cache.OutputAdjustment += blockBoundary.Length;
+//                blockBoundary = new MtBoundary(
+//                    commentStartIndex,
+//                    commentLength,
+//                    "blockComment"
+//                );
 
-                startSearchIndex = startSearchIndex < 0
-                    ? 0
-                    : startSearchIndex;
+//                cache.MergeInBoundary(blockBoundary);
 
-                // Look for the next block comment prefix
-                commentStartIndex = content.IndexOf(
-                    cache.PrefixComment,
-                    startSearchIndex);
+//                adjustedIndex = AdjustIndexNumber(
+//                    cache,
+//                    commentStartIndex
+//                );
 
-                // Set the next search to start where this comment started (it will be removed in next loop) 
-                startSearchIndex = commentStartIndex;
+//                cache.CommentContent.Add(
+//                    (adjustedIndex * 10) + 1,
+//                    comment
+//                );
 
-                if (startSearchIndex < 0)
-                {
-                    break;
-                }
-            }
+//                // Include the length of the removed string to the adjuster
+//                cache.OutputAdjustment += blockBoundary.Length;
 
-            cache.CompleteMergeInBoundaries();
-        }
+//                // Set the next search to start where this comment started (it will be removed in next loop) 
+//                startSearchIndex = commentStartIndex;
 
-        private static void MergeInBoundary(
-            this BlockCommentStripLoopCache cache,
-            MtBoundary blockBoundary)
-        {
-            int i = cache.InputCounter;
-            MtBoundary inlineBoundary;
-            int adjustedIndex;
+//                // Look for the next block comment prefix
+//                commentStartIndex = content.IndexOf(
+//                    cache.PrefixComment,
+//                    startSearchIndex);
 
-            for (; i < cache.InputBoundaries.Count; i++)
-            {
-                inlineBoundary = cache.InputBoundaries[i];
-                cache.InputCounter = i;
-                adjustedIndex = blockBoundary.Index + cache.OutputAdjustment + cache.InputAdjustment;
+//                if (startSearchIndex < 0)
+//                {
+//                    break;
+//                }
+//            }
 
-                if (inlineBoundary.Index > adjustedIndex)
-                {
-                    break;
-                }
+//            cache.CompleteMergeInBoundaries();
+//        }
 
-                cache.OutputBoundaries.Add(inlineBoundary);
-                cache.InputAdjustment += inlineBoundary.Length;
-                cache.InputCounter++;
+//        private static bool CheckQuotes(
+//            this StringBuilder content,
+//            BlockCommentStripLoopCache cache,
+//            string commentMark,
+//            int commentMarkStartIndex)
+//        {
+//            int inlineCommentEndIndex = commentMarkStartIndex + commentMark.Length;
+//            int stopIndex = inlineCommentEndIndex > content.Length ? content.Length : inlineCommentEndIndex;
 
-                if (inlineBoundary.Index == blockBoundary.Index)
-                {
-                    break;
-                }
-            }
+//            List<MtBoundary> emptyBoundaries = new();
+//            List<MtBoundary> stringBoundaries = new();
+//            StringBuilder copiedContent = new StringBuilder(content.ToString());
+//            StringBuilder stringContent = new StringBuilder();
 
-            cache.AddBlockBoundary(blockBoundary);
-        }
+//            StringStripLoopCache stringCache = new(
+//                emptyBoundaries,
+//                stringBoundaries,
+//                stringContent,
+//                cache.StringSettings
+//            );
 
-        public static void CompleteMergeInBoundaries(this BlockCommentStripLoopCache cache)
-        {
-            int i = cache.InputCounter;
+//            copiedContent.LocateStrings(
+//                stringCache,
+//                stopIndex)
+//            ;
 
-            for (; i < cache.InputBoundaries.Count; i++)
-            {
-                cache.OutputBoundaries.Add(cache.InputBoundaries[i]);
-            }
-        }
+//            foreach (MtBoundary stringBoundary in stringCache.OutputBoundaries)
+//            {
+//                if (stringBoundary.Index <= commentMarkStartIndex
+//                    && (stringBoundary.Index + stringBoundary.Length) >= inlineCommentEndIndex)
+//                {
+//                    return true;
+//                }
+//            }
 
-        public static void AddBlockBoundary(
-            this BlockCommentStripLoopCache cache,
-            MtBoundary blockBoundary)
-        {
-            blockBoundary.Index += cache.InputAdjustment + cache.OutputAdjustment;
-            cache.OutputBoundaries.Add(blockBoundary);
-        }
+//            return false;
+//        }
 
-        public static int AdjustIndexNumber(
-            this BlockCommentStripLoopCache cache,
-            int strippedIndex)
-        {
-            MtBoundary inputBoundary;
-            int adjustedIndex = strippedIndex;
+//        private static void MergeInBoundary(
+//            this BlockCommentStripLoopCache cache,
+//            MtBoundary blockBoundary)
+//        {
+//            int i = cache.InputCounter;
+//            MtBoundary inlineBoundary;
+//            int adjustedIndex;
 
-            for (int i = 0; i < cache.OutputBoundaries.Count; i++)
-            {
-                inputBoundary = cache.OutputBoundaries[i];
+//            for (; i < cache.InputBoundaries.Count; i++)
+//            {
+//                inlineBoundary = cache.InputBoundaries[i];
+//                cache.InputCounter = i;
+//                adjustedIndex = blockBoundary.Index + cache.OutputAdjustment + cache.InputAdjustment;
 
-                if (inputBoundary.Index > adjustedIndex)
-                {
-                    return adjustedIndex;
-                }
+//                if (inlineBoundary.Index > adjustedIndex)
+//                {
+//                    break;
+//                }
 
-                adjustedIndex += inputBoundary.Length;
-            }
+//                cache.OutputBoundaries.Add(inlineBoundary);
+//                cache.InputAdjustment += inlineBoundary.Length;
+//                cache.InputCounter++;
 
-            return adjustedIndex;
-        }
-    }
-}
+//                if (inlineBoundary.Index == blockBoundary.Index)
+//                {
+//                    break;
+//                }
+//            }
+
+//            cache.AddBlockBoundary(blockBoundary);
+//        }
+
+//        private static void CompleteMergeInBoundaries(this BlockCommentStripLoopCache cache)
+//        {
+//            int i = cache.InputCounter;
+
+//            for (; i < cache.InputBoundaries.Count; i++)
+//            {
+//                cache.OutputBoundaries.Add(cache.InputBoundaries[i]);
+//            }
+//        }
+
+//        private static void AddBlockBoundary(
+//            this BlockCommentStripLoopCache cache,
+//            MtBoundary blockBoundary)
+//        {
+//            blockBoundary.Index += cache.InputAdjustment + cache.OutputAdjustment;
+//            cache.OutputBoundaries.Add(blockBoundary);
+//        }
+
+//        private static int AdjustIndexNumber(
+//            this BlockCommentStripLoopCache cache,
+//            int strippedIndex)
+//        {
+//            MtBoundary inputBoundary;
+//            int adjustedIndex = strippedIndex;
+
+//            for (int i = 0; i < cache.OutputBoundaries.Count; i++)
+//            {
+//                inputBoundary = cache.OutputBoundaries[i];
+
+//                if (inputBoundary.Index > adjustedIndex)
+//                {
+//                    return adjustedIndex;
+//                }
+
+//                adjustedIndex += inputBoundary.Length;
+//            }
+
+//            return adjustedIndex;
+//        }
+//    }
+//}

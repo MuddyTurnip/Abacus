@@ -3,17 +3,17 @@
 namespace MuddyTurnip.RulesEngine
 {
     [DebuggerDisplay("{Type}")]
-    public class QuoteBoundary
+    public class CommentBoundary
     {
         public int Index { get; set; }
-        public bool MultiLine { get; set; }
+        public string Comment { get; set; }
 
-        public QuoteBoundary(
+        public CommentBoundary(
             int index,
-            bool multiLine)
+            string comment)
         {
             Index = index;
-            MultiLine = multiLine;
+            Comment = comment;
         }
     }
 }

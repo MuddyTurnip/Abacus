@@ -1,6 +1,6 @@
-﻿            // Comment 1
-            // Comment 2 //
-            // Comment 3 "//
-            /*
-             "2 line "
-            comment // */
+﻿            #region test
+
+            #endregion
+
+#pragma warning disable CS8604 // Possible null reference argument.
+

@@ -108,35 +108,22 @@ namespace MuddyTurnip.RulesEngine
             }
 
             // Run these before adding last EndLine if it doesn't end in a new line...
-            List<MtBoundary> inlineBoundaries = new();
+            //List<MtBoundary> inlineBoundaries = new();
             List<MtBoundary> commentBoundaries = new();
+            List<BlockStatsError> fileErrors = new();
 
-            List<BlockStatsError> fileErrors = StripComments(
-                inlineBoundaries,
+            StripCommentsStringsPreProcessors(
+                fileErrors,
                 commentBoundaries
-            );
-
-            List<MtBoundary> preProcessorBoundaries = new();
-
-            StripPreProcessors(
-                commentBoundaries,
-                preProcessorBoundaries
             );
 
             List<MtBoundary> blankLineBoundaries = new();
 
             StripBlankLines(
-                preProcessorBoundaries,
+                commentBoundaries,
                 blankLineBoundaries);
 
-            List<MtBoundary> stringBoundaries = new();
-
-            StripStrings(
-                blankLineBoundaries,
-                stringBoundaries
-            );
-
-            _outputBoundaries = stringBoundaries;
+            _outputBoundaries = blankLineBoundaries;
 
             CodeBlockLoopCache codeBlockLoopCache = CountCodeBlocks();
             codeBlockLoopCache.RootCodeBlock.Errors.AddRange(fileErrors);
@@ -232,54 +219,52 @@ namespace MuddyTurnip.RulesEngine
             return codeBlockLoopCache;
         }
 
-        public List<BlockStatsError> StripComments(
-            List<MtBoundary> inlineBoundaries,
-            List<MtBoundary> allCommentBoundaries)
+        public List<BlockStatsError> StripCommentsStringsPreProcessors(
+            List<BlockStatsError> fileErrors,
+            List<MtBoundary> boundaries)
         {
-            InlineCommentStripLoopCache inlineCache = new(
-                inlineBoundaries,
+            OutputBoundaries outputBoundaries = new(boundaries);
+
+            InlineCommentStripLoopCache inlineCommentCache = new(
                 _commentSettings.Inline,
-                _stringSettings,
-                _commentSettings
+                outputBoundaries
             );
 
-            _strippedContent.StripInlineComments(inlineCache);
-
-            BlockCommentStripLoopCache blockCache = new(
-                inlineBoundaries,
-                allCommentBoundaries,
+            BlockCommentStripLoopCache blockCommentCache = new(
                 _commentSettings.Prefix,
                 _commentSettings.Suffix,
-                inlineCache.CommentContent);
+                inlineCommentCache.Comments,
+                outputBoundaries
+            );
 
-            _strippedContent.StripBlockComments(blockCache);
+            StringStripLoopCache stringCache = new(
+                _stringContent,
+                _stringSettings,
+                outputBoundaries
+            );
 
-            foreach (KeyValuePair<int, string> comment in blockCache.CommentContent)
-            {
-                _commentContent.AppendLine(comment.Value);
-            }
-
-            return blockCache.Errors;
-        }
-
-        public void StripPreProcessors(
-            List<MtBoundary> inputBoundaries,
-            List<MtBoundary> outputBoundaries)
-        {
-            PreProcessorStripLoopCache cache = new(
-                inputBoundaries,
-                outputBoundaries,
+            PreProcessorStripLoopCache preProcessorCache = new(
                 _preProcessorContent,
-                _preProcessorSettings.Preprocessors.ToArray());
+                _preProcessorSettings.Preprocessors.ToArray(),
+                outputBoundaries
+            );
 
-            if (_preProcessorSettings.Preprocessors.Count == 1)
+            StripLoopCache loopCache = new(
+                blockCommentCache,
+                inlineCommentCache,
+                stringCache,
+                preProcessorCache
+            );
+
+            _strippedContent.Strip(loopCache);
+            blockCommentCache.Comments.Sort(CommentBoundaryExtensions.Compare);
+
+            foreach (CommentBoundary comment in blockCommentCache.Comments)
             {
-                _strippedContent.SingleStripPreProcessors(cache);
+                _commentContent.AppendLine(comment.Comment);
             }
-            else
-            {
-                _strippedContent.MultiStripPreProcessors(cache);
-            }
+
+            return blockCommentCache.Errors;
         }
 
         public void StripBlankLines(
@@ -291,20 +276,6 @@ namespace MuddyTurnip.RulesEngine
                 allBoundaries);
 
             _strippedContent.StripBlankLines(blankLineCache);
-        }
-
-        public void StripStrings(
-            List<MtBoundary> blankLineBoundaries,
-            List<MtBoundary> allBoundaries)
-        {
-            StringStripLoopCache stringCache = new(
-                blankLineBoundaries,
-                allBoundaries,
-                _stringContent,
-                _stringSettings
-            );
-
-            _strippedContent.StripStrings(stringCache);
         }
 
         /// <summary>
@@ -377,94 +348,94 @@ namespace MuddyTurnip.RulesEngine
             return LineEnds[index];
         }
 
-        /// <summary>
-        ///     Checks if the index in the string lies between preffix and suffix
-        /// </summary>
-        /// <param name="text"> Text </param>
-        /// <param name="index"> Index to check </param>
-        /// <param name="prefix"> Prefix </param>
-        /// <param name="suffix"> Suffix </param>
-        /// <returns> True if the index is between prefix and suffix </returns>
-        private static bool IsBetween(
-            string text,
-            int index,
-            string prefix,
-            string suffix,
-            string inline = "")
-        {
-            int pinnedIndex = Math.Min(
-                index,
-                text.Length);
+        ///// <summary>
+        /////     Checks if the index in the string lies between preffix and suffix
+        ///// </summary>
+        ///// <param name="text"> Text </param>
+        ///// <param name="index"> Index to check </param>
+        ///// <param name="prefix"> Prefix </param>
+        ///// <param name="suffix"> Suffix </param>
+        ///// <returns> True if the index is between prefix and suffix </returns>
+        //private static bool IsBetween(
+        //    string text,
+        //    int index,
+        //    string prefix,
+        //    string suffix,
+        //    string inline = "")
+        //{
+        //    int pinnedIndex = Math.Min(
+        //        index,
+        //        text.Length);
 
-            string preText = string.Concat(text.Substring(0, pinnedIndex));
+        //    string preText = string.Concat(text.Substring(0, pinnedIndex));
 
-            int lastPrefix = preText.LastIndexOf(
-                prefix,
-                StringComparison.InvariantCulture);
+        //    int lastPrefix = preText.LastIndexOf(
+        //        prefix,
+        //        StringComparison.InvariantCulture);
 
-            if (lastPrefix >= 0)
-            {
-                int lastInline = preText
-                    .Substring(0, lastPrefix)
-                    .LastIndexOf(inline, StringComparison.InvariantCulture);
+        //    if (lastPrefix >= 0)
+        //    {
+        //        int lastInline = preText
+        //            .Substring(0, lastPrefix)
+        //            .LastIndexOf(inline, StringComparison.InvariantCulture);
 
-                // For example in C#, If this /* is actually commented out by a //
-                if (!(lastInline >= 0
-                    && lastInline < lastPrefix
-                    && !preText
-                        .Substring(lastInline, lastPrefix - lastInline)
-                        .Contains('\n')))
-                {
-                    var commentedText = text.Substring(lastPrefix);
+        //        // For example in C#, If this /* is actually commented out by a //
+        //        if (!(lastInline >= 0
+        //            && lastInline < lastPrefix
+        //            && !preText
+        //                .Substring(lastInline, lastPrefix - lastInline)
+        //                .Contains('\n')))
+        //        {
+        //            var commentedText = text.Substring(lastPrefix);
 
-                    int nextSuffix = commentedText.IndexOf(
-                        suffix,
-                        StringComparison.InvariantCulture
-                    );
+        //            int nextSuffix = commentedText.IndexOf(
+        //                suffix,
+        //                StringComparison.InvariantCulture
+        //            );
 
-                    // If the index is in between the last prefix before the index and the next suffix after
-                    // that prefix Then it is commented out
-                    if (lastPrefix + nextSuffix > pinnedIndex)
-                    {
-                        return true;
-                    }
-                }
-            }
+        //            // If the index is in between the last prefix before the index and the next suffix after
+        //            // that prefix Then it is commented out
+        //            if (lastPrefix + nextSuffix > pinnedIndex)
+        //            {
+        //                return true;
+        //            }
+        //        }
+        //    }
 
-            if (!string.IsNullOrEmpty(inline))
-            {
-                int lastInline = preText.LastIndexOf(
-                    inline,
-                    StringComparison.InvariantCulture
-                );
+        //    if (!string.IsNullOrEmpty(inline))
+        //    {
+        //        int lastInline = preText.LastIndexOf(
+        //            inline,
+        //            StringComparison.InvariantCulture
+        //        );
 
-                if (lastInline >= 0)
-                {
-                    //extra check to ensure inline is not part of a file path or url i.e. http://111.333.44.444
-                    if (lastInline > 1)
-                    {
-                        if (text[lastInline - 1] != ' ') //indicates not an actual inline comment
-                        {
-                            return false;
-                        }
-                    }
+        //        if (lastInline >= 0)
+        //        {
+        //            //extra check to ensure inline is not part of a file path or url i.e. http://111.333.44.444
+        //            if (lastInline > 1)
+        //            {
+        //                if (text[lastInline - 1] != ' ') //indicates not an actual inline comment
+        //                {
+        //                    return false;
+        //                }
+        //            }
 
-                    var commentedText = text.Substring(lastInline);
-                    int endOfLine = commentedText.IndexOf('\n');//Environment.Newline looks for /r/n which is not guaranteed
+        //            var commentedText = text.Substring(lastInline);
+        //            int endOfLine = commentedText.IndexOf('\n');//Environment.Newline looks for /r/n which is not guaranteed
 
-                    if (endOfLine < 0)
-                    {
-                        endOfLine = commentedText.Length - 1;
-                    }
-                    if (index > lastInline
-                        && index < lastInline + endOfLine)
-                    {
-                        return true;
-                    }
-                }
-            }
+        //            if (endOfLine < 0)
+        //            {
+        //                endOfLine = commentedText.Length - 1;
+        //            }
+        //            if (index > lastInline
+        //                && index < lastInline + endOfLine)
+        //            {
+        //                return true;
+        //            }
+        //        }
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
     }
 }

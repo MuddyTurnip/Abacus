@@ -7,28 +7,25 @@ namespace MuddyTurnip.Metrics.Engine
 {
     public class BlockCommentStripLoopCache
     {
-        public List<MtBoundary> InputBoundaries { get; }
-        public List<MtBoundary> OutputBoundaries { get; }
         public int InputCounter { get; set; }
         public string PrefixComment { get; set; }
         public string SuffixComment { get; set; }
-        public int InputAdjustment { get; set; }
-        public int OutputAdjustment { get; set; }
-        public SortedList<int, string> CommentContent { get; }
+        //public int InputAdjustment { get; set; }
+        //public int OutputAdjustment { get; set; }
+        public List<CommentBoundary> Comments { get; } = new();
         public List<BlockStatsError> Errors { get; set; } = new();
+        public OutputBoundaries OutputBoundaries { get; }
 
         public BlockCommentStripLoopCache(
-            List<MtBoundary> inputBoundaries,
-            List<MtBoundary> outputBoundaries,
             string prefixComment,
             string suffixComment,
-            SortedList<int, string> commentContent)
+            List<CommentBoundary> comments,
+            OutputBoundaries outputBoundaries)
         {
-            InputBoundaries = inputBoundaries;
-            OutputBoundaries = outputBoundaries;
             PrefixComment = prefixComment;
             SuffixComment = suffixComment;
-            CommentContent = commentContent;
+            Comments = comments;
+            OutputBoundaries = outputBoundaries;
         }
     }
 }
