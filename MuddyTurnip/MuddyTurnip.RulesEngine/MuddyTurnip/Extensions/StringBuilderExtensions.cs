@@ -43,7 +43,7 @@ namespace MuddyTurnip.Metrics.Engine
                     return index;
                 }
 
-                start = index + needle.Length;
+                start = index + 1;
                 index = -1;
             }
 

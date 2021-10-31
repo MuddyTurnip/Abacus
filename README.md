@@ -110,5 +110,8 @@ analyze -s "C:\Code4\core-main" -f json -o "E:\Delete\ApplicationInspector\outpu
 
 analyze -s "C:\Code4\roslyn-main" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs"
 
-analyze -s "C:\Code4\roslyn-main" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs"
+analyze -s "C:\Code4\roslyn-main" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs" --F 180000
 
+analyze -s "E:\Delete\ApplicationInspector\Test\Test2" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs" --F 600000
+
+analyze -s "C:\Code4\aspnetcore-main" -f json -o "E:\Delete\ApplicationInspector\output.json" -i true -r "C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\CodemologyRules" -u false --w "**.cs" --F 0

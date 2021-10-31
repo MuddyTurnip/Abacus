@@ -1,4 +1,4 @@
-
+﻿
 NEXT
 
 Need to check formats in strings!!!!
@@ -59,3 +59,118 @@ It allows drill down into the file and metrics to be built for file/class/method
 Next steps is to spit out a json file, with file text and errors
 Then import the json file to create sums etc of metric points into metrics
 Then to run that against the .NET Core library
+
+
+
+
+TIMED OUT at 60000
+		????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????Enumerating Files. 10776 Discovered.                                                                            00:00:03
+		????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????100.00% 969135 Matches. 0 Files Skipped. 31 Timed Out. 10742 Affected. 3 Not Affected.               00:10:28 / 00:00:00
+		????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????Results written.                                                                                                00:00:35
+		Analyze command running
+		C:\Code4\roslyn-main\src\EditorFeatures\CSharpTest\EditAndContinue\TopLevelEditingTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Generated\BoundNodes.xml.Generated.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\Core\Portable\Generated\Operations.Generated.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Parser\LanguageParser.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\PatternMatchingTests_Scope.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\PatternMatchingTests_Global.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Syntax\Generated\Syntax.Test.xml.Generated.cs timed out.
+		C:\Code4\roslyn-main\src\EditorFeatures\CSharpTest\Completion\CompletionProviders\SymbolCompletionProviderTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Binder\Binder_Expressions.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Syntax\Parsing\ScriptParsingTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Syntax\Parsing\PatternParsingTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Syntax\Parsing\ParsingErrorRecoveryTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\NullableReferenceTypesTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\NativeIntegerTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\SemanticErrorTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\RecordTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Syntax\Parsing\DeclarationParsingTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\FlowAnalysis\NullableWalker.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Emit\CodeGen\CodeGenTupleTest.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\CommandLine\CommandLineTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Symbol\Symbols\DefaultInterfaceImplementationTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Symbol\SymbolDisplay\SymbolDisplayTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\Core\Portable\Operations\ControlFlowGraphBuilder.cs timed out.
+		Analyze command completed
+		See output file at E:\Delete\ApplicationInspector\output.json
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Symbol\Symbols\SymbolErrorTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Symbol\Symbols\StaticAbstractMembersInInterfacesTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\OutVarTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Symbol\Compilation\SemanticModelGetSemanticInfoTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\VisualBasic\Test\Semantic\Binding\T_1247520.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Generated\CSharpSyntaxGenerator\CSharpSyntaxGenerator.SourceGenerator\Syntax.xml.Syntax.Generated.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Generated\CSharpSyntaxGenerator\CSharpSyntaxGenerator.SourceGenerator\Syntax.xml.Main.Generated.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Generated\CSharpSyntaxGenerator\CSharpSyntaxGenerator.SourceGenerator\Syntax.xml.Internal.Generated.cs timed out.
+		Additional details may be found in log file at appinspector.log.txt
+		 efault case
+		C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\bin\Debug\net5.0\MuddyTurnip.Abacus.exe (process 28724) exited with code 0.ault case
+		To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+		Press any key to close this window . . .
+		D
+
+
+TIMED OUT at 180000
+		████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████Enumerating Files. 10776 Discovered.                                                                            00:00:03
+		████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████100.00% 998322 Matches. 0 Files Skipped. 16 Timed Out. 10757 Affected. 3 Not Affected.               00:16:27 / 00:00:00
+		████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████Results written.                                                                                                00:00:26
+		Analyze command running
+		Analyze command completed
+		See output file at E:\Delete\ApplicationInspector\output.json
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\NullableReferenceTypesTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\Core\Portable\Generated\Operations.Generated.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\OutVarTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Parser\LanguageParser.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Generated\BoundNodes.xml.Generated.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\SemanticErrorTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Symbol\Symbols\DefaultInterfaceImplementationTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Emit\CodeGen\CodeGenTupleTest.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Syntax\Generated\Syntax.Test.xml.Generated.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Symbol\Symbols\SymbolErrorTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Symbol\Symbols\StaticAbstractMembersInInterfacesTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Test\Semantic\Semantics\RecordTests.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\VisualBasic\Test\Semantic\Binding\T_1247520.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Generated\CSharpSyntaxGenerator\CSharpSyntaxGenerator.SourceGenerator\Syntax.xml.Syntax.Generated.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Generated\CSharpSyntaxGenerator\CSharpSyntaxGenerator.SourceGenerator\Syntax.xml.Main.Generated.cs timed out.
+		C:\Code4\roslyn-main\src\Compilers\CSharp\Portable\Generated\CSharpSyntaxGenerator\CSharpSyntaxGenerator.SourceGenerator\Syntax.xml.Internal.Generated.cs timed out.
+		Additional details may be found in log file at appinspector.log.txt
+
+		C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\bin\Debug\net5.0\MuddyTurnip.Abacus.exe (process 27768) exited with code 0.████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▓
+		To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+		Press any key to close this window . . .
+		D
+
+
+
+
+
+		NO TIMEOUT
+
+		████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████Enumerating Files. 1 Discovered.                                                                                00:00:00
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████100.00% 12034 Matches. 0 Files Skipped. 0 Timed Out. 1 Affected. 0 Not Affected.                     00:34:15 / 00:00:00
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████Results written.                                                                                                00:00:00
+Analyze command running
+Analyze command completed
+See output file at E:\Delete\ApplicationInspector\output.json
+
+C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\bin\Debug\net5.0\MuddyTurnip.Abacus.exe (process 55204) exited with code 0.
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .
+ 
+ output.json 67MB
+
+
+
+ ASPNET.Core
+ folder = 145MB
+ NO TIMEOUT - must also run at 60000 timeout and run roslyn at 0 Timeout
+ ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████Enumerating Files. 10649 Discovered.                                                                            00:01:52
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████100.00% 637625 Matches. 0 Files Skipped. 0 Timed Out. 10626 Affected. 23 Not Affected.               00:18:05 / 00:00:00
+████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████Results written.                                                                                                00:00:10
+Analyze command running
+Analyze command completed
+See output file at E:\Delete\ApplicationInspector\output.json
+
+C:\GitHub\Abacus\MuddyTurnip\MuddyTurnip.Abacus\bin\Debug\net5.0\MuddyTurnip.Abacus.exe (process 54948) exited with code 0.
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .
+ 

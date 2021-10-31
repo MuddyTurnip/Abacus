@@ -2,7 +2,7 @@
   "profiles": {
     "MuddyTurnip.Abacus": {
       "commandName": "Project",
-      "commandLineArgs": "analyze -s \"E:\\Delete\\ApplicationInspector\\Test\\Test2\" -f json -o \"E:\\Delete\\ApplicationInspector\\output.json\" -i true -r \"C:\\GitHub\\Abacus\\MuddyTurnip\\MuddyTurnip.Abacus\\CodemologyRules\" -u false --w \"**.cs\""
+      "commandLineArgs": "analyze -s \"C:\\Code4\\aspnetcore-main\" -f json -o \"E:\\Delete\\ApplicationInspector\\output.json\" -i true -r \"C:\\GitHub\\Abacus\\MuddyTurnip\\MuddyTurnip.Abacus\\CodemologyRules\" -u false --w \"**.cs\" --F 0"
     }
   }
 }

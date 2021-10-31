@@ -20,9 +20,9 @@ namespace MuddyTurnip.Metrics.Engine
 
             int lineEndIndex = content.IndexOf(
                 '\n',
-                commentStartIndex + 1);
+                commentStartIndex + 1) + 1; // include the \n
 
-            if (lineEndIndex < 0)
+            if (lineEndIndex < 1)
             {
                 lineEndIndex = content.Length - 1;
             }
@@ -37,7 +37,6 @@ namespace MuddyTurnip.Metrics.Engine
             }
 
             lineStartIndex++;
-            lineEndIndex++;
 
             int lineLength = lineEndIndex - lineStartIndex;
             int adjustedCommentStartIndex = lineStartIndex + cache.OutputBoundaries.Adjustment;

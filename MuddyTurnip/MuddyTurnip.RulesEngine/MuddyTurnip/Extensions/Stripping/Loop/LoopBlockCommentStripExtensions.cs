@@ -22,12 +22,14 @@ namespace MuddyTurnip.Metrics.Engine
                 startSearchIndex
             );
 
+            int commentLength = commentEndIndex + suffixLength - commentStartIndex;
+
             if (commentEndIndex < 0)
             {
                 commentEndIndex = content.Length - 1;
+                commentLength = commentEndIndex - commentStartIndex;
             }
 
-            int commentLength = commentEndIndex + suffixLength - commentStartIndex;
             int adjustedCommentStartIndex = commentStartIndex + cache.OutputBoundaries.Adjustment;
 
             string comment = content.ToString(
